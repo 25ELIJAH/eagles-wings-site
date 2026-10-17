@@ -38,14 +38,20 @@ export function bgSlides(max = 8, want = 1600): string[] {
 
 export const galleryNames = (count: number) => Array.from({ length: count }, (_, i) => `gallery-${i + 1}`);
 
-/** The portrait that fills the outline of Kenya, and where to place it inside the 400 x 510 map box. */
-export function kenyaPortrait() {
-  const own = hasOwnPhoto('kenya-portrait');
-  return {
-    src: photoUrl('kenya-portrait', 1200),
-    // Your photo is scaled to cover the map, centred. The stand-in is placed by hand so the girl's face sits mid-country.
-    img: own
-      ? { x: 0, y: 0, w: KENYA_W, h: KENYA_H, par: 'xMidYMid slice' }
-      : { x: -222, y: -50, w: 704, h: 560, par: 'xMidYMid slice' },
-  };
+/** Where each stand-in portrait sits inside the 400 x 510 map box so that a face lands mid-country. */
+const STAND_IN_PLACEMENT: Record<string, { x: number; y: number; w: number; h: number }> = {
+  'kenya-portrait': { x: -222, y: -50, w: 704, h: 560 },
+  'kenya-portrait-2': { x: 0, y: -250, w: 800, h: 1000 },
+};
+
+/**
+ * Portraits that fill the outline of Kenya and take turns. Your own photos (kenya-portrait, kenya-portrait-2 ... -4 in
+ * assets/photos) are scaled to cover the map, centred. Without any, two stand-ins are placed by hand.
+ */
+export function kenyaPortraits() {
+  const own = ['kenya-portrait', 'kenya-portrait-2', 'kenya-portrait-3', 'kenya-portrait-4'].filter(hasOwnPhoto);
+  if (own.length) {
+    return own.map((n) => ({ src: photoUrl(n, 1200), img: { x: 0, y: 0, w: KENYA_W, h: KENYA_H, par: 'xMidYMid slice' } }));
+  }
+  return ['kenya-portrait', 'kenya-portrait-2'].map((n) => ({ src: photoUrl(n, 1200), img: { ...STAND_IN_PLACEMENT[n], par: 'xMidYMid slice' } }));
 }

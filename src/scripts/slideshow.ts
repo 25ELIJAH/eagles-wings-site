@@ -27,7 +27,8 @@ export function initSlideshows() {
     const start = () => { stop(); if (!paused && !document.hidden) timer = window.setInterval(() => go(current + 1), 6500); };
     const render = () => {
       toggle?.setAttribute('aria-pressed', String(paused));
-      toggle?.setAttribute('aria-label', paused ? 'Play background photo slideshow' : 'Pause background photo slideshow');
+      const what = toggle?.dataset.what ?? 'background photo slideshow';
+      toggle?.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} ${what}`);
       toggle?.classList.toggle('paused', paused);
     };
 

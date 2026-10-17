@@ -37,6 +37,9 @@ export const hero = {
   badge: 'Kenya · Since 2026',
   plain: 'Caring for',
   italic: 'families across Kenya.',
+  /** The headline word rotates through these (all covered by our programs). The first is shown without JavaScript. */
+  words: ['families', 'children', 'young people', 'communities'],
+  tail: 'across Kenya.',
   text: "Eagle's Wings is a Kenyan non-profit that feeds children, mentors young people and runs free medical camps.",
   primary: { label: 'Give', href: '/give/' },
   secondary: { label: 'Volunteer or partner', href: '/contact/' },
@@ -162,6 +165,7 @@ const STETH = 'stethoscope';
 const VOL = 'volunteer';
 export const fallbackPhotos: Record<string, string> = {
   'kenya-portrait': AFR,
+  'kenya-portrait-2': NBI,
   hero: NBI,
   'collage-1': AFR,
   'collage-2': NBI,

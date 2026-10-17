@@ -478,6 +478,10 @@ body { overflow-wrap: break-word; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .sl.on, .phero-bg, .hero-bg .sl.on { animation: none !important; }
   .loader-in img, .loader-bar i { animation: none !important; }
+  /* gentle fades are not vestibular triggers: keep the hero's words and portraits changing (pause button stops them) */
+  .hero .kimg { transition-duration: 1.6s !important; }
+  .rot-word { transition: opacity .8s ease !important; transform: none !important; }
+  .seal::after, .scroll-cue i, .kenya { animation: none !important; }
 }
 
 .notfound-links { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 0 0 28px; list-style: none; }
@@ -594,3 +598,56 @@ body { overflow-wrap: break-word; }
 .newsletter form { margin-top: 6px; }
 .newsletter .btn { padding: 10px 24px; }
 .f-reg { margin: 0 0 6px; }
+
+/* ================= landing page: alive ================= */
+
+/* rotating headline word */
+.hero h1 .rot { display: block; position: relative; height: 1.22em; overflow: hidden; }
+.rot-word { position: absolute; left: 0; top: 0; white-space: nowrap; transition: transform .65s var(--ease), opacity .65s ease; }
+.rot-word.enter { transform: translateY(105%); opacity: 0; }
+.rot-word.leave { transform: translateY(-105%); opacity: 0; }
+
+/* Kenya: the outline draws itself, the portrait fades in, the map floats and leans toward the pointer */
+.kenya { --rx: 0deg; --ry: 0deg; transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .5s ease-out; animation: floaty 8s ease-in-out 2.5s infinite; will-change: transform; }
+.kenya-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: trace 2.6s var(--ease) .35s forwards; }
+.kimg { opacity: 0; transition: opacity 1.6s ease; }
+.kimg.on { opacity: 1; }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+@keyframes floaty { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+
+/* a soft pulse on the badge */
+.seal::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--yellow); animation: ping 3.4s ease-out 2s infinite; pointer-events: none; }
+@keyframes ping { 0% { transform: scale(1); opacity: .75; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+
+/* slow parallax (script sets --sy while the hero is on screen) */
+.stroke.s1 { translate: 0 calc(var(--sy, 0) * -0.12px); }
+.stroke.s2 { translate: 0 calc(var(--sy, 0) * 0.1px); }
+.stroke.s3 { translate: 0 calc(var(--sy, 0) * -0.1px); }
+.hero-pair { translate: 0 calc(var(--sy, 0) * -0.16px); }
+.hero-art { translate: 0 calc(var(--sy, 0) * 0.06px); }
+
+/* "Explore" cue invites people down the page */
+.scroll-cue { position: absolute; left: 50%; bottom: 88px; transform: translateX(-50%); z-index: 5; display: grid; justify-items: center; gap: 4px; text-decoration: none; color: var(--forest); font-weight: 700; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+.scroll-cue i { width: 22px; height: 22px; border-right: 3px solid var(--forest); border-bottom: 3px solid var(--forest); transform: rotate(45deg); animation: bob 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--blue); }
+@keyframes bob { 0%, 100% { translate: 0 -4px; opacity: .55; } 50% { translate: 0 6px; opacity: 1; } }
+@media (max-width: 860px) { .scroll-cue { bottom: 70px; } }
+@media (max-width: 560px) { .scroll-cue span { display: none; } }
+
+/* click-the-map affordance, cursor light */
+.kenya { cursor: pointer; }
+.next-face { position: absolute; left: 4%; bottom: 3%; z-index: 3; display: inline-flex; gap: 8px; align-items: center; padding: 9px 16px; border: 0; border-radius: 999px; background: #fff; color: var(--navy); font: 700 14px/1 inherit; box-shadow: 0 6px 18px rgba(18,48,91,.18); cursor: pointer; transition: transform .3s var(--ease), background .3s ease, color .3s ease; }
+.next-face:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+.next-face span { transition: transform .3s var(--ease); }
+.next-face:hover span { transform: translateX(4px); }
+.hero::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .5s ease; background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.55), transparent 70%); }
+.hero.lit::before { opacity: 1; }
+.hero .btn { transition: translate .25s ease-out, background .3s ease, color .3s ease, box-shadow .3s ease; }
+
+/* a few small, useful effects */
+.read-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60; background: var(--yellow); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
+.btn { transition: transform .2s var(--ease), background .3s ease, color .3s ease, box-shadow .3s ease; }
+.btn:active { transform: scale(.97); }
+
+/* moving between pages: no logo screen (only on arrival or refresh) */
+html.no-loader #loader { display: none; }

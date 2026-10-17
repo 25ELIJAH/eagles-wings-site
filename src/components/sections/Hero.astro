@@ -2,13 +2,11 @@
 import Photo from '../Photo.astro';
 import { hero, heroBadge } from '../../data/site';
 import { KENYA_PATH, KENYA_W, KENYA_H } from '../../data/kenya';
-import { bgSlides, kenyaPortrait } from '../../lib/photos';
+import { bgSlides, kenyaPortraits } from '../../lib/photos';
 import { tornPath } from '../../lib/torn';
 
 const slides = bgSlides();
-const { src: kenyaSrc, img: kImg } = kenyaPortrait();
-const [hlWord, ...hlWords] = hero.italic.split(' ');
-const hlRest = hlWords.join(' ');
+const portraits = kenyaPortraits();
 const tornBack = tornPath(7, 74, 26, 11);
 const tornFront = tornPath(31, 96, 24, 9);
 ---
@@ -23,7 +21,7 @@ const tornFront = tornPath(31, 96, 24, 9);
   <span class="stroke s2" aria-hidden="true"></span>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1>{hero.plain} <span class="hl">{hlWord}</span> {hlRest}</h1>
+      <h1>{hero.plain} <span class="rot" data-words={JSON.stringify(hero.words)}><span class="rot-word hl">{hero.words[0]}</span></span> {hero.tail}</h1>
       <p class="lede">{hero.text}</p>
       <div class="actions">
         <a class="btn dark" href={hero.primary.href}>{hero.primary.label}</a>
@@ -38,16 +36,20 @@ const tornFront = tornPath(31, 96, 24, 9);
           <filter id="kenya-shadow" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#12305b" flood-opacity=".28" /></filter>
         </defs>
         <path d={KENYA_PATH} fill="#fff" filter="url(#kenya-shadow)" />
-        <image href={kenyaSrc} x={kImg.x} y={kImg.y} width={kImg.w} height={kImg.h} preserveAspectRatio={kImg.par} clip-path="url(#kenya-clip)" />
-        <path class="kenya-line" d={KENYA_PATH} fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
+        {portraits.map((p, i) => (
+          <image class={`kimg${i === 0 ? ' on' : ''}`} href={i === 0 ? p.src : undefined} data-href={i === 0 ? undefined : p.src} x={p.img.x} y={p.img.y} width={p.img.w} height={p.img.h} preserveAspectRatio={p.img.par} clip-path="url(#kenya-clip)" />
+        ))}
+        <path class="kenya-line" d={KENYA_PATH} pathLength="1" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
       </svg>
+      <button class="next-face" type="button" data-next-face aria-label="Show the next photo">Next photo <span aria-hidden="true">→</span></button>
       <div class="seal"><b><span data-roll={heroBadge.n}></span>+</b><span>{heroBadge.label}</span></div>
     </div>
   </div>
 
   <div class="hero-pair" aria-hidden="true"><Photo name="collage-2" label="" /></div>
   <span class="stroke s3" aria-hidden="true"></span>
-  <button class="slides-toggle" type="button" data-slides-toggle aria-pressed="false" aria-label="Pause background photo slideshow">
+  <a class="scroll-cue" href="#explore"><span>Explore</span><i aria-hidden="true"></i></a>
+  <button class="slides-toggle" type="button" data-slides-toggle data-what="moving photos and headline words" aria-pressed="false" aria-label="Pause moving photos and headline words">
     <span class="ico-pause" aria-hidden="true"></span>
   </button>
   <svg class="torn" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">

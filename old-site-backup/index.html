@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eagle's Wings Community Group | Empowering Communities. Transforming Lives.</title>
+  <meta name="description" content="Eagle's Wings Community Group (EWC) – empowering communities through feeding programs, youth mentorship, and medical outreach in Kenya." />
+  <meta property="og:title" content="Eagle's Wings Community Group" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#003DA5" />
+
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+  <link rel="apple-touch-icon" href="images/logo.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <a href="https://wa.me/254721706755" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+
+      <a href="#home" class="logo" aria-label="Eagle's Wings Home">
+        <div class="logo-icon-wrap">
+          <div class="logo-ring-pulse" aria-hidden="true"></div>
+          <div class="logo-icon">
+            <img src="images/logo.jpg" alt="Eagles Wings Community Group" class="ewc-real-logo ewc-badge-nav" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <svg class="ewc-badge-nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" aria-label="Eagles Wings Community Group Logo" style="display:none">
+              <defs>
+                <radialGradient id="bg-h" cx="40%" cy="35%" r="70%">
+                  <stop offset="0%" stop-color="#24408E"/>
+                  <stop offset="100%" stop-color="#0D1A48"/>
+                </radialGradient>
+                <clipPath id="circ-h"><circle cx="100" cy="100" r="95"/></clipPath>
+              </defs>
+              <!-- BG circle -->
+              <circle cx="100" cy="100" r="100" fill="url(#bg-h)"/>
+              <!-- Gold outer ring -->
+              <circle class="ewc-ring-h" cx="100" cy="100" r="95" fill="none" stroke="#C9A84C" stroke-width="3" stroke-dasharray="8 4" opacity=".6"/>
+              <!-- LEFT WING -->
+              <path class="ewc-wl" d="M100,88 C92,72 76,56 56,44 C42,35 22,28 4,33 C22,27 46,36 64,49 C82,62 96,80 99,90Z" fill="#C9A84C"/>
+              <path d="M56,44 L34,24 M46,39 L22,23 M36,35 L14,23 M27,32 L7,26" stroke="#C9A84C" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+              <!-- RIGHT WING -->
+              <path class="ewc-wr" d="M100,88 C108,72 124,56 144,44 C158,35 178,28 196,33 C178,27 154,36 136,49 C118,62 104,80 101,90Z" fill="#C9A84C"/>
+              <path d="M144,44 L166,24 M154,39 L178,23 M164,35 L186,23 M173,32 L193,26" stroke="#C9A84C" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+              <!-- HEART -->
+              <path d="M80,106 C70,113 63,125 71,136 C79,147 93,143 100,132 C107,143 121,147 129,136 C137,125 130,113 120,106 C113,99 106,97 100,104 C94,97 87,99 80,106Z" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity=".9"/>
+              <!-- LEFT FIGURE (blue/navy) -->
+              <circle cx="84" cy="116" r="4.5" fill="#5B7DB1"/>
+              <line x1="84" y1="120.5" x2="84" y2="132" stroke="#5B7DB1" stroke-width="3" stroke-linecap="round"/>
+              <line x1="84" y1="123" x2="76" y2="118" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="84" y1="123" x2="92" y2="118" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="84" y1="132" x2="79" y2="141" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="84" y1="132" x2="89" y2="141" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- CENTER FIGURE (gold – taller) -->
+              <circle cx="100" cy="112" r="5.5" fill="#C9A84C"/>
+              <line x1="100" y1="117.5" x2="100" y2="131" stroke="#C9A84C" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="100" y1="121" x2="91" y2="115" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+              <line x1="100" y1="121" x2="109" y2="115" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+              <line x1="100" y1="131" x2="94" y2="141" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+              <line x1="100" y1="131" x2="106" y2="141" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+              <!-- RIGHT FIGURE (silver/grey) -->
+              <circle cx="116" cy="116" r="4.5" fill="#9EB3CA"/>
+              <line x1="116" y1="120.5" x2="116" y2="132" stroke="#9EB3CA" stroke-width="3" stroke-linecap="round"/>
+              <line x1="116" y1="123" x2="108" y2="118" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="116" y1="123" x2="124" y2="118" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="116" y1="132" x2="111" y2="141" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="116" y1="132" x2="121" y2="141" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- EAGLE HEAD (white) -->
+              <ellipse cx="100" cy="68" rx="16" ry="18" fill="white"/>
+              <ellipse cx="100" cy="83" rx="9" ry="7" fill="white"/>
+              <!-- Eye -->
+              <circle cx="108" cy="65" r="4" fill="#1B2A5E"/>
+              <circle cx="109" cy="64" r="1.8" fill="white"/>
+              <!-- Gold beak -->
+              <path d="M114,69 L126,73 L114,78 C115,75 115,72 114,69Z" fill="#C9A84C"/>
+              <!-- Head feather hint -->
+              <path d="M86,55 C92,47 108,47 114,55" stroke="#1B2A5E" stroke-width="3" fill="none" opacity=".2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">Eagle's Wings</span>
+          <span class="logo-sub">Community Group</span>
+        </div>
+      </a>
+
+      <nav class="nav-center" id="navLinks" aria-label="Main navigation">
+        <a href="#home"     class="nav-link active" data-text="Home">Home</a>
+        <a href="#about"    class="nav-link" data-text="About Us">About Us</a>
+        <a href="#programs" class="nav-link" data-text="Programs">Programs</a>
+        <a href="#impact"   class="nav-link" data-text="Impact">Impact</a>
+        <a href="#gallery"  class="nav-link" data-text="Gallery">Gallery</a>
+        <a href="#contact"  class="nav-link" data-text="Contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#donate" class="btn-donate-nav magnetic-btn">
+          <span class="btn-shine" aria-hidden="true"></span>
+          <i class="fas fa-heart"></i> Donate Now
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-glow-line" aria-hidden="true"></div>
+  </header>
+
+  <div class="mobile-nav-overlay" id="mobileOverlay">
+    <a href="#home"     class="nav-link">Home</a>
+    <a href="#about"    class="nav-link">About Us</a>
+    <a href="#programs" class="nav-link">Programs</a>
+    <a href="#impact"   class="nav-link">Impact</a>
+    <a href="#gallery"  class="nav-link">Gallery</a>
+    <a href="#contact"  class="nav-link">Contact</a>
+    <a href="#donate"   class="btn-donate-nav" style="margin-top:24px"><i class="fas fa-heart"></i> Donate Now</a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="home">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container hero-container">
+      <div class="hero-left">
+        <div class="hero-badge animate-up d0">
+          <span class="badge-pulse" aria-hidden="true"></span>
+          <span>We Can Make It Happen</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="word animate-up d1">Empowering</span>
+          <span class="word animate-up d2">Communities.</span><br/>
+          <em class="hero-accent">
+            <span class="word animate-up d3">Transforming</span>
+            <span class="word animate-up d4">Lives.</span>
+          </em>
+        </h1>
+        <p class="hero-desc animate-up d5">
+          We are committed to bringing hope, improving lives and building stronger communities
+          through education, healthcare, mentorship and compassion.
+        </p>
+        <div class="hero-stats-row animate-up d6">
+          <div class="hsp"><strong>500+</strong><span>Families</span></div>
+          <div class="hsp-sep" aria-hidden="true"></div>
+          <div class="hsp"><strong>100+</strong><span>Youth</span></div>
+          <div class="hsp-sep" aria-hidden="true"></div>
+          <div class="hsp"><strong>20+</strong><span>Med. Camps</span></div>
+        </div>
+        <div class="hero-btns animate-up d7">
+          <a href="#donate"    class="btn btn-gold magnetic-btn"><i class="fas fa-heart"></i> Support Our Mission</a>
+          <a href="#volunteer" class="btn btn-ghost magnetic-btn"><i class="fas fa-hands-helping"></i> Become A Partner</a>
+        </div>
+      </div>
+
+      <div class="hero-right animate-up d3">
+        <div class="hero-blob-wrap">
+          <div class="blob-ring-spin" aria-hidden="true"></div>
+          <div class="blob-ring-spin r2" aria-hidden="true"></div>
+          <img
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=85&auto=format&fit=crop"
+            alt="African children smiling – Eagle's Wings community"
+            loading="eager"
+          />
+          <div class="hero-dot hd-1" aria-hidden="true"></div>
+          <div class="hero-dot hd-2" aria-hidden="true"></div>
+          <div class="hero-dot hd-3" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ===================== TRUST BAR ===================== -->
+  <div class="trust-bar-outer">
+    <div class="container">
+      <div class="trust-bar">
+        <div class="trust-item"><i class="fas fa-map-marker-alt"></i><div><strong>Serving Kenya</strong><span>East Africa</span></div></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><i class="fas fa-calendar-check"></i><div><strong>Founded 2026</strong><span>Non-Profit Org</span></div></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><i class="fas fa-heart-pulse"></i><div><strong>500+ Lives</strong><span>Impacted</span></div></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><i class="fas fa-hands-clapping"></i><div><strong>50+ Volunteers</strong><span>Dedicated Team</span></div></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><i class="fas fa-globe-africa"></i><div><strong>10+ Communities</strong><span>Reached</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-col reveal fade-left">
+          <div class="about-img-wrap">
+            <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=700&q=85&auto=format&fit=crop"
+                 alt="Eagle's Wings volunteer serving community" loading="lazy" />
+            <div class="about-img-badge"><strong>2026</strong><span>Established</span></div>
+            <div class="about-dots" aria-hidden="true">
+              <div></div><div></div><div></div><div></div>
+              <div></div><div></div><div></div><div></div>
+            </div>
+          </div>
+        </div>
+        <div class="about-content-col reveal fade-right">
+          <div class="section-label">About Us</div>
+          <h2 class="section-title">More Than Charity.<br/><span class="text-gold">We Build Futures.</span></h2>
+          <p class="about-lead">Eagle's Wings Community Group was established to create lasting change in underserved communities through compassion, service, and empowerment.</p>
+          <div class="about-features">
+            <div class="about-feat" data-tilt>
+              <div class="feat-icon icon-blue"><i class="fas fa-eye"></i></div>
+              <div class="feat-body"><h4>Our Vision</h4><p>To reach out to every person with love and hope.</p></div>
+            </div>
+            <div class="about-feat" data-tilt>
+              <div class="feat-icon icon-gold"><i class="fas fa-bullseye"></i></div>
+              <div class="feat-body"><h4>Our Mission</h4><p>We Can Make It Happen.</p></div>
+            </div>
+            <div class="about-feat" data-tilt>
+              <div class="feat-icon icon-dark"><i class="fas fa-gem"></i></div>
+              <div class="feat-body"><h4>Our Values</h4><p>Compassion, Integrity, Teamwork and Excellence.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOUNDER ===================== -->
+  <section class="founder-section" id="founder">
+    <div class="founder-inner container">
+      <div class="founder-content reveal fade-left">
+        <div class="section-label light">Our Founder</div>
+        <h2 class="founder-heading">Meet Our Founder</h2>
+        <div class="founder-quote-wrap">
+          <i class="fas fa-quote-left founder-quote-icon" aria-hidden="true"></i>
+          <p class="founder-quote-text">"I believe every child deserves opportunity, every family deserves hope, and every community deserves support. Eagle's Wings exists to bridge that gap. Together, we can build a future filled with dignity, purpose, and endless possibilities."</p>
+        </div>
+        <div class="founder-sig-wrap">
+          <div class="founder-sig-text">Martin W.</div>
+          <div class="founder-sig-info"><strong>Martin Wanjohi</strong><span>Founder &amp; Executive Director</span></div>
+        </div>
+      </div>
+      <div class="founder-portrait-wrap reveal fade-right">
+        <div class="founder-portrait">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85&auto=format&fit=crop"
+               alt="Martin Wanjohi – Founder" loading="lazy" />
+        </div>
+        <div class="founder-ring"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== IMPACT ===================== -->
+  <section class="impact-section" id="impact">
+    <div class="impact-bg-pattern" aria-hidden="true"></div>
+    <div class="container">
+      <div class="impact-header reveal">
+        <div class="section-label light">Our Impact</div>
+        <h2 class="impact-title">Changing Lives. <span class="text-gold">Building Hope.</span></h2>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-stat reveal"><div class="impact-icon-wrap"><i class="fas fa-users"></i></div><div class="impact-num"><span class="counter" data-target="500">0</span><span class="cplus">+</span></div><div class="impact-label">Families Reached</div></div>
+        <div class="impact-stat reveal delay-1"><div class="impact-icon-wrap"><i class="fas fa-graduation-cap"></i></div><div class="impact-num"><span class="counter" data-target="100">0</span><span class="cplus">+</span></div><div class="impact-label">Youth Empowered</div></div>
+        <div class="impact-stat reveal delay-2"><div class="impact-icon-wrap"><i class="fas fa-kit-medical"></i></div><div class="impact-num"><span class="counter" data-target="20">0</span><span class="cplus">+</span></div><div class="impact-label">Medical Camps</div></div>
+        <div class="impact-stat reveal delay-3"><div class="impact-icon-wrap"><i class="fas fa-hands-helping"></i></div><div class="impact-num"><span class="counter" data-target="50">0</span><span class="cplus">+</span></div><div class="impact-label">Volunteers</div></div>
+        <div class="impact-stat reveal delay-4"><div class="impact-icon-wrap"><i class="fas fa-globe-africa"></i></div><div class="impact-num"><span class="counter" data-target="10">0</span><span class="cplus">+</span></div><div class="impact-label">Communities</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROGRAMS ===================== -->
+  <section class="programs section" id="programs">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Our Programs</div>
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-desc">Three core programs addressing the most pressing needs of our communities.</p>
+      </div>
+      <div class="programs-grid">
+        <article class="prog-card reveal" data-tilt>
+          <div class="prog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80&auto=format&fit=crop" alt="Feeding Program" loading="lazy" />
+            <div class="prog-img-overlay"></div>
+            <div class="prog-img-shimmer" aria-hidden="true"></div>
+          </div>
+          <div class="prog-body">
+            <div class="prog-icon feeding-icon"><i class="fas fa-utensils"></i></div>
+            <h3>Feeding Program</h3>
+            <p>We provide nutritious meals to vulnerable children and families, ensuring no one in our community goes hungry.</p>
+            <a href="#donate" class="prog-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="prog-card reveal delay-1" data-tilt>
+          <div class="prog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80&auto=format&fit=crop" alt="Youth Mentorship" loading="lazy" />
+            <div class="prog-img-overlay"></div>
+            <div class="prog-img-shimmer" aria-hidden="true"></div>
+          </div>
+          <div class="prog-body">
+            <div class="prog-icon mentorship-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Youth Mentorship</h3>
+            <p>We mentor and empower young people through education, life skills training, and leadership programs.</p>
+            <a href="#donate" class="prog-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="prog-card reveal delay-2" data-tilt>
+          <div class="prog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80&auto=format&fit=crop" alt="Medical Outreach" loading="lazy" />
+            <div class="prog-img-overlay"></div>
+            <div class="prog-img-shimmer" aria-hidden="true"></div>
+          </div>
+          <div class="prog-body">
+            <div class="prog-icon medical-icon"><i class="fas fa-kit-medical"></i></div>
+            <h3>Medical Outreach</h3>
+            <p>We organize medical outreach camps to provide free healthcare services in underserved communities.</p>
+            <a href="#donate" class="prog-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Success Stories</div>
+        <h2 class="section-title">Stories Behind The Impact</h2>
+        <p class="section-desc">Real voices from the communities we serve.</p>
+      </div>
+      <div class="testi-carousel reveal">
+        <button class="testi-arrow testi-prev" id="testiPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <div class="testi-viewport">
+          <div class="testi-track" id="testiTrack">
+            <div class="testi-card">
+              <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <i class="fas fa-quote-left testi-quote-icon"></i>
+              <p>"The feeding program helped my family during difficult times. My children can now go to school with full stomachs and a bright future."</p>
+              <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&q=80&auto=format&fit=crop" alt="Mary W." loading="lazy" /></div><div class="testi-info"><strong>Mary W.</strong><span>Parent – Nairobi</span></div></div>
+            </div>
+            <div class="testi-card">
+              <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <i class="fas fa-quote-left testi-quote-icon"></i>
+              <p>"The mentorship program changed my life. I learned leadership skills and now I am confident about my future."</p>
+              <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=100&h=100&q=80&auto=format&fit=crop" alt="Brian A." loading="lazy" /></div><div class="testi-info"><strong>Brian A.</strong><span>Youth Participant</span></div></div>
+            </div>
+            <div class="testi-card">
+              <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <i class="fas fa-quote-left testi-quote-icon"></i>
+              <p>"The medical camp provided the treatment my father needed. We are so grateful for the care and support."</p>
+              <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=100&h=100&q=80&auto=format&fit=crop" alt="Grace N." loading="lazy" /></div><div class="testi-info"><strong>Grace N.</strong><span>Community Member</span></div></div>
+            </div>
+          </div>
+        </div>
+        <button class="testi-arrow testi-next" id="testiNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="testi-dots" id="testiDots">
+        <button class="testi-dot active" data-index="0"></button>
+        <button class="testi-dot" data-index="1"></button>
+        <button class="testi-dot" data-index="2"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Gallery</div>
+        <h2 class="section-title">Moments That Inspire</h2>
+        <p class="section-desc">Witness the transformation happening in our communities.</p>
+      </div>
+      <div class="gallery-masonry reveal">
+        <div class="gal-item" data-src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=90" data-caption="Feeding Program"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&q=80&auto=format&fit=crop" alt="Feeding program" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Feeding Program</span></div></div>
+        <div class="gal-item gal-tall" data-src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1200&q=90" data-caption="Community Event"><img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=500&q=80&auto=format&fit=crop" alt="Community event" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Community Event</span></div></div>
+        <div class="gal-item" data-src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200&q=90" data-caption="Medical Camp"><img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=500&q=80&auto=format&fit=crop" alt="Medical camp" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Medical Camp</span></div></div>
+        <div class="gal-item gal-tall" data-src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200&q=90" data-caption="Youth Mentorship"><img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=500&q=80&auto=format&fit=crop" alt="Youth mentorship" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Youth Mentorship</span></div></div>
+        <div class="gal-item" data-src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=90" data-caption="Community Children"><img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=500&q=80&auto=format&fit=crop" alt="Community children" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Community Children</span></div></div>
+        <div class="gal-item" data-src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=1200&q=90" data-caption="Youth Program"><img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=500&q=80&auto=format&fit=crop" alt="Youth program" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Youth Program</span></div></div>
+        <div class="gal-item gal-tall" data-src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=1200&q=90" data-caption="Medical Outreach"><img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=500&q=80&auto=format&fit=crop" alt="Medical outreach" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Medical Outreach</span></div></div>
+        <div class="gal-item" data-src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1200&q=90" data-caption="Community Gathering"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=500&q=80&auto=format&fit=crop" alt="Community gathering" loading="lazy" /><div class="gal-overlay"><i class="fas fa-expand-alt"></i><span>Community Gathering</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-arrow lb-next" id="lbNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    <div class="lb-inner"><img id="lbImg" src="" alt="" /><p id="lbCaption"></p></div>
+  </div>
+
+  <!-- ===================== GET INVOLVED ===================== -->
+  <section class="get-involved section" id="get-involved">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Take Action</div>
+        <h2 class="section-title">Get Involved Today</h2>
+        <p class="section-desc">Your support can change lives and build stronger communities.</p>
+      </div>
+      <div class="involve-grid">
+        <div class="involve-card reveal" data-tilt><div class="involve-icon-wrap ic-donate"><i class="fas fa-heart"></i></div><h3>Donate</h3><p>Support our programs and help us reach more families in need across Kenya.</p><a href="#donate" class="involve-cta">Donate Now <i class="fas fa-arrow-right"></i></a></div>
+        <div class="involve-card reveal delay-1" data-tilt><div class="involve-icon-wrap ic-volunteer"><i class="fas fa-hands-helping"></i></div><h3>Volunteer</h3><p>Join us and make a real difference. Your time and skills can transform communities.</p><a href="#volunteer" class="involve-cta">Join Us <i class="fas fa-arrow-right"></i></a></div>
+        <div class="involve-card reveal delay-2" data-tilt><div class="involve-icon-wrap ic-partner"><i class="fas fa-handshake"></i></div><h3>Partner</h3><p>Partner with us to create lasting impact. Together we can build stronger communities.</p><a href="#donate" class="involve-cta">Partner With Us <i class="fas fa-arrow-right"></i></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BANNER ===================== -->
+  <section class="cta-banner">
+    <div class="cta-particles" id="ctaParticles" aria-hidden="true"></div>
+    <div class="container cta-inner reveal">
+      <div class="section-label light">Join The Movement</div>
+      <h2 class="cta-title">Together We Can Build<br/><span class="text-gold">Stronger Communities.</span></h2>
+      <p>Every action counts. Every donation matters. Every life changed is a victory.</p>
+      <div class="cta-btns">
+        <a href="#donate"    class="btn btn-gold magnetic-btn"><i class="fas fa-heart"></i> Donate Now</a>
+        <a href="#volunteer" class="btn btn-ghost magnetic-btn"><i class="fas fa-hands-helping"></i> Become A Partner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DONATE ===================== -->
+  <section class="donate-section section" id="donate">
+    <div class="container donate-grid">
+      <div class="donate-left reveal fade-left">
+        <div class="section-label">Support Our Mission</div>
+        <h2 class="section-title">Make a <span class="text-gold">Difference Today</span></h2>
+        <p>Your support helps us continue changing lives and bringing hope to those in need.</p>
+        <div class="donate-impacts">
+          <div class="di-item"><div class="di-icon"><i class="fas fa-users"></i></div><span>Help families in need</span></div>
+          <div class="di-item"><div class="di-icon"><i class="fas fa-book-open"></i></div><span>Support children's education</span></div>
+          <div class="di-item"><div class="di-icon"><i class="fas fa-rocket"></i></div><span>Empower the next generation</span></div>
+        </div>
+        <div class="donate-img-wrap"><img src="https://images.unsplash.com/photo-1547941126-3d5322b218b0?w=600&q=80&auto=format&fit=crop" alt="Community support" loading="lazy" /></div>
+      </div>
+      <div class="donate-right reveal fade-right">
+        <div class="form-card">
+          <div class="form-card-hdr"><div class="section-label">Become a Partner</div><h3>Get Involved / Donate</h3><p>Your contribution can transform lives.</p></div>
+          <form action="https://api.web3forms.com/submit" method="POST" id="donateForm">
+            <input type="hidden" name="access_key" value="25076489-e751-4a2f-b3d5-a16d4f02dacb" />
+            <input type="hidden" name="subject" value="New Donor/Partner Inquiry - Eagle's Wings Community Group" />
+            <input type="hidden" name="redirect" value="false" />
+            <div class="form-row">
+              <div class="form-group"><label for="dn-name">Full Name *</label><input type="text" id="dn-name" name="full_name" placeholder="Your full name" required /></div>
+              <div class="form-group"><label for="dn-email">Email Address *</label><input type="email" id="dn-email" name="email" placeholder="Your email" required /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="dn-phone">Phone *</label><input type="tel" id="dn-phone" name="phone" placeholder="+254 000 000 000" required /></div>
+              <div class="form-group"><label for="dn-country">Country *</label><select id="dn-country" name="country" required><option value="">Select Country</option><option>Kenya</option><option>Uganda</option><option>Tanzania</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Other</option></select></div>
+            </div>
+            <div class="form-group"><label for="dn-interest">I would like to: *</label><select id="dn-interest" name="donation_interest" required><option value="">--- Select ---</option><option>Child Sponsorship</option><option>Feeding Program</option><option>Medical Camp</option><option>General Donation</option><option>Corporate Partnership</option></select></div>
+            <div class="form-group"><label for="dn-msg">Message</label><textarea id="dn-msg" name="message" rows="4" placeholder="Tell us how you would like to help..."></textarea></div>
+            <div class="form-check"><input type="checkbox" id="donorConsent" name="consent" required /><label for="donorConsent">I would like to make a donation / support the cause</label></div>
+            <button type="submit" class="btn btn-submit-form"><i class="fas fa-paper-plane"></i> Submit</button>
+            <p class="form-privacy"><i class="fas fa-lock"></i> We respect your privacy.</p>
+            <div class="form-success" id="donateSuccess" style="display:none;"><i class="fas fa-check-circle"></i><p>Thank you! Our team will contact you shortly.</p></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VOLUNTEER ===================== -->
+  <section class="volunteer-section section" id="volunteer">
+    <div class="container">
+      <div class="volunteer-grid">
+        <div class="volunteer-left reveal fade-left">
+          <div class="section-label">Join Our Team</div>
+          <h2 class="section-title">Become a <span class="text-gold">Volunteer</span></h2>
+          <p>Your time and skills can change lives. Join our growing team making a real difference across Kenya.</p>
+          <div class="vol-img-wrap"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80&auto=format&fit=crop" alt="Volunteers" loading="lazy" /></div>
+        </div>
+        <div class="volunteer-right reveal fade-right">
+          <div class="form-card">
+            <div class="form-card-hdr"><h3>Volunteer Application</h3><p>Fill in your details and we'll get back to you.</p></div>
+            <form action="https://api.web3forms.com/submit" method="POST" id="volunteerForm">
+              <input type="hidden" name="access_key" value="25076489-e751-4a2f-b3d5-a16d4f02dacb" />
+              <input type="hidden" name="subject" value="New Volunteer Application - Eagle's Wings Community Group" />
+              <input type="hidden" name="redirect" value="false" />
+              <div class="form-row">
+                <div class="form-group"><label for="vl-name">Full Name *</label><input type="text" id="vl-name" name="name" placeholder="Your name" required /></div>
+                <div class="form-group"><label for="vl-email">Email *</label><input type="email" id="vl-email" name="email" placeholder="Your email" required /></div>
+              </div>
+              <div class="form-group"><label for="vl-phone">Phone *</label><input type="tel" id="vl-phone" name="phone" placeholder="+254 000 000 000" required /></div>
+              <div class="form-group"><label for="vl-skills">Your Skills</label><input type="text" id="vl-skills" name="skills" placeholder="Teaching, Medical, IT..." /></div>
+              <div class="form-group"><label for="vl-avail">Availability</label><select id="vl-avail" name="availability"><option value="">Select</option><option>Weekdays</option><option>Weekends</option><option>Full-time</option><option>Flexible</option></select></div>
+              <div class="form-group"><label for="vl-msg">Message</label><textarea id="vl-msg" name="message" rows="3" placeholder="Why you want to volunteer..."></textarea></div>
+              <button type="submit" class="btn btn-submit-form"><i class="fas fa-hands-helping"></i> Apply to Volunteer</button>
+              <div class="form-success" id="volunteerSuccess" style="display:none;"><i class="fas fa-check-circle"></i><p>Thank you! We'll be in touch.</p></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+        <p class="section-desc">Have questions? Reach out to us.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal fade-left">
+          <div class="contact-items">
+            <div class="contact-item"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div class="ci-text"><strong>Location</strong><p>Kenya, East Africa</p></div></div>
+            <div class="contact-item"><div class="ci-icon"><i class="fas fa-phone"></i></div><div class="ci-text"><strong>Phone / WhatsApp</strong><p><a href="tel:+254721706755">+254 721 706 755</a></p></div></div>
+
+            <div class="contact-item"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div class="ci-text"><strong>Email</strong><p><a href="mailto:info@eagleswingscommunity.org">info@eagleswingscommunity.org</a></p></div></div>
+
+            <div class="contact-item"><div class="ci-icon"><i class="fas fa-share-alt"></i></div><div class="ci-text"><strong>Follow Us</strong><div class="contact-social"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://wa.me/254721706755" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></div>
+          </div>
+          <div class="map-embed-wrap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d510255.7580516756!2d36.566979!3d-1.2830969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1700000000000" width="100%" height="240" style="border:0;" allowfullscreen="" loading="lazy" title="Location"></iframe>
+          </div>
+        </div>
+        <div class="contact-form-col reveal fade-right">
+          <div class="form-card">
+            <div class="form-card-hdr"><h3>Send Us a Message</h3><p>We'll get back to you as soon as possible.</p></div>
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+              <input type="hidden" name="access_key" value="25076489-e751-4a2f-b3d5-a16d4f02dacb" />
+              <input type="hidden" name="subject" value="Contact Form - Eagle's Wings Community Group" />
+              <input type="hidden" name="redirect" value="false" />
+              <div class="form-row">
+                <div class="form-group"><label for="cn-name">Name *</label><input type="text" id="cn-name" name="name" placeholder="Full name" required /></div>
+                <div class="form-group"><label for="cn-email">Email *</label><input type="email" id="cn-email" name="email" placeholder="Email address" required /></div>
+              </div>
+              <div class="form-group"><label for="cn-subject">Subject</label><input type="text" id="cn-subject" name="subject_message" placeholder="What is this about?" /></div>
+              <div class="form-group"><label for="cn-msg">Message *</label><textarea id="cn-msg" name="message" rows="5" placeholder="Your message..." required></textarea></div>
+              <button type="submit" class="btn btn-submit-form"><i class="fas fa-paper-plane"></i> Send Message</button>
+              <div class="form-success" id="contactSuccess" style="display:none;"><i class="fas fa-check-circle"></i><p>Message sent!</p></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">
+              <img src="images/logo.jpg" alt="Eagles Wings Community Group" class="ewc-real-logo ewc-badge-footer" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              <svg class="ewc-badge-footer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" aria-label="Eagles Wings Community Group Logo" style="display:none">
+                <defs>
+                  <radialGradient id="bg-f" cx="40%" cy="35%" r="70%">
+                    <stop offset="0%" stop-color="#24408E"/>
+                    <stop offset="100%" stop-color="#0D1A48"/>
+                  </radialGradient>
+                  <clipPath id="circ-f"><circle cx="100" cy="100" r="95"/></clipPath>
+                </defs>
+                <circle cx="100" cy="100" r="100" fill="url(#bg-f)"/>
+                <circle class="ewc-ring-f" cx="100" cy="100" r="95" fill="none" stroke="#C9A84C" stroke-width="3" stroke-dasharray="8 4" opacity=".7"/>
+                <!-- LEFT WING -->
+                <path class="ewc-wl-f" d="M100,88 C92,72 76,56 56,44 C42,35 22,28 4,33 C22,27 46,36 64,49 C82,62 96,80 99,90Z" fill="#C9A84C"/>
+                <path d="M56,44 L34,24 M46,39 L22,23 M36,35 L14,23 M27,32 L7,26" stroke="#C9A84C" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                <!-- RIGHT WING -->
+                <path class="ewc-wr-f" d="M100,88 C108,72 124,56 144,44 C158,35 178,28 196,33 C178,27 154,36 136,49 C118,62 104,80 101,90Z" fill="#C9A84C"/>
+                <path d="M144,44 L166,24 M154,39 L178,23 M164,35 L186,23 M173,32 L193,26" stroke="#C9A84C" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                <!-- HEART -->
+                <path d="M80,106 C70,113 63,125 71,136 C79,147 93,143 100,132 C107,143 121,147 129,136 C137,125 130,113 120,106 C113,99 106,97 100,104 C94,97 87,99 80,106Z" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity=".9"/>
+                <!-- LEFT FIGURE -->
+                <circle cx="84" cy="116" r="4.5" fill="#5B7DB1"/>
+                <line x1="84" y1="120.5" x2="84" y2="132" stroke="#5B7DB1" stroke-width="3" stroke-linecap="round"/>
+                <line x1="84" y1="123" x2="76" y2="118" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="84" y1="123" x2="92" y2="118" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="84" y1="132" x2="79" y2="141" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="84" y1="132" x2="89" y2="141" stroke="#5B7DB1" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- CENTER FIGURE -->
+                <circle cx="100" cy="112" r="5.5" fill="#C9A84C"/>
+                <line x1="100" y1="117.5" x2="100" y2="131" stroke="#C9A84C" stroke-width="3.5" stroke-linecap="round"/>
+                <line x1="100" y1="121" x2="91" y2="115" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+                <line x1="100" y1="121" x2="109" y2="115" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+                <line x1="100" y1="131" x2="94" y2="141" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+                <line x1="100" y1="131" x2="106" y2="141" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+                <!-- RIGHT FIGURE -->
+                <circle cx="116" cy="116" r="4.5" fill="#9EB3CA"/>
+                <line x1="116" y1="120.5" x2="116" y2="132" stroke="#9EB3CA" stroke-width="3" stroke-linecap="round"/>
+                <line x1="116" y1="123" x2="108" y2="118" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="116" y1="123" x2="124" y2="118" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="116" y1="132" x2="111" y2="141" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="116" y1="132" x2="121" y2="141" stroke="#9EB3CA" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- EAGLE HEAD -->
+                <ellipse cx="100" cy="68" rx="16" ry="18" fill="white"/>
+                <ellipse cx="100" cy="83" rx="9" ry="7" fill="white"/>
+                <circle cx="108" cy="65" r="4" fill="#1B2A5E"/>
+                <circle cx="109" cy="64" r="1.8" fill="white"/>
+                <path d="M114,69 L126,73 L114,78 C115,75 115,72 114,69Z" fill="#C9A84C"/>
+              </svg>
+            </div>
+            <div class="footer-logo-text"><span class="footer-logo-name">Eagle's Wings</span><span class="footer-logo-sub">Community Group</span></div>
+          </div>
+          <p>Empowering communities and transforming lives through compassion, service, and faith. We Can Make It Happen.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://wa.me/254721706755" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#programs">Programs</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Programs</h5><ul><li><a href="#programs">Feeding Program</a></li><li><a href="#programs">Youth Mentorship</a></li><li><a href="#programs">Medical Outreach</a></li><li><a href="#get-involved">Get Involved</a></li></ul></div>
+        <div class="footer-col"><h5>Policies</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Child Protection</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 Eagle's Wings Community Group (EWC). All Rights Reserved.</p>
+        <p class="footer-tag">We Can Make It Happen.</p>
+      </div>
+    </div>
+    <div class="footer-credit-bar">
+      <div class="container">
+        <a href="https://wa.me/254740840018" target="_blank" rel="noopener" class="built-by">Built by ELIJAH JAMES</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
