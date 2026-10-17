@@ -21,6 +21,8 @@ export const site = {
    */
   /** Optional https address of a newsletter sign-up service (MailerLite, Mailchimp, ...). The sign-up box is hidden until it is set. */
   newsletterEndpoint: (import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT as string | undefined)?.trim() ?? '',
+  /** Optional GoatCounter site code (cookie-free, anonymous visit counting). Leave unset to count nothing. */
+  analyticsCode: (() => { const c = ((import.meta.env.PUBLIC_GOATCOUNTER as string | undefined) ?? '').trim().toLowerCase(); return /^[a-z0-9-]{2,40}$/.test(c) ? c : ''; })(),
   formEndpoint: (import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined)?.trim() ?? '',
 };
 
@@ -42,7 +44,7 @@ export const hero = {
   tail: 'across Kenya.',
   text: "Eagle's Wings is a Kenyan non-profit that feeds children, mentors young people and runs free medical camps.",
   primary: { label: 'Give', href: '/give/' },
-  secondary: { label: 'Volunteer or partner', href: '/contact/' },
+  secondary: { label: 'Volunteer or partner', href: '/get-involved/' },
   caption: 'Kenya, East Africa',
 };
 
@@ -146,6 +148,7 @@ export const footer = {
     { href: '/reports/', label: 'Reports' },
     { href: '/faq/', label: 'FAQ' },
     { href: '/give/', label: 'How to give' },
+    { href: '/get-involved/', label: 'Get involved' },
   ],
   policies: [
     { href: '/privacy/', label: 'Privacy Policy' },

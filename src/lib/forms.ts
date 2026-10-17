@@ -1,5 +1,5 @@
 // Form validation and message building. Pure functions (no DOM), so they can be unit tested.
-export type FormKind = 'contact' | 'quick' | 'newsletter';
+export type FormKind = 'contact' | 'quick' | 'newsletter' | 'involve';
 export type Values = Record<string, string>;
 export interface Result { ok: boolean; errors: Record<string, string> }
 
@@ -50,6 +50,6 @@ export function buildMailto(to: string, kind: FormKind, raw: Values): string {
   const lines = Object.entries(raw)
     .filter(([k, v]) => k !== 'website' && clean(v))
     .map(([k, v]) => `${k}: ${String(v).trim()}`);
-  const subject = clean(raw.Subject) || (kind === 'quick' ? 'Message from the website' : 'Website enquiry');
+  const subject = clean(raw.Subject) || (kind === 'quick' ? 'Message from the website' : kind === 'involve' ? 'Volunteer or partner enquiry' : 'Website enquiry');
   return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
 }

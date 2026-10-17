@@ -1,13 +1,45 @@
 ---
 import ContactForm from '../ContactForm.astro';
 import { site } from '../../data/site';
+import { giving } from '../../data/org';
+
+type Method = { title: string; rows: { label: string; value: string }[] };
+const methods: Method[] = [];
+if (giving.mpesaPaybill.number) methods.push({ title: 'M-Pesa Paybill', rows: [{ label: 'Business number', value: giving.mpesaPaybill.number }, ...(giving.mpesaPaybill.account ? [{ label: 'Account name', value: giving.mpesaPaybill.account }] : [])] });
+if (giving.mpesaTill) methods.push({ title: 'M-Pesa Buy Goods', rows: [{ label: 'Till number', value: giving.mpesaTill }] });
+if (giving.bank.accountNumber) methods.push({ title: 'Bank transfer', rows: [
+  ...(giving.bank.name ? [{ label: 'Bank', value: giving.bank.name }] : []),
+  ...(giving.bank.accountName ? [{ label: 'Account name', value: giving.bank.accountName }] : []),
+  { label: 'Account number', value: giving.bank.accountNumber },
+  ...(giving.bank.branch ? [{ label: 'Branch', value: giving.bank.branch }] : []),
+] });
 ---
 <!-- GIVE AND GET INVOLVED -->
 <section class="give" id="donate">
   <div class="wrap">
     <div class="head center reveal">
       <h2>How to give</h2>
-      <p class="sub">Message or call us and we will share the details and send you a receipt. Every gift goes into feeding families, mentoring young people and running medical camps.</p>
+      <p class="sub">{methods.length
+        ? 'Choose the way that suits you. Then message us so we can thank you and send a receipt.'
+        : 'Message or call us and we will share the details and send you a receipt.'} Every gift goes into feeding families, mentoring young people and running medical camps.</p>
+      {methods.length > 0 && (
+        <ul class="ways" role="list">
+          {methods.map((m) => (
+            <li class="way reveal">
+              <h3>{m.title}</h3>
+              <dl>
+                {m.rows.map((r) => (
+                  <div>
+                    <dt>{r.label}</dt>
+                    <dd><span>{r.value}</span> <button class="copy" type="button" data-copy={r.value} aria-label={`Copy ${r.label}`}>Copy</button></dd>
+                  </div>
+                ))}
+              </dl>
+            </li>
+          ))}
+        </ul>
+      )}
+      {giving.note && <p class="ways-note">{giving.note}</p>}
       <div class="actions give-actions">
         <a class="btn yellow" href={site.whatsapp}>WhatsApp us</a>
         <a class="btn ghost" href={`tel:${site.phoneTel}`}>Call {site.phone}</a>
@@ -18,7 +50,7 @@ import { site } from '../../data/site';
     <div id="join">
       <div class="quick reveal" id="contact">
         <h3>Want to give or help?</h3>
-        <p class="small">Leave your details and we will get back to you.</p>
+        <p class="small">Leave your details and we will get back to you. To volunteer or partner with us, see <a href="/get-involved/">Get involved</a>.</p>
         <ContactForm kind="quick" button="Send" />
       </div>
     </div>

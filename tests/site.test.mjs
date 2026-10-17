@@ -33,7 +33,7 @@ const text = (html) => html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/
 const publicPages = Object.keys(pages).filter((u) => u !== '/404');
 
 test('all expected pages are built', () => {
-  for (const u of ['/', '/about/', '/programs/', '/community/', '/photos/', '/give/', '/contact/', '/team/', '/news/', '/events/', '/reports/', '/faq/', '/privacy/', '/terms/', '/child-protection/', '/cookies/', '/accessibility/', '/404']) {
+  for (const u of ['/', '/about/', '/programs/', '/community/', '/photos/', '/give/', '/contact/', '/team/', '/news/', '/events/', '/reports/', '/faq/', '/privacy/', '/terms/', '/child-protection/', '/cookies/', '/accessibility/', '/get-involved/', '/404']) {
     assert.ok(pages[u], `missing page ${u}`);
   }
 });
@@ -231,7 +231,7 @@ test('the Search Console verification tag is emitted only when a valid token is 
 });
 
 test('the footer links to every page of the organisation section', () => {
-  for (const u of ['/team/', '/news/', '/events/', '/reports/', '/faq/', '/give/', '/accessibility/', '/cookies/']) {
+  for (const u of ['/team/', '/news/', '/events/', '/reports/', '/faq/', '/give/', '/accessibility/', '/cookies/', '/get-involved/']) {
     assert.ok(pages['/'].includes(`href="${u}"`), `footer is missing ${u}`);
   }
 });
@@ -292,5 +292,26 @@ test('every footer link group is a labelled navigation landmark', () => {
     const navs = [...footer.matchAll(/<nav\b([^>]*)>/g)];
     assert.ok(navs.length >= 3, `${url}: footer navigation groups`);
     for (const n of navs) assert.ok(/aria-label="[^"]+"/.test(n[1]), `${url}: footer <nav> without a label`);
+  }
+});
+
+test('the Get involved page has a working form with an "I would like to" choice and the spam trap', () => {
+  const html = pages['/get-involved/'];
+  assert.match(html, /data-kind="involve"/);
+  assert.match(html, /<select[^>]*name="Subject"/);
+  assert.match(html, /name="website"/);
+  assert.match(pages['/'], /href="\/get-involved\/"/, 'home links to it');
+});
+
+test('giving details stay hidden until the organisation provides them', () => {
+  const org = fs.readFileSync(path.join(root, 'src', 'data', 'org.ts'), 'utf8');
+  const empty = /mpesaPaybill: \{ number: '', account: '' \}/.test(org) && /mpesaTill: ''/.test(org) && /accountNumber: ''/.test(org);
+  if (empty) assert.ok(!/data-copy=/.test(pages['/give/']), 'no empty payment cards when nothing is configured');
+  else assert.match(pages['/give/'], /data-copy=/);
+});
+
+test('visit counting is off unless configured, and never loads from anywhere but its own service', () => {
+  for (const [url, html] of Object.entries(pages)) {
+    if (/goatcounter/i.test(html)) assert.match(html, /gc\.zgo\.at/, `${url}: unexpected analytics host`);
   }
 });

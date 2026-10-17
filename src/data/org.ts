@@ -25,6 +25,17 @@ export const giftUse: { label: string; text: string; share: string }[] = [
   { label: 'Running the organisation', text: 'Transport, supplies and the costs of keeping the work going.', share: '' },
 ];
 
+/**
+ * Ways to give. Fill in only what the organisation really has; each method appears on the Give page once it has details,
+ * with a copy button. While everything is empty the page asks people to message or call instead.
+ */
+export const giving = {
+  mpesaPaybill: { number: '', account: '' },   // e.g. { number: '123456', account: 'Your name' }
+  mpesaTill: '',                                // Buy Goods till number
+  bank: { name: '', accountName: '', accountNumber: '', branch: '' },
+  note: '',                                     // e.g. 'We send a receipt for every gift.'
+};
+
 /** Reports and documents. Put the PDF in public/documents/ and add an entry, newest first. */
 export interface Report { title: string; year: string; file: string; summary?: string }
 export const reports: Report[] = [];

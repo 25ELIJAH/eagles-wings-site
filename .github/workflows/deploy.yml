@@ -31,6 +31,7 @@ jobs:
           PUBLIC_FORM_ENDPOINT: ${{ vars.PUBLIC_FORM_ENDPOINT }}
           PUBLIC_GSC_VERIFICATION: ${{ vars.PUBLIC_GSC_VERIFICATION }}
           PUBLIC_NEWSLETTER_ENDPOINT: ${{ vars.PUBLIC_NEWSLETTER_ENDPOINT }}
+          PUBLIC_GOATCOUNTER: ${{ vars.PUBLIC_GOATCOUNTER }}
       - name: Tests
         run: npm test
       - name: Dependency audit (fails on high or critical)

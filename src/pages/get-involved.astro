@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site, programs } from '../data/site';
+
+const ways = [
+  { title: 'Volunteer', text: 'Help serve meals, mentor young people or support a medical camp. Tell us when you are free and we will match you to a need.' },
+  { title: 'Partner with us', text: 'Churches, schools, businesses and clinics can work with us on feeding days, mentoring and health outreach.' },
+  { title: 'Give in kind', text: 'Food, clothes, books and supplies are welcome. Message us first so we can arrange a drop-off.' },
+  { title: 'Share a skill', text: 'Teaching, counselling, nursing, accounting, design: a few hours of skill can change a lot.' },
+];
+---
+<Base title="Get involved" description="Volunteer, partner or give in kind with Eagle's Wings Community Group in Kenya. Tell us how you would like to help.">
+  <PageHero title="Get involved" subtitle="There is a place for everyone who wants to help." image="page-contact" />
+  <section class="involve">
+    <div class="wrap">
+      <ul class="ways-grid" role="list">
+        {ways.map((w, i) => (
+          <li class="reveal" style={`--d:${i * 0.07}s`}><h2>{w.title}</h2><p>{w.text}</p></li>
+        ))}
+      </ul>
+      <div class="involve-form reveal">
+        <h2>Tell us how you would like to help</h2>
+        <p class="small">We read every message and reply within a few days. Prefer to talk? Call or WhatsApp <a href={`tel:${site.phoneTel}`}>{site.phone}</a>.</p>
+        <ContactForm kind="involve" button="Send" />
+        <p class="small involve-note">Anyone who works with children through {site.short} follows our <a href="/child-protection/">child protection policy</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

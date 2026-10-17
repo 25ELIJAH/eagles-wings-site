@@ -14,7 +14,7 @@ const root = path.resolve(import.meta.dirname, '..');
 const dirs = { stock: path.join(root, 'assets', 'stock'), own: path.join(root, 'assets', 'photos') };
 const outDir = path.join(root, 'public', 'img');
 const manifestPath = path.join(root, 'src', 'data', 'images.generated.json');
-const WIDTHS = [480, 800, 1200, 1600, 2000];
+const WIDTHS = [480, 800, 1200, 1600];
 const EXT = /\.(jpe?g|png|webp)$/i;
 
 fs.mkdirSync(outDir, { recursive: true });

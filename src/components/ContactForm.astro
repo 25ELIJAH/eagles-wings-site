@@ -3,7 +3,7 @@ import { site } from '../data/site';
 import { LIMITS } from '../lib/forms';
 
 interface Props {
-  kind: 'contact' | 'quick' | 'newsletter';
+  kind: 'contact' | 'quick' | 'newsletter' | 'involve';
   button: string;
 }
 const { kind, button } = Astro.props;
@@ -51,8 +51,23 @@ const endpoint = /^https:\/\//.test(source) ? source : '';
         <p class="field-error" id={id('email-err')} hidden></p>
       </div>
       <div class="field">
-        <label for={id('subject')}>Subject</label>
-        <input id={id('subject')} name="Subject" maxlength={LIMITS.subject} aria-describedby={id('subject-err')} />
+        {kind === 'involve' ? (
+          <>
+            <label for={id('subject')}>I would like to</label>
+            <select id={id('subject')} name="Subject" aria-describedby={id('subject-err')}>
+              <option>Volunteer my time</option>
+              <option>Partner with Eagle's Wings</option>
+              <option>Give in kind (food, clothes, supplies)</option>
+              <option>Offer a skill or service</option>
+              <option>Something else</option>
+            </select>
+          </>
+        ) : (
+          <>
+            <label for={id('subject')}>Subject</label>
+            <input id={id('subject')} name="Subject" maxlength={LIMITS.subject} aria-describedby={id('subject-err')} />
+          </>
+        )}
         <p class="field-error" id={id('subject-err')} hidden></p>
       </div>
       <div class="field">
