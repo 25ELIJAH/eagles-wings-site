@@ -1,6 +1,5 @@
 ---
 import Legal from '../layouts/Legal.astro';
-import Fill from '../components/Fill.astro';
 import { site } from '../data/site';
 ---
 <Legal
@@ -26,8 +25,7 @@ import { site } from '../data/site';
     <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
     <li>Phone / WhatsApp: <a href={`tel:${site.phoneTel}`}>{site.phone}</a></li>
     <li>Location: {site.location}</li>
-    <li>Registration: {site.registration || <Fill>Registration status and number, for example Registered CBO No. ____</Fill>}</li>
-    <li>Data protection registration (ODPC): <Fill>Registration number, or "not required" if you are exempt</Fill></li>
+    {site.registration && <li>Registration: {site.registration}</li>}
   </ul>
 
   <h2>2. The law that applies</h2>

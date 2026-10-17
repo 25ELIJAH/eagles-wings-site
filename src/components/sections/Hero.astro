@@ -1,6 +1,6 @@
 ---
 import Photo from '../Photo.astro';
-import { hero, heroBadge } from '../../data/site';
+import { hero } from '../../data/site';
 import { KENYA_PATH, KENYA_W, KENYA_H } from '../../data/kenya';
 import { bgSlides, kenyaPortraits } from '../../lib/photos';
 import { tornPath } from '../../lib/torn';
@@ -8,11 +8,20 @@ import { tornPath } from '../../lib/torn';
 const slides = bgSlides();
 const portraits = kenyaPortraits();
 const tornBack = tornPath(7, 74, 26, 11);
+// Kenyan flag: black, red and green bands separated by white fimbriation, with the Maasai shield, drawn with a gentle wave.
+const FW = 160, FH = 108;
+const wave = (x: number) => Math.sin((x / FW) * Math.PI * 2.4) * 5;
+const band = (y0: number, y1: number) => {
+  const xs = Array.from({ length: 21 }, (_, i) => (i * FW) / 20);
+  const top = xs.map((x) => `${x.toFixed(1)},${(y0 + wave(x)).toFixed(1)}`);
+  const bot = [...xs].reverse().map((x) => `${x.toFixed(1)},${(y1 + wave(x)).toFixed(1)}`);
+  return `M${top.join(' L')} L${bot.join(' L')} Z`;
+};
 const tornFront = tornPath(31, 96, 24, 9);
 ---
 <!-- HERO: sage background, Kenya-shaped portrait, torn-paper edge -->
 <section class="hero" id="home">
-  <div class="hero-bg" aria-hidden="true" data-slides>
+  <div class="hero-bg" aria-hidden="true" data-slides data-pick="5" data-interval="3000" data-always>
     {slides.map((src, i) => (
       <div class={`sl${i === 0 ? ' on' : ''}`} style={i === 0 ? `background-image:url('${src}')` : undefined} data-bg={i === 0 ? undefined : src}></div>
     ))}
@@ -30,7 +39,7 @@ const tornFront = tornPath(31, 96, 24, 9);
     </div>
 
     <div class="hero-art">
-      <svg class="kenya" viewBox={`-16 -16 ${KENYA_W + 32} ${KENYA_H + 32}`} role="img" aria-label="Map of Kenya containing a portrait of a smiling girl">
+      <svg class="kenya" viewBox={`-16 -16 ${KENYA_W + 32} ${KENYA_H + 32}`} role="img" aria-label="Map of Kenya filled with photographs of children and carers">
         <defs>
           <clipPath id="kenya-clip"><path d={KENYA_PATH} /></clipPath>
           <filter id="kenya-shadow" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#12305b" flood-opacity=".28" /></filter>
@@ -41,17 +50,37 @@ const tornFront = tornPath(31, 96, 24, 9);
         ))}
         <path class="kenya-line" d={KENYA_PATH} pathLength="1" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
       </svg>
-      <button class="next-face" type="button" data-next-face aria-label="Show the next photo">Next photo <span aria-hidden="true">→</span></button>
-      <div class="seal"><b><span data-roll={heroBadge.n}></span>+</b><span>{heroBadge.label}</span></div>
+      <svg class="flag" viewBox={`-6 -10 ${FW + 12} ${FH + 74}`} role="img" aria-label="The flag of Kenya">
+        <defs>
+          <clipPath id="flag-clip"><path d={band(0, FH)} /></clipPath>
+          <linearGradient id="flag-shade" x1="0" x2="1">
+            <stop offset="0" stop-color="#000" stop-opacity=".22" /><stop offset=".25" stop-color="#fff" stop-opacity=".18" />
+            <stop offset=".5" stop-color="#000" stop-opacity=".18" /><stop offset=".75" stop-color="#fff" stop-opacity=".18" />
+            <stop offset="1" stop-color="#000" stop-opacity=".22" />
+          </linearGradient>
+        </defs>
+        <rect x="-5" y="-4" width="4" height={FH + 70} rx="2" fill="#5b7694" />
+        <circle cx="-3" cy="-6" r="4" fill="#c9a14a" />
+        <g clip-path="url(#flag-clip)">
+          <path d={band(0, 32)} fill="#000" /><path d={band(32, 36)} fill="#fff" />
+          <path d={band(36, 72)} fill="#bb0000" /><path d={band(72, 76)} fill="#fff" />
+          <path d={band(76, FH)} fill="#006600" />
+          <g transform={`translate(${FW / 2} ${FH / 2 + wave(FW / 2)})`}>
+            <path d="M-26 -26 L26 26 M26 -26 L-26 26" stroke="#fff" stroke-width="3" />
+            <ellipse rx="16" ry="27" fill="#bb0000" stroke="#000" stroke-width="3" />
+            <path d="M-16 -8 H16 V8 H-16 Z" fill="#fff" />
+            <ellipse rx="16" ry="27" fill="none" stroke="#000" stroke-width="3" />
+            <path d="M0 -27 V27" stroke="#000" stroke-width="2" />
+          </g>
+          <rect class="flag-shine" x={-FW} y="-10" width={FW * 3} height={FH + 20} fill="url(#flag-shade)" />
+        </g>
+      </svg>
     </div>
   </div>
 
   <div class="hero-pair" aria-hidden="true"><Photo name="collage-2" label="" /></div>
   <span class="stroke s3" aria-hidden="true"></span>
   <a class="scroll-cue" href="#explore"><span>Explore</span><i aria-hidden="true"></i></a>
-  <button class="slides-toggle" type="button" data-slides-toggle data-what="moving photos and headline words" aria-pressed="false" aria-label="Pause moving photos and headline words">
-    <span class="ico-pause" aria-hidden="true"></span>
-  </button>
   <svg class="torn" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
     <path class="torn-back" d={tornBack} />
     <path class="torn-front" d={tornFront} />

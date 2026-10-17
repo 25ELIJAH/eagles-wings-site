@@ -7,7 +7,7 @@ export const site = {
   name: "Eagle's Wings Community Group",
   short: "Eagle's Wings",
   founded: 2026,
-  location: 'Kenya, East Africa',
+  location: 'Mwihoko, Kenya',
   /** Your registration line, shown in the footer, Terms, Privacy and FAQ. e.g. 'Registered Community Based Organisation No. CBO/1234/2026'. Leave '' to show a placeholder. */
   registration: '',
   phone: '+254 721 706 755',
@@ -62,8 +62,8 @@ export const founder = {
   label: 'From our founder',
   quote:
     "I believe every child deserves opportunity, every family deserves hope, and every community deserves support. Eagle's Wings exists to bridge that gap. Together, we can build a future filled with dignity, purpose, and endless possibilities.",
-  sign: 'Martin W.',
-  name: 'Martin Wanjohi',
+  sign: 'Rev. Benard K.',
+  name: 'Rev. Benard Kariuki Karanja',
   role: 'Founder & Executive Director',
 };
 
@@ -93,16 +93,30 @@ export const gallery = {
   no: '05',
   label: 'Photos',
   title: "Life at Eagle's Wings",
-  text: 'Moments from our feeding days, medical camps and mentoring sessions.',
+  text: 'Children, carers and the places where they live and learn.',
   items: [
-    { caption: 'Feeding program', tag: 'Meals' },
-    { caption: 'Community event', tag: 'Gathering' },
-    { caption: 'Medical camp', tag: 'Health' },
-    { caption: 'Youth mentorship', tag: 'Mentoring' },
-    { caption: 'Community children', tag: 'Families' },
-    { caption: 'Youth program', tag: 'Mentoring' },
-    { caption: 'Medical outreach', tag: 'Health' },
-    { caption: 'Community gathering', tag: 'Gathering' },
+    { caption: 'Children and visitors together', tag: 'Families' },
+    { caption: 'Outside the home', tag: 'Families' },
+    { caption: 'A clean, ordered dormitory', tag: 'Home' },
+    { caption: 'Beds for the children', tag: 'Home' },
+    { caption: 'Sleeping quarters', tag: 'Home' },
+    { caption: "A child's bed and belongings", tag: 'Home' },
+    { caption: 'Our motto: hard work pays', tag: 'Community' },
+    { caption: 'Children with the team', tag: 'Gathering' },
+    { caption: "Outside the Children's Home", tag: 'Home' },
+    { caption: 'The team with the children', tag: 'Families' },
+    { caption: 'Children gathered in the yard', tag: 'Gathering' },
+    { caption: 'Resting in the sleeping area', tag: 'Home' },
+    { caption: 'Together outside the home', tag: 'Families' },
+    { caption: 'All the children together', tag: 'Gathering' },
+    { caption: 'Washrooms at the home', tag: 'Home' },
+    { caption: 'The office', tag: 'Home' },
+    { caption: 'Children and visitors in the open field', tag: 'Gathering' },
+    { caption: 'Rev. Benard Kariuki Karanja', tag: 'Leadership' },
+    { caption: 'Animals kept at the home', tag: 'Home' },
+    { caption: 'A child in the sleeping area', tag: 'Home' },
+    { caption: 'Children in the hall', tag: 'Families' },
+    { caption: 'Rev. Benard Kariuki Karanja', tag: 'Leadership' },
   ],
 };
 
@@ -148,7 +162,7 @@ export const footer = {
 export const community = {
   kicker: 'Our community',
   title: 'Families, young people and volunteers, together.',
-  text: "Eagle's Wings Community Group brings meals, mentoring and medical care to families across Kenya. Founded in 2026 by Martin Wanjohi, we are growing through the work of volunteers and the people we serve.",
+  text: "Eagle's Wings Community Group brings meals, mentoring and medical care to families across Kenya. Founded in 2026 by Rev. Benard Kariuki Karanja, we are growing through the work of volunteers and the people we serve.",
   line: ['500+ families', '100+ young people', '20+ medical camps'],
 };
 
@@ -220,7 +234,6 @@ export const stats = [
   { n: 50, label: 'Volunteers' },
 ];
 
-export const heroBadge = { n: 500, label: 'Families reached' };
 
 export const banner = {
   title: 'Your gift means a lot to the families we serve.',

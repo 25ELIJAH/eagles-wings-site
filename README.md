@@ -55,7 +55,7 @@ All of this lives in **`src/data/org.ts`**. Add only real information; sections 
 
 | Section | Where it shows | How to add |
 | --- | --- | --- |
-| **Team** | `/team/` | Add a person: `{ slug: 'amina', name: '...', role: '...', bio: '...' }`. Photo: `assets/photos/team-amina.jpg` (Martin uses `martin.jpg`). Only with the person's agreement. |
+| **Team** | `/team/` | Add a person: `{ slug: 'amina', name: '...', role: '...', bio: '...' }`. Photo: `assets/photos/team-amina.jpg` (Rev. Benard uses `benard.jpg`). Only with the person's agreement. |
 | **Where your gift goes** | `/give/` | Replace the empty `share` values with real figures such as `'60%'`. Placeholders show until you do. |
 | **Reports** | `/reports/` | Put the PDF in `public/documents/` and add `{ title, year, file: '/documents/name.pdf', summary }`. |
 | **News** | `/news/`, home page teaser | Add a post `{ slug, title, date: '2026-12-01', summary, body: ['paragraph', 'paragraph'] }`, newest first. It gets its own page at `/news/<slug>/`. |

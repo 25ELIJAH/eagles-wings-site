@@ -146,7 +146,7 @@ test('buttons have an accessible name', () => {
 });
 
 test('no third-party resources are loaded except the allowed ones', () => {
-  const allowed = new Set(['www.openstreetmap.org']);
+  const allowed = new Set([]);
   for (const [url, html] of Object.entries(pages)) {
     const noSchema = html.replace(/<script type="application\/ld\+json"[\s\S]*?<\/script>/g, '');
     for (const tag of [...tags(noSchema, 'link'), ...tags(noSchema, 'script'), ...tags(noSchema, 'img'), ...tags(noSchema, 'iframe'), ...tags(noSchema, 'form'), ...tags(noSchema, 'source')]) {
@@ -252,7 +252,7 @@ test('pages that wait for real content show an honest message, not a blank page'
 });
 
 test('the team page lists the founder, and the gift-use section exists on the Give page', () => {
-  assert.match(pages['/team/'], /Martin Wanjohi/);
+  assert.match(pages['/team/'], /Benard Kariuki Karanja/);
   assert.match(pages['/give/'], /Where your gift goes/);
 });
 

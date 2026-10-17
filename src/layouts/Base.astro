@@ -34,7 +34,7 @@ const csp = [
   "img-src 'self' data:",
   "font-src 'self'",
   `connect-src 'self' ${endpointOrigin} ${newsletterOrigin}`.trim(),
-  'frame-src https://www.openstreetmap.org',
+  "frame-src 'none'",
   "base-uri 'self'",
   `form-action 'self' ${endpointOrigin} ${newsletterOrigin}`.trim(),
   "object-src 'none'",
@@ -87,7 +87,7 @@ const jsonLd = {
     <meta property="og:image:alt" content={`${site.name} logo`} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preload" as="image" href="/img/logo-380.webp" imagesrcset="/img/logo-190.webp 190w, /img/logo-380.webp 380w" imagesizes="190px" fetchpriority="high" />
-    <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin />
     {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
     <script is:inline set:html={BOOT}></script>
@@ -115,7 +115,6 @@ const jsonLd = {
         <a class="link plain" href="/cookies/">Cookie Policy</a>
       </div>
     </div>
-    <button class="to-top" id="to-top" type="button" aria-label="Back to top">&#8593;</button>
     </aside>
     <script>
       import '../scripts/main';

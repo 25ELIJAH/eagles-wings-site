@@ -1,6 +1,5 @@
 ---
 import Legal from '../layouts/Legal.astro';
-import Fill from '../components/Fill.astro';
 import { site } from '../data/site';
 ---
 <Legal
@@ -21,7 +20,7 @@ import { site } from '../data/site';
   </div>
 
   <h2>1. About these terms</h2>
-  <p>This website belongs to <strong>{site.name}</strong>, a community organisation working in Kenya (registration: {site.registration || <Fill>Registration status and number</Fill>}). By visiting or using the website you accept these terms and our <a href="/privacy/">Privacy Policy</a> and <a href="/cookies/">Cookie Policy</a>. If you do not agree, please do not use the website.</p>
+  <p>This website belongs to <strong>{site.name}</strong>, a community organisation working in Kenya{site.registration && ` (registration: ${site.registration})`}. By visiting or using the website you accept these terms and our <a href="/privacy/">Privacy Policy</a> and <a href="/cookies/">Cookie Policy</a>. If you do not agree, please do not use the website.</p>
 
   <h2>2. What this website is for</h2>
   <p>It tells you about our feeding, youth mentorship and medical outreach programs, and lets you contact us, give, or offer to volunteer. We try to keep everything accurate and up to date, but we do not promise that it is always complete or free of mistakes.</p>

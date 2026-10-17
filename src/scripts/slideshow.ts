@@ -4,12 +4,19 @@ import { $, $$, reducedMotion } from './dom';
 
 export function initSlideshows() {
   $$('[data-slides]').forEach((stage, index) => {
+    // data-pick="5": keep the first photo, then show a random selection of the others
+    const pick = Number(stage.dataset.pick || 0);
+    if (pick > 0) {
+      const rest = $$('.sl', stage).slice(1).sort(() => Math.random() - 0.5);
+      rest.slice(pick - 1).forEach((el) => el.remove());
+      rest.slice(0, pick - 1).forEach((el) => stage.append(el));
+    }
     const slides = $$('.sl', stage);
     const toggle = $<HTMLButtonElement>('[data-slides-toggle]', stage.parentElement ?? document.body);
     if (slides.length < 2) { toggle?.remove(); return; }
 
     let current = 0;
-    let paused = reducedMotion();
+    let paused = stage.hasAttribute('data-always') ? false : reducedMotion();
     let timer: number | undefined;
     const preload = (n: number) => {
       const el = slides[n];
@@ -24,7 +31,7 @@ export function initSlideshows() {
       preload((current + 1) % slides.length);
     };
     const stop = () => { window.clearInterval(timer); timer = undefined; };
-    const start = () => { stop(); if (!paused && !document.hidden) timer = window.setInterval(() => go(current + 1), 6500); };
+    const start = () => { stop(); if (!paused && !document.hidden) timer = window.setInterval(() => go(current + 1), Number(stage.dataset.interval) || 6500); };
     const render = () => {
       toggle?.setAttribute('aria-pressed', String(paused));
       const what = toggle?.dataset.what ?? 'background photo slideshow';

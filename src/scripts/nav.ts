@@ -1,4 +1,4 @@
-// Header: mobile menu, hide on scroll-down / return on scroll-up, back-to-top, page-leave fade.
+// Header: mobile menu, hide on scroll-down / return on scroll-up, page-leave fade.
 import { $, $$, reducedMotion } from './dom';
 
 export function initNav() {
@@ -33,14 +33,12 @@ export function initNav() {
     window.scrollY > 120 && !header.matches(':hover') && !header.contains(document.activeElement) && !nav.classList.contains('open');
   const hide = () => { if (canHide()) header.classList.add('hide'); };
 
-  const toTop = $('#to-top');
   const onScroll = () => {
     const y = window.scrollY;
     if (y < 120) show();
     else if (y > lastY + 6) hide();
     else if (y < lastY - 6) show();
     lastY = y;
-    toTop?.classList.toggle('show', y > 700);
     ticking = false;
   };
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
@@ -49,8 +47,6 @@ export function initNav() {
   header.addEventListener('mouseleave', () => { window.clearTimeout(hideTimer); hideTimer = window.setTimeout(hide, 900); });
   header.addEventListener('focusin', show);
   onScroll();
-
-  toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' }));
 
   // ---- short fade before moving to another page of the site ----
   document.addEventListener('click', (e) => {

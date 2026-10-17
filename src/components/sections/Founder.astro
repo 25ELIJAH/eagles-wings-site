@@ -3,16 +3,16 @@ import Photo from '../Photo.astro';
 import { founder } from '../../data/site';
 import { hasOwnPhoto } from '../../lib/photos';
 
-const martinOwn = hasOwnPhoto('martin');
+const ownPhoto = hasOwnPhoto('benard');
 ---
 <!-- FOUNDER: round photos -->
 <section class="soft founder" id="founder">
   <div class="wrap founder-grid">
     <div class="rounds reveal">
       <span class="dots" aria-hidden="true"></span>
-      <span class="round big">{martinOwn
-        ? <Photo name="martin" label={`${founder.name}, ${founder.role}`} />
-        : <span class="monogram" role="img" aria-label={`${founder.name}, ${founder.role}`}>{founder.name.split(' ').map((w) => w[0]).join('')}</span>}</span>
+      <span class="round big">{ownPhoto
+        ? <Photo name="benard" label={`${founder.name}, ${founder.role}`} />
+        : <span class="monogram" role="img" aria-label={`${founder.name}, ${founder.role}`}>{founder.name.split(' ').filter((w) => !/^rev\.?$/i.test(w)).map((w) => w[0]).join('').slice(0, 2)}</span>}</span>
       <span class="round sm1"><Photo name="founder-2" label="" /></span>
       <span class="round sm2"><Photo name="founder-3" label="" /></span>
     </div>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-test/
+.astro/
+.env
+public/img/
+public/favicon-*.png
+public/apple-touch-icon.png
+public/og-default.jpg
+src/data/images.generated.json
+.DS_Store

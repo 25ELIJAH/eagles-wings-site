@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import Fill from '../components/Fill.astro';
 import { faq } from '../data/org';
 import { site } from '../data/site';
 
@@ -23,10 +22,12 @@ const jsonLd = {
             {f.html ? <p set:html={f.a} /> : <p>{f.a}</p>}
           </details>
         ))}
-        <details class="reveal">
-          <summary>Are you a registered organisation?</summary>
-          <p>Registration: {site.registration || <Fill>Registration status and number, for example Registered CBO No. ____</Fill>}</p>
-        </details>
+        {site.registration && (
+          <details class="reveal">
+            <summary>Are you a registered organisation?</summary>
+            <p>Registration: {site.registration}</p>
+          </details>
+        )}
       </div>
       <p class="faq-more">Not answered here? <a href="/contact/">Send us a message</a> and we will reply.</p>
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

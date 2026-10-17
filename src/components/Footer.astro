@@ -1,5 +1,4 @@
 ---
-import Fill from './Fill.astro';
 import Newsletter from './Newsletter.astro';
 import { site, footer } from '../data/site';
 import { social } from '../data/org';
@@ -49,7 +48,7 @@ const socialPath: Record<string, string> = {
     </div>
     <Newsletter />
     <div class="legal">
-      <p class="f-reg">Registration: {site.registration || <Fill>Registration status and number</Fill>} &middot; {site.location}</p>
+      <p class="f-reg">{site.registration && <>Registration: {site.registration} &middot; </>}{site.location}</p>
       <p>{footer.copyright}</p>
       <p>{footer.tagline} &middot; <a href={site.builtBy.href} target="_blank" rel="noopener">Built by {site.builtBy.name}<span class="sr"> (opens in a new tab)</span></a></p>
     </div>

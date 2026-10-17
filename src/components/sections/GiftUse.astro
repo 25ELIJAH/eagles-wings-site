@@ -1,5 +1,4 @@
 ---
-import Fill from '../Fill.astro';
 import { giftUse } from '../../data/org';
 ---
 <section class="giftuse" id="where-gifts-go" aria-labelledby="gu-title">
@@ -11,7 +10,7 @@ import { giftUse } from '../../data/org';
     <ul class="gu-list" role="list">
       {giftUse.map((g, i) => (
         <li class="reveal" style={`--d:${i * 0.07}s`}>
-          <b class="gu-share">{g.share || <Fill>Add %</Fill>}</b>
+          {g.share && <b class="gu-share">{g.share}</b>}
           <div><h3>{g.label}</h3><p>{g.text}</p></div>
         </li>
       ))}

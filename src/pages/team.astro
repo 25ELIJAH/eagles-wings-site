@@ -2,12 +2,11 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Photo from '../components/Photo.astro';
-import Fill from '../components/Fill.astro';
 import DonationBanner from '../components/sections/DonationBanner.astro';
 import { team } from '../data/org';
 import { hasOwnPhoto } from '../lib/photos';
 
-const photoKey = (slug: string) => (slug === 'martin' ? 'martin' : `team-${slug}`);
+const photoKey = (slug: string) => (slug === 'benard' ? 'benard' : `team-${slug}`);
 ---
 <Base title="Our team" description="Meet the people behind Eagle's Wings Community Group: our founder, leaders and volunteers working across Kenya.">
   <PageHero title="Our team" subtitle="The people who make the work happen." image="page-about" />
@@ -19,7 +18,7 @@ const photoKey = (slug: string) => (slug === 'martin' ? 'martin' : `team-${slug}
             <div class="person-photo">
               {hasOwnPhoto(photoKey(p.slug))
                 ? <Photo name={photoKey(p.slug)} label={`${p.name}, ${p.role}`} sizes="(max-width: 700px) 100vw, 300px" />
-                : <span class="monogram" role="img" aria-label={p.name}>{p.name.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>}
+                : <span class="monogram" role="img" aria-label={p.name}>{p.name.split(' ').filter((w) => !/^rev\.?$/i.test(w)).map((w) => w[0]).join('').slice(0, 2)}</span>}
             </div>
             <h2>{p.name}</h2>
             <p class="role">{p.role}</p>
@@ -27,7 +26,6 @@ const photoKey = (slug: string) => (slug === 'martin' ? 'martin' : `team-${slug}
           </li>
         ))}
       </ul>
-      <p class="team-note"><Fill>Add your board members, advisers and key volunteers in src/data/org.ts, with their agreement. Named people build trust.</Fill></p>
     </div>
   </section>
   <DonationBanner />

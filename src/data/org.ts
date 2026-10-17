@@ -9,15 +9,15 @@ export const motto = ['Supporting Today', 'Empowering Tomorrow', 'Building Hope'
 /** People. Add board members, advisers and key volunteers (with their agreement). Photo: assets/photos/team-<slug>.jpg */
 export interface Person { slug: string; name: string; role: string; bio?: string }
 export const team: Person[] = [
-  { slug: 'martin', name: 'Martin Wanjohi', role: 'Founder & Executive Director' },
+  { slug: 'benard', name: 'Rev. Benard Kariuki Karanja', role: 'Founder & Executive Director' },
 ];
 
 /** Milestones. Add real, dated events as the organisation grows. */
 export const timeline: { when: string; text: string }[] = [
-  { when: '2026', text: "Eagle's Wings Community Group is founded in Kenya by Martin Wanjohi." },
+  { when: '2026', text: "Eagle's Wings Community Group is founded in Kenya by Rev. Benard Kariuki Karanja." },
 ];
 
-/** Where gifts go. Fill in the real shares (for example "60%") once you have them. Leave `share` empty to show a placeholder. */
+/** Where gifts go. Fill in the real shares (for example "60%") once you have them.*/
 export const giftUse: { label: string; text: string; share: string }[] = [
   { label: 'Feeding', text: 'Nutritious meals for vulnerable children and families.', share: '' },
   { label: 'Youth mentorship', text: 'Education, life-skills training and leadership programs.', share: '' },
@@ -46,7 +46,7 @@ export const social: { name: 'Facebook' | 'Instagram' | 'YouTube' | 'X' | 'TikTo
 
 /** Frequently asked questions. Every answer uses only facts already stated elsewhere on this site. */
 export const faq: { q: string; a: string; html?: boolean }[] = [
-  { q: "What is Eagle's Wings Community Group?", a: "We are a Kenyan non-profit founded in 2026 by Martin Wanjohi. We feed vulnerable children and families, mentor young people, and run free medical camps in underserved communities." },
+  { q: "What is Eagle's Wings Community Group?", a: "We are a Kenyan non-profit founded in 2026 by Rev. Benard Kariuki Karanja. We feed vulnerable children and families, mentor young people, and run free medical camps in underserved communities." },
   { q: 'Where do you work?', a: 'We serve underserved communities in Kenya, East Africa.' },
   { q: 'How can I give?', a: 'Message or call us and we will share the details and send you a receipt. The steps are on the <a href="/give/">How to give</a> page.', html: true },
   { q: 'How is my gift used?', a: 'Gifts support our programs (feeding, youth mentorship and medical outreach) and the running of the organisation. If you want a gift used for a particular program, tell us when you give. Our <a href="/give/">How to give</a> page shows where gifts go.', html: true },

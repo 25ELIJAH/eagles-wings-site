@@ -1,6 +1,5 @@
 ---
 import ContactForm from '../ContactForm.astro';
-import Fill from '../Fill.astro';
 import { site, contact } from '../../data/site';
 ---
 <section class="contact-wrap">
@@ -12,7 +11,7 @@ import { site, contact } from '../../data/site';
         <ul class="cc-list">
           <li>
             <span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
-            <div><h3>Where we work</h3><p>{site.location}<br /><Fill>Town or office address</Fill></p></div>
+            <div><h3>Where we work</h3><p>{site.location}</p></div>
           </li>
           <li>
             <span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.2"/><path d="m4 7.5 8 6 8-6"/></svg></span>
@@ -38,8 +37,4 @@ import { site, contact } from '../../data/site';
       </div>
     </div>
   </div>
-</section>
-
-<section class="map-sec" aria-label="Map of Kenya">
-  <iframe title="Map of Kenya" src="https://www.openstreetmap.org/export/embed.html?bbox=33.5%2C-5.0%2C42.2%2C5.6&amp;layer=mapnik" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </section>

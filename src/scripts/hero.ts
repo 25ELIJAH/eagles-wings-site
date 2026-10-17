@@ -5,8 +5,7 @@ import { $, $$, reducedMotion, finePointer } from './dom';
 export function initHero() {
   const hero = $('.hero');
   if (!hero) return;
-  const toggle = $<HTMLButtonElement>('[data-slides-toggle]', hero);
-  const paused = () => toggle?.getAttribute('aria-pressed') === 'true' || document.hidden;
+  const paused = () => document.hidden;
   const calm = reducedMotion();
 
   // ---- rotating headline word ----
@@ -51,7 +50,6 @@ export function initHero() {
     // click or tap the map to see the next face (keyboard: the "Next photo" button)
     const again = () => { next(); window.clearInterval(timer); timer = window.setInterval(() => { if (!paused()) next(); }, 4200); };
     $('.kenya', hero)?.addEventListener('click', again);
-    $('[data-next-face]', hero)?.addEventListener('click', again);
   }
 
   // ---- buttons lean toward the pointer, and a soft light follows it across the hero ----

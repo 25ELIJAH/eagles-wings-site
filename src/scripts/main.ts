@@ -6,7 +6,6 @@ import { initLightbox } from './lightbox';
 import { initCookieNotice } from './cookie';
 import { initForms } from './forms';
 import { initHero } from './hero';
-import { initProgress } from './progress';
 
 initNav();
 initReveal();
@@ -15,4 +14,3 @@ initLightbox();
 initCookieNotice();
 initForms();
 initHero();
-initProgress();
