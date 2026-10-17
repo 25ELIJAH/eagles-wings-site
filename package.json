@@ -10,7 +10,7 @@
     "prebuild": "npm run images",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check",
+    "check": "npm run images && astro check",
     "test": "node --experimental-strip-types --no-warnings --test \"tests/**/*.test.*\"",
     "launch-check": "node scripts/launch-check.mjs",
     "verify": "npm run check && npm run build && npm test && npm audit --omit=dev --audit-level=high"
