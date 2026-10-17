@@ -4,6 +4,13 @@ import { hero } from '../../data/site';
 import { KENYA_PATH, KENYA_W, KENYA_H } from '../../data/kenya';
 import { bgSlides, kenyaPortraits } from '../../lib/photos';
 import { tornPath } from '../../lib/torn';
+import { sw, type Lang } from '../../lib/i18n';
+
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props;
+const copy = lang === 'sw'
+  ? { plain: sw.hero.plain, words: sw.hero.words, tail: sw.hero.tail, text: sw.hero.text, primary: sw.hero.primary, secondary: sw.hero.secondary, explore: sw.hero.explore, mapLabel: sw.hero.mapLabel, flagLabel: sw.hero.flagLabel }
+  : { plain: hero.plain, words: hero.words, tail: hero.tail, text: hero.text, primary: hero.primary, secondary: hero.secondary, explore: 'Explore', mapLabel: 'Map of Kenya filled with photographs of children and carers', flagLabel: 'The flag of Kenya' };
 
 const slides = bgSlides();
 const portraits = kenyaPortraits();
@@ -30,16 +37,16 @@ const tornFront = tornPath(31, 96, 24, 9);
   <span class="stroke s2" aria-hidden="true"></span>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1>{hero.plain} <span class="rot" data-words={JSON.stringify(hero.words)}><span class="rot-word hl">{hero.words[0]}</span></span> {hero.tail}</h1>
-      <p class="lede">{hero.text}</p>
+      <h1>{copy.plain} <span class="rot" data-words={JSON.stringify(copy.words)}><span class="rot-word hl">{copy.words[0]}</span></span> {copy.tail}</h1>
+      <p class="lede">{copy.text}</p>
       <div class="actions">
-        <a class="btn dark" href={hero.primary.href}>{hero.primary.label}</a>
-        <a class="link plain" href={hero.secondary.href}>{hero.secondary.label}</a>
+        <a class="btn dark" href={copy.primary.href}>{copy.primary.label}</a>
+        <a class="link plain" href={copy.secondary.href}>{copy.secondary.label}</a>
       </div>
     </div>
 
     <div class="hero-art">
-      <svg class="kenya" viewBox={`-16 -16 ${KENYA_W + 32} ${KENYA_H + 32}`} role="img" aria-label="Map of Kenya filled with photographs of children and carers">
+      <svg class="kenya" viewBox={`-16 -16 ${KENYA_W + 32} ${KENYA_H + 32}`} role="img" aria-label={copy.mapLabel}>
         <defs>
           <clipPath id="kenya-clip"><path d={KENYA_PATH} /></clipPath>
           <filter id="kenya-shadow" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#12305b" flood-opacity=".28" /></filter>
@@ -50,7 +57,7 @@ const tornFront = tornPath(31, 96, 24, 9);
         ))}
         <path class="kenya-line" d={KENYA_PATH} pathLength="1" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
       </svg>
-      <svg class="flag" viewBox={`-6 -10 ${FW + 12} ${FH + 74}`} role="img" aria-label="The flag of Kenya">
+      <svg class="flag" viewBox={`-6 -10 ${FW + 12} ${FH + 74}`} role="img" aria-label={copy.flagLabel}>
         <defs>
           <clipPath id="flag-clip"><path d={band(0, FH)} /></clipPath>
           <linearGradient id="flag-shade" x1="0" x2="1">
@@ -80,7 +87,7 @@ const tornFront = tornPath(31, 96, 24, 9);
 
   <div class="hero-pair" aria-hidden="true"><Photo name="collage-2" label="" /></div>
   <span class="stroke s3" aria-hidden="true"></span>
-  <a class="scroll-cue" href="#explore"><span>Explore</span><i aria-hidden="true"></i></a>
+  <a class="scroll-cue" href="#explore"><span>{copy.explore}</span><i aria-hidden="true"></i></a>
   <svg class="torn" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
     <path class="torn-back" d={tornBack} />
     <path class="torn-front" d={tornFront} />

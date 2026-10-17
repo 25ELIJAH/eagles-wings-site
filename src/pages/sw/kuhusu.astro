@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SwFounder from '../../components/sections/SwFounder.astro';
+import SwBanner from '../../components/sections/SwBanner.astro';
+import { sw } from '../../lib/i18n';
+---
+<Base lang="sw" title="Kuhusu sisi" description="Eagle's Wings Community Group ipo kuleta mabadiliko ya kudumu kwa jamii zisizo na huduma za kutosha nchini Kenya, kupitia huduma, utunzaji na msaada wa vitendo.">
+  <PageHero title={sw.about.pageTitle} subtitle={sw.about.pageSubtitle} image="page-about" />
+  <section class="sw-block">
+    <div class="wrap narrow-wrap reveal">
+      <h2>{sw.about.title}</h2>
+      <p class="lede">{sw.about.text}</p>
+      <p>{sw.about.timeline}</p>
+    </div>
+    <div class="wrap">
+      <ul class="ways-grid" role="list">
+        {sw.about.pillars.map((p, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h3>{p.title}</h3><p>{p.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+  <section class="sw-block soft">
+    <div class="wrap">
+      <ul class="ways-grid" role="list">
+        {sw.values.map((v, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h3>{v.title}</h3><p>{v.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+  <SwFounder />
+  <SwBanner />
+</Base>

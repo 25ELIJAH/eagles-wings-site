@@ -41,7 +41,7 @@ test('all expected pages are built', () => {
 test('every page has one h1, a title, a description, a canonical URL and a language', () => {
   for (const [url, html] of Object.entries(pages)) {
     assert.equal(tags(html, 'h1').length, 1, `${url}: exactly one <h1>`);
-    assert.match(html, /<html lang="en"/, `${url}: lang attribute`);
+    assert.match(html, url.startsWith('/sw/') ? /<html lang="sw"/ : /<html lang="en"/, `${url}: lang attribute`);
     const title = decode(html.match(/<title>([^<]*)<\/title>/)?.[1] ?? '');
     assert.ok(title.length >= 10 && title.length <= 70, `${url}: title length ${title.length}`);
     const desc = decode(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
@@ -314,4 +314,18 @@ test('visit counting is off unless configured, and never loads from anywhere but
   for (const [url, html] of Object.entries(pages)) {
     if (/goatcounter/i.test(html)) assert.match(html, /gc\.zgo\.at/, `${url}: unexpected analytics host`);
   }
+});
+
+test('the Kiswahili pages exist, are linked from their English twins, and declare both languages', () => {
+  const pairs = { '/': '/sw/', '/about/': '/sw/kuhusu/', '/programs/': '/sw/programu/', '/give/': '/sw/toa/', '/contact/': '/sw/wasiliana/', '/get-involved/': '/sw/shirikiana/' };
+  for (const [en, sw] of Object.entries(pairs)) {
+    assert.ok(pages[sw], `missing Swahili page ${sw}`);
+    assert.ok(pages[en].includes(`href="${sw}"`), `${en} does not link to ${sw}`);
+    assert.ok(pages[sw].includes(`href="${en}"`), `${sw} does not link back to ${en}`);
+    for (const html of [pages[en], pages[sw]]) {
+      assert.match(html, /hreflang="sw"/);
+      assert.match(html, /hreflang="en"/);
+    }
+  }
+  assert.doesNotMatch(pages['/sw/'], /Caring for|Volunteer or partner|Skip to content/, 'English left on the Swahili home page');
 });

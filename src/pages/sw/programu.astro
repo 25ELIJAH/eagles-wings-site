@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SwBanner from '../../components/sections/SwBanner.astro';
+import { sw } from '../../lib/i18n';
+---
+<Base lang="sw" title="Programu zetu" description="Chakula kwa watoto na familia, ushauri kwa vijana na huduma za afya bila malipo kupitia Eagle's Wings Community Group nchini Kenya.">
+  <PageHero title={sw.programs.pageTitle} subtitle={sw.programs.pageSubtitle} image="page-programs" />
+  <section class="sw-block">
+    <div class="wrap">
+      <ul class="ways-grid three" role="list">
+        {sw.programs.items.map((p, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h2>{p.title}</h2><p>{p.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+  <SwBanner />
+</Base>

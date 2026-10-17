@@ -2,6 +2,7 @@
 // With a form service configured (formEndpoint in src/data/site.ts) the message is sent in the background.
 // Without one, the visitor's email app opens with the message ready to send, and the form says so honestly.
 import { $, $$ } from './dom';
+import { translateMessage } from '../lib/i18n';
 import { validate, looksLikeBot, buildMailto, MIN_FILL_MS, type FormKind, type Values } from '../lib/forms';
 
 const TIMEOUT_MS = 12000;
@@ -18,17 +19,18 @@ function setup(form: HTMLFormElement) {
   const label = $('.btn-label', form)!;
   const status = $('.form-status', form)!;
   const idleLabel = label.textContent ?? 'Send';
+  const tr = (m: string) => (form.dataset.lang === 'sw' ? translateMessage(m) : m);
   let startedAt = Date.now();
 
   const setStatus = (kindOfMessage: 'ok' | 'err' | 'info', text: string, retry = false) => {
     status.hidden = false;
     status.className = `form-status ${kindOfMessage}`;
-    status.textContent = text;
+    status.textContent = tr(text);
     if (retry) {
       const again = document.createElement('button');
       again.type = 'button';
       again.className = 'link-btn';
-      again.textContent = 'Try again';
+      again.textContent = tr('Try again');
       again.addEventListener('click', () => form.requestSubmit());
       status.append(' ', again);
     }
@@ -37,7 +39,7 @@ function setup(form: HTMLFormElement) {
     form.toggleAttribute('aria-busy', on);
     button.disabled = on;
     button.classList.toggle('loading', on);
-    label.textContent = on ? 'Sending…' : idleLabel;
+    label.textContent = on ? tr('Sending…') : idleLabel;
   };
   const clearErrors = () => {
     $$('.field-error', form).forEach((p) => { p.hidden = true; p.textContent = ''; });
@@ -50,7 +52,7 @@ function setup(form: HTMLFormElement) {
       const input = $<HTMLInputElement>(`[name="${field}"]`, form);
       const err = input?.id ? document.getElementById(`${input.id}-err`) : null;
       if (!input || !err) continue;
-      err.textContent = message;
+      err.textContent = tr(message);
       err.hidden = false;
       input.setAttribute('aria-invalid', 'true');
       first ??= input;

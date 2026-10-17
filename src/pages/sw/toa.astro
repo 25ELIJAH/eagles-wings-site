@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { site } from '../../data/site';
+import { giving } from '../../data/org';
+import { sw } from '../../lib/i18n';
+
+const g = sw.giveSection;
+type Method = { title: string; rows: { label: string; value: string }[] };
+const methods: Method[] = [];
+if (giving.mpesaPaybill.number) methods.push({ title: g.paybill, rows: [{ label: g.business, value: giving.mpesaPaybill.number }, ...(giving.mpesaPaybill.account ? [{ label: g.account, value: giving.mpesaPaybill.account }] : [])] });
+if (giving.mpesaTill) methods.push({ title: g.till, rows: [{ label: g.tillNumber, value: giving.mpesaTill }] });
+if (giving.bank.accountNumber) methods.push({ title: g.bank, rows: [
+  ...(giving.bank.name ? [{ label: g.bankName, value: giving.bank.name }] : []),
+  ...(giving.bank.accountName ? [{ label: g.account, value: giving.bank.accountName }] : []),
+  { label: g.accountNumber, value: giving.bank.accountNumber },
+  ...(giving.bank.branch ? [{ label: g.branch, value: giving.bank.branch }] : []),
+] });
+---
+<Base lang="sw" title="Jinsi ya kutoa" description="Toa kwa Eagle's Wings Community Group ili kulisha familia, kuwashauri vijana na kuendesha kambi za matibabu nchini Kenya.">
+  <PageHero title={g.title} subtitle={g.pageSubtitle} image="page-give" />
+  <section class="give" id="donate">
+    <div class="wrap">
+      <div class="head center reveal">
+        <h2 class="sr">Njia za kutoa</h2>
+        <p class="sub">{methods.length ? g.withMethods : g.noMethods} {g.goes}</p>
+        {methods.length > 0 && (
+          <ul class="ways" role="list">
+            {methods.map((m) => (
+              <li class="way reveal">
+                <h3>{m.title}</h3>
+                <dl>
+                  {m.rows.map((r) => (
+                    <div>
+                      <dt>{r.label}</dt>
+                      <dd><span>{r.value}</span> <button class="copy" type="button" data-copy={r.value} data-done={g.copied} aria-label={`${g.copy}: ${r.label}`}>{g.copy}</button></dd>
+                    </div>
+                  ))}
+                </dl>
+              </li>
+            ))}
+          </ul>
+        )}
+        <div class="actions give-actions">
+          <a class="btn yellow" href={site.whatsapp}>{g.whatsapp}</a>
+          <a class="btn ghost" href={`tel:${site.phoneTel}`}>{g.call} {site.phone}</a>
+          <a class="link plain" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+      <div id="join">
+        <div class="quick reveal" id="contact">
+          <h3>{g.quickTitle}</h3>
+          <p class="small">{g.quickText}</p>
+          <ContactForm kind="quick" button={g.send} lang="sw" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

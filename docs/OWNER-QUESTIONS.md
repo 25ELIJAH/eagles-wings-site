@@ -20,3 +20,5 @@ Send these to the person in charge. Each answer goes into `src/data/site.ts` or 
 13. Signed photo consent forms for everyone shown on the website (template: docs/PHOTO-CONSENT-FORM.md).
 14. For each program, one real story (with consent): first name, a short quote, a photo.
 15. A one-page report of income and spending for the year, as a PDF.
+
+16. A Swahili speaker from the organisation to read the Kiswahili pages (/sw/, /sw/kuhusu/, /sw/programu/, /sw/toa/, /sw/wasiliana/, /sw/shirikiana/) and correct any wording. All Swahili text is in src/lib/i18n.ts.

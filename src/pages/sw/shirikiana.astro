@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { site } from '../../data/site';
+import { sw } from '../../lib/i18n';
+const v = sw.involve;
+---
+<Base lang="sw" title="Shirikiana nasi" description="Jitolee, shirikiana au changia vitu kupitia Eagle's Wings Community Group nchini Kenya. Tuambie ungependa kusaidiaje.">
+  <PageHero title={v.title} subtitle={v.subtitle} image="page-contact" />
+  <section class="involve">
+    <div class="wrap">
+      <ul class="ways-grid" role="list">
+        {v.ways.map((w, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h2>{w.title}</h2><p>{w.text}</p></li>)}
+      </ul>
+      <div class="involve-form reveal">
+        <h2>{v.formTitle}</h2>
+        <p class="small">{v.formText} <a href={`tel:${site.phoneTel}`}>{site.phone}</a>.</p>
+        <ContactForm kind="involve" button={sw.form.send} lang="sw" />
+        <p class="small involve-note">{v.child} <a href="/child-protection/">{v.childLink}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

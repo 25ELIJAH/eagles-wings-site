@@ -1,0 +1,15 @@
+---
+import Photo from '../Photo.astro';
+import { sw } from '../../lib/i18n';
+---
+<section class="banner" aria-label="Toa">
+  <div class="banner-photos" aria-hidden="true">
+    <div class="bp bp1"><Photo name="cta-1" label="" /></div>
+    <div class="bp bp2"><Photo name="cta-2" label="" /></div>
+  </div>
+  <div class="banner-text reveal">
+    <h2>{sw.banner.title}</h2>
+    <p>{sw.banner.text}</p>
+    <a class="btn dark" href="/sw/toa/">{sw.banner.button}</a>
+  </div>
+</section>

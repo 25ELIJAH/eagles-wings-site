@@ -1,17 +1,22 @@
 ---
 import { site } from '../data/site';
 import { LIMITS } from '../lib/forms';
+import { sw, type Lang } from '../lib/i18n';
 
 interface Props {
   kind: 'contact' | 'quick' | 'newsletter' | 'involve';
   button: string;
+  lang?: Lang;
 }
-const { kind, button } = Astro.props;
+const { kind, button, lang = 'en' } = Astro.props;
+const T = lang === 'sw'
+  ? { name: sw.form.name, phone: sw.form.phone, email: sw.form.email, subject: sw.form.subject, message: sw.form.message, yourName: sw.form.yourName, contact: sw.form.phoneOrEmail, nameReq: `${sw.form.yourName} ${sw.form.required}`, contactReq: `${sw.form.phoneOrEmail} ${sw.form.required}`, iWould: sw.form.iWould, options: sw.form.options, trap: 'Acha sehemu hii wazi' }
+  : { name: 'Name', phone: 'Phone', email: 'Email', subject: 'Subject', message: 'Message', yourName: 'Your name', contact: 'Phone or email', nameReq: 'Your name (required)', contactReq: 'Phone or email (required)', iWould: 'I would like to', options: ["Volunteer my time", "Partner with Eagle's Wings", 'Give in kind (food, clothes, supplies)', 'Offer a skill or service', 'Something else'], trap: 'Leave this field empty' };
 const id = (n: string) => `${kind}-${n}`;
 const source = kind === 'newsletter' ? site.newsletterEndpoint : site.formEndpoint;
 const endpoint = /^https:\/\//.test(source) ? source : '';
 ---
-<form class="js-form" data-kind={kind} data-endpoint={endpoint} data-email={site.email} novalidate>
+<form class="js-form" data-kind={kind} data-lang={lang} data-endpoint={endpoint} data-email={site.email} novalidate>
   {kind === 'newsletter' ? (
     <div class="field">
       <label class="sr" for={id('email')}>Your email address (required)</label>
@@ -21,13 +26,13 @@ const endpoint = /^https:\/\//.test(source) ? source : '';
   ) : kind === 'quick' ? (
     <>
       <div class="field">
-        <label class="sr" for={id('name')}>Your name (required)</label>
-        <input id={id('name')} name="Name" placeholder="Your name" autocomplete="name" maxlength={LIMITS.name} required aria-describedby={id('name-err')} />
+        <label class="sr" for={id('name')}>{T.nameReq}</label>
+        <input id={id('name')} name="Name" placeholder={T.yourName} autocomplete="name" maxlength={LIMITS.name} required aria-describedby={id('name-err')} />
         <p class="field-error" id={id('name-err')} hidden></p>
       </div>
       <div class="field">
-        <label class="sr" for={id('contact')}>Phone or email (required)</label>
-        <input id={id('contact')} name="Contact" placeholder="Phone or email" autocomplete="off" required aria-describedby={id('contact-err')} />
+        <label class="sr" for={id('contact')}>{T.contactReq}</label>
+        <input id={id('contact')} name="Contact" placeholder={T.contact} autocomplete="off" required aria-describedby={id('contact-err')} />
         <p class="field-error" id={id('contact-err')} hidden></p>
       </div>
     </>
@@ -35,43 +40,39 @@ const endpoint = /^https:\/\//.test(source) ? source : '';
     <>
       <div class="row2">
         <div class="field">
-          <label for={id('name')}>Name <span aria-hidden="true">*</span></label>
+          <label for={id('name')}>{T.name} <span aria-hidden="true">*</span></label>
           <input id={id('name')} name="Name" autocomplete="name" maxlength={LIMITS.name} required aria-describedby={id('name-err')} />
           <p class="field-error" id={id('name-err')} hidden></p>
         </div>
         <div class="field">
-          <label for={id('phone')}>Phone</label>
+          <label for={id('phone')}>{T.phone}</label>
           <input id={id('phone')} name="Phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby={id('phone-err')} />
           <p class="field-error" id={id('phone-err')} hidden></p>
         </div>
       </div>
       <div class="field">
-        <label for={id('email')}>Email <span aria-hidden="true">*</span></label>
+        <label for={id('email')}>{T.email} <span aria-hidden="true">*</span></label>
         <input id={id('email')} name="Email" type="email" autocomplete="email" inputmode="email" required aria-describedby={id('email-err')} />
         <p class="field-error" id={id('email-err')} hidden></p>
       </div>
       <div class="field">
         {kind === 'involve' ? (
           <>
-            <label for={id('subject')}>I would like to</label>
+            <label for={id('subject')}>{T.iWould}</label>
             <select id={id('subject')} name="Subject" aria-describedby={id('subject-err')}>
-              <option>Volunteer my time</option>
-              <option>Partner with Eagle's Wings</option>
-              <option>Give in kind (food, clothes, supplies)</option>
-              <option>Offer a skill or service</option>
-              <option>Something else</option>
+              {T.options.map((o) => <option>{o}</option>)}
             </select>
           </>
         ) : (
           <>
-            <label for={id('subject')}>Subject</label>
+            <label for={id('subject')}>{T.subject}</label>
             <input id={id('subject')} name="Subject" maxlength={LIMITS.subject} aria-describedby={id('subject-err')} />
           </>
         )}
         <p class="field-error" id={id('subject-err')} hidden></p>
       </div>
       <div class="field">
-        <label for={id('message')}>Message <span aria-hidden="true">*</span></label>
+        <label for={id('message')}>{T.message} <span aria-hidden="true">*</span></label>
         <textarea id={id('message')} name="Message" maxlength={LIMITS.message} required aria-describedby={id('message-err')}></textarea>
         <p class="field-error" id={id('message-err')} hidden></p>
       </div>
@@ -80,7 +81,7 @@ const endpoint = /^https:\/\//.test(source) ? source : '';
 
   {/* Spam trap: real visitors never see or fill this field */}
   <div class="hp" aria-hidden="true">
-    <label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+    <label>{T.trap}<input name="website" tabindex="-1" autocomplete="off" /></label>
   </div>
 
   <button class="btn" type="submit"><span class="btn-label">{button}</span><span class="btn-spin" aria-hidden="true"></span></button>

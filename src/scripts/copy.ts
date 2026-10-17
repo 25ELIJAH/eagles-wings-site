@@ -3,18 +3,20 @@ import { $$ } from './dom';
 
 export function initCopy() {
   $$<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    const idle = btn.textContent ?? 'Copy';
+    const done = btn.dataset.done ?? 'Copied';
     btn.addEventListener('click', async () => {
       const value = btn.dataset.copy ?? '';
       try {
         await navigator.clipboard.writeText(value);
-        btn.textContent = 'Copied';
+        btn.textContent = done;
       } catch {
         const range = document.createRange();
         const target = btn.previousElementSibling;
         if (target) { range.selectNodeContents(target); const sel = window.getSelection(); sel?.removeAllRanges(); sel?.addRange(range); }
         btn.textContent = 'Press Ctrl+C';
       }
-      window.setTimeout(() => { btn.textContent = 'Copy'; }, 2200);
+      window.setTimeout(() => { btn.textContent = idle; }, 2200);
     });
   });
 }

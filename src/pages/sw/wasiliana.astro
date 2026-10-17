@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { site } from '../../data/site';
+import { sw } from '../../lib/i18n';
+const c = sw.contact;
+---
+<Base lang="sw" title="Wasiliana nasi" description="Wasiliana na Eagle's Wings Community Group kuhusu programu, ziara au ushirikiano. Tunapatikana Mwihoko, Kenya.">
+  <PageHero title={c.title} subtitle={c.subtitle} image="page-contact" />
+  <section class="contact-wrap">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <div class="cc-left">
+          <h2>{c.heading}</h2>
+          <ul class="cc-list">
+            <li><div><h3>{c.where}</h3><p>{site.location}</p></div></li>
+            <li><div><h3>{c.email}</h3><p><a href={`mailto:${site.email}`}>{site.email}</a></p></div></li>
+            <li><div><h3>{c.call}</h3><p><a href={`tel:${site.phoneTel}`}>{site.phone}</a></p></div></li>
+          </ul>
+        </div>
+        <div class="cc-right">
+          <h2>{c.formTitle}</h2>
+          <p class="small">{c.formText}</p>
+          <ContactForm kind="contact" button={sw.form.send} lang="sw" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

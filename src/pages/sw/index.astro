@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/sections/Hero.astro';
+import SwFounder from '../../components/sections/SwFounder.astro';
+import SwBanner from '../../components/sections/SwBanner.astro';
+import { sw } from '../../lib/i18n';
+---
+<Base lang="sw" title="Tunajali familia kote nchini Kenya" description="Eagle's Wings Community Group ni shirika lisilo la faida nchini Kenya linalolisha watoto, kuwashauri vijana na kuendesha kambi za matibabu bila malipo.">
+  <Hero lang="sw" />
+  <section class="sw-values" id="explore" aria-label="Tunachosimamia">
+    <div class="wrap">
+      <ul class="ways-grid" role="list">
+        {sw.values.map((v, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h2>{v.title}</h2><p>{v.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sw-block">
+    <div class="wrap narrow-wrap reveal">
+      <p class="eyebrow">{sw.about.label}</p>
+      <h2>{sw.about.title}</h2>
+      <p class="lede">{sw.about.text}</p>
+    </div>
+    <div class="wrap">
+      <ul class="ways-grid" role="list">
+        {sw.about.pillars.map((p, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h3>{p.title}</h3><p>{p.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sw-block soft">
+    <div class="wrap narrow-wrap reveal">
+      <p class="eyebrow">{sw.programs.label}</p>
+      <h2>{sw.programs.title}</h2>
+    </div>
+    <div class="wrap">
+      <ul class="ways-grid three" role="list">
+        {sw.programs.items.map((p, i) => <li class="reveal" style={`--d:${i * 0.07}s`}><h3>{p.title}</h3><p>{p.text}</p></li>)}
+      </ul>
+      <p class="center"><a class="link plain" href="/sw/programu/">{sw.programs.pageTitle} &rarr;</a></p>
+    </div>
+  </section>
+
+  <section class="sw-block">
+    <div class="wrap">
+      <ul class="sw-stats" role="list">
+        {sw.stats.map((s) => <li class="reveal"><b>{s.n}+</b><span>{s.label}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <SwFounder />
+  <SwBanner />
+</Base>

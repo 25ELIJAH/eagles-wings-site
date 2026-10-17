@@ -28,16 +28,19 @@ for (const [kind, dir] of Object.entries(dirs)) {
     const srcPath = path.join(dir, file);
     const srcTime = fs.statSync(srcPath).mtimeMs;
     const meta = await sharp(srcPath).rotate().metadata();
-    const widths = [...new Set([...WIDTHS.filter((w) => w < meta.width), Math.min(meta.width, 2000)])].sort((a, b) => a - b);
+    const widths = [...new Set([...WIDTHS.filter((w) => w < meta.width), Math.min(meta.width, 1600)])].sort((a, b) => a - b);
     for (const w of widths) {
       const out = path.join(outDir, `${kind}-${name}-${w}.webp`);
       if (fs.existsSync(out) && fs.statSync(out).mtimeMs >= srcTime) continue;
-      await sharp(srcPath).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 76, effort: 5 }).toFile(out);
+      await sharp(srcPath).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 72, effort: 6 }).toFile(out);
       made++;
     }
     manifest[`${kind}:${name}`] = { w: meta.width, h: meta.height, widths };
   }
 }
+// remove generated files that no longer belong to any source (old sizes, deleted photos)
+const keep = new Set(Object.entries(manifest).flatMap(([key, v]) => v.widths.map((w) => `${key.replace(':', '-')}-${w}.webp`)));
+for (const f of fs.readdirSync(outDir)) if (/^(stock|own)-.*\.webp$/.test(f) && !keep.has(f)) fs.rmSync(path.join(outDir, f));
 fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
 
 // logo in the sizes the site actually shows (header/footer 46px, loading screen 190px; 2x for sharp screens)

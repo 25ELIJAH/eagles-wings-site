@@ -2,6 +2,26 @@
 import Newsletter from './Newsletter.astro';
 import { site, footer } from '../data/site';
 import { social } from '../data/org';
+import { sw, type Lang } from '../lib/i18n';
+
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props;
+const isSw = lang === 'sw';
+const L = {
+  blurb: isSw ? sw.footer.blurb : footer.blurb,
+  whatsapp: isSw ? sw.footer.whatsapp : 'WhatsApp us',
+  explore: isSw ? sw.footer.explore : 'Explore',
+  more: isSw ? sw.footer.more : 'More',
+  policies: isSw ? sw.footer.policies : 'Policies',
+  quick: isSw ? sw.footer.quick : footer.quick,
+  moreLinks: isSw ? sw.footer.moreLinks : footer.more,
+  policyLinks: isSw ? sw.footer.policyLinks : footer.policies,
+  copyright: isSw ? sw.footer.copyright : footer.copyright,
+  tagline: isSw ? sw.footer.tagline : footer.tagline,
+  builtBy: isSw ? sw.footer.builtBy : 'Built by',
+  registration: isSw ? sw.footer.registration : 'Registration',
+  home: isSw ? '/sw/' : '/',
+};
 
 const socialPath: Record<string, string> = {
   Facebook: 'M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z',
@@ -15,14 +35,14 @@ const socialPath: Record<string, string> = {
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="brand light" href="/">
+        <a class="brand light" href={L.home}>
           <img src="/img/logo-96.webp" srcset="/img/logo-96.webp 1x, /img/logo-192.webp 2x" alt="" width="46" height="46" loading="lazy" />
           <span>Eagle's Wings<br />Community Group</span>
         </a>
-        <p style="margin-top:16px">{footer.blurb}</p>
+        <p style="margin-top:16px">{L.blurb}</p>
         <ul class="f-contact">
           <li><a href={`tel:${site.phoneTel}`}>{site.phone}</a></li>
-          <li><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp us<span class="sr"> (opens in a new tab)</span></a></li>
+          <li><a href={site.whatsapp} target="_blank" rel="noopener">{L.whatsapp}<span class="sr"> ({isSw ? 'inafunguka kwenye kichupo kipya' : 'opens in a new tab'})</span></a></li>
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         </ul>
         {social.length > 0 && (
@@ -33,24 +53,24 @@ const socialPath: Record<string, string> = {
           </ul>
         )}
       </div>
-      <nav aria-label="Explore">
-        <h2 class="f-title">Explore</h2>
-        <ul>{footer.quick.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      <nav aria-label={L.explore}>
+        <h2 class="f-title">{L.explore}</h2>
+        <ul>{L.quick.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
       </nav>
-      <nav aria-label="More">
-        <h2 class="f-title">More</h2>
-        <ul>{footer.more.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      <nav aria-label={L.more}>
+        <h2 class="f-title">{L.more}</h2>
+        <ul>{L.moreLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
       </nav>
-      <nav aria-label="Policies">
-        <h2 class="f-title">Policies</h2>
-        <ul>{footer.policies.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      <nav aria-label={L.policies}>
+        <h2 class="f-title">{L.policies}</h2>
+        <ul>{L.policyLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
       </nav>
     </div>
     <Newsletter />
     <div class="legal">
-      <p class="f-reg">{site.registration && <>Registration: {site.registration} &middot; </>}{site.location}</p>
-      <p>{footer.copyright}</p>
-      <p>{footer.tagline} &middot; <a href={site.builtBy.href} target="_blank" rel="noopener">Built by {site.builtBy.name}<span class="sr"> (opens in a new tab)</span></a></p>
+      <p class="f-reg">{site.registration && <>{L.registration}: {site.registration} &middot; </>}{site.location}</p>
+      <p>{L.copyright}</p>
+      <p>{L.tagline} &middot; <a href={site.builtBy.href} target="_blank" rel="noopener">{L.builtBy} {site.builtBy.name}<span class="sr"> ({isSw ? 'inafunguka kwenye kichupo kipya' : 'opens in a new tab'})</span></a></p>
     </div>
   </div>
 </footer>

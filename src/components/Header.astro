@@ -1,20 +1,28 @@
 ---
 import { nav } from '../data/site';
+import { altFor, sw, type Lang } from '../lib/i18n';
+
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props;
 const path = Astro.url.pathname;
-const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const items = lang === 'sw' ? sw.nav : nav;
+const home = lang === 'sw' ? '/sw/' : '/';
+const isCurrent = (href: string) => (href === '/' || href === '/sw/' ? path === href : path.startsWith(href));
+const alt = altFor(path, lang);
 ---
 <div class="top-zone" id="top-zone" aria-hidden="true"></div>
 <header class="top" id="top">
   <div class="wrap">
-    <a class="brand" href="/">
+    <a class="brand" href={home}>
       <img src="/img/logo-96.webp" srcset="/img/logo-96.webp 1x, /img/logo-192.webp 2x" alt="" width="46" height="46" />
       <span>Eagle's Wings<br />Community Group</span>
     </a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="nav" id="menu-btn"><i></i><i></i><span class="sr">Menu</span></button>
-    <nav id="nav" aria-label="Main">
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav" id="menu-btn"><i></i><i></i><span class="sr">{lang === 'sw' ? sw.menu : 'Menu'}</span></button>
+    <nav id="nav" aria-label={lang === 'sw' ? 'Kuu' : 'Main'}>
       <ul>
-        {nav.map((n, i) => <li style={`--n:${i}`}><a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a></li>)}
-        <li style={`--n:${nav.length}`}><a class="btn sm" href="/give/">Give</a></li>
+        {items.map((n, i) => <li style={`--n:${i}`}><a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a></li>)}
+        {alt && <li style={`--n:${items.length}`}><a class="lang-switch" href={alt.href} hreflang={alt.lang} lang={alt.lang}>{alt.label}</a></li>}
+        <li style={`--n:${items.length + 1}`}><a class="btn sm" href={lang === 'sw' ? '/sw/toa/' : '/give/'}>{lang === 'sw' ? sw.give : 'Give'}</a></li>
       </ul>
     </nav>
   </div>
