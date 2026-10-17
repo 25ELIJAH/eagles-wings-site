@@ -1,0 +1,29 @@
+---
+import Photo from '../Photo.astro';
+import { about, stats } from '../../data/site';
+---
+<!-- ABOUT: slanted capsule photos + numbers -->
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <div class="capsules reveal" aria-hidden="true">
+      <span class="capsule c1"><Photo name="cap-1" label="" /></span>
+      <span class="capsule c2"><Photo name="cap-2" label="" /></span>
+      <span class="capsule c3"><Photo name="cap-3" label="" /></span>
+    </div>
+    <div class="reveal" style="--d:.1s">
+      <p class="tagline">{about.label}</p>
+      <h2>{about.title}</h2>
+      <p class="big">{about.text}</p>
+      <dl class="creed">
+        {about.pillars.map((p) => <div><dt>{p.title}</dt><dd>{p.text}</dd></div>)}
+      </dl>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="numbers">
+      {stats.map((s, i) => (
+        <li class="reveal" style={`--d:${i * 0.07}s`}><b><span data-roll={s.n}></span>+</b><span>{s.label}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>

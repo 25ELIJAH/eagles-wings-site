@@ -1,0 +1,3 @@
+// Tiny inline script that runs before first paint: flags JavaScript, then removes the logo loading screen.
+// It is inlined (so the flag is set before styles apply) and allowed in the Content-Security-Policy by its hash.
+export const BOOT = `(function(){var d=document,h=d.documentElement;h.classList.add('js');var t0=Date.now(),done=false;function finish(){if(done)return;done=true;var el=d.getElementById('loader');var wait=Math.max(0,700-(Date.now()-t0));setTimeout(function(){if(el)el.classList.add('done');d.body.classList.add('ready');setTimeout(function(){if(el&&el.parentNode)el.parentNode.removeChild(el)},800)},wait)}if(d.readyState==='complete')finish();else window.addEventListener('load',finish);setTimeout(finish,3500)})();`;

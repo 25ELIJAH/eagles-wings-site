@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Fill from '../components/Fill.astro';
+import { faq } from '../data/org';
+import { site } from '../data/site';
+
+const plain = (s: string) => s.replace(/<[^>]+>/g, '');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: plain(f.a) } })),
+};
+---
+<Base title="Frequently asked questions" description="Answers to common questions about Eagle's Wings Community Group: giving, volunteering, child safety, privacy and how the work is run.">
+  <PageHero title="Frequently asked questions" subtitle="Short answers to the questions we hear most." image="page-faq" />
+  <section class="faq">
+    <div class="wrap narrow-wrap">
+      <div class="faq-list">
+        {faq.map((f) => (
+          <details class="reveal">
+            <summary>{f.q}</summary>
+            {f.html ? <p set:html={f.a} /> : <p>{f.a}</p>}
+          </details>
+        ))}
+        <details class="reveal">
+          <summary>Are you a registered organisation?</summary>
+          <p>Registration: {site.registration || <Fill>Registration status and number, for example Registered CBO No. ____</Fill>}</p>
+        </details>
+      </div>
+      <p class="faq-more">Not answered here? <a href="/contact/">Send us a message</a> and we will reply.</p>
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    </div>
+  </section>
+</Base>

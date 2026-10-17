@@ -1,0 +1,99 @@
+---
+import Legal from '../layouts/Legal.astro';
+import Fill from '../components/Fill.astro';
+import { site, founder } from '../data/site';
+---
+<Legal
+  title="Child Protection Policy"
+  description="How Eagle's Wings Community Group keeps children safe in every program, and how to raise a concern."
+  intro="Every child we meet has the right to be safe. This policy says what we promise, what we expect of everyone who works with us, and how to speak up."
+>
+  {/* Basic template written for Kenya (Constitution Art. 53, Children Act 2022, Sexual Offences Act 2006). Have a Kenyan advocate or child-protection specialist review it before relying on it. */}
+
+  <div class="summary">
+    <h2>In short</h2>
+    <ul>
+      <li>We have zero tolerance for abuse, neglect or exploitation of any child.</li>
+      <li>Nobody works with children before they have been checked and have agreed to follow this policy.</li>
+      <li>We never share a child's photo or story without a parent or guardian's written permission.</li>
+      <li>If you are worried about a child, tell us straight away. Childline Kenya is free on <strong>116</strong>.</li>
+    </ul>
+  </div>
+
+  <h2>1. Our promise</h2>
+  <p>{site.name} serves children and families through feeding, mentorship and medical outreach. We promise that the safety and wellbeing of every child comes first, always before the reputation or convenience of the organisation. A "child" means anyone under 18 years old.</p>
+
+  <h2>2. The law and standards we follow</h2>
+  <ul>
+    <li>The Constitution of Kenya, Article 53, which gives every child the right to protection from abuse, neglect, harmful cultural practices and all forms of violence and exploitation.</li>
+    <li>The Children Act, 2022, and the Sexual Offences Act, 2006.</li>
+    <li>The United Nations Convention on the Rights of the Child.</li>
+  </ul>
+
+  <h2>3. Who must follow this policy</h2>
+  <p>Everyone connected to our work: the founder, team members, volunteers, interns, partners, contractors and visitors to our programs.</p>
+
+  <h2>4. How we behave around children</h2>
+  <p><strong>We will:</strong></p>
+  <ul>
+    <li>treat every child with respect and dignity;</li>
+    <li>work in open places where other adults can see, and try to have at least two adults present at any activity;</li>
+    <li>listen to children and take what they say seriously;</li>
+    <li>use words and behaviour that are appropriate, and respect each child's culture and background;</li>
+    <li>report any concern at once, even if we are not sure.</li>
+  </ul>
+  <p><strong>We will never:</strong></p>
+  <ul>
+    <li>hit, shame, threaten or bully a child, or use physical punishment;</li>
+    <li>be alone with a child out of sight of others, or take a child to a private place;</li>
+    <li>touch a child in a way that is inappropriate, or form any relationship with a child that is sexual or exploitative;</li>
+    <li>contact a child privately, including through personal phone numbers or social media;</li>
+    <li>give a child money, gifts or favours in exchange for anything, or promise special treatment;</li>
+    <li>ask a child to do work that is unsafe or unsuitable for their age;</li>
+    <li>keep a child's secret about harm.</li>
+  </ul>
+
+  <h2>5. Choosing and preparing the people who work with children</h2>
+  <ul>
+    <li>Anyone who works with children gives references and, where possible, a Certificate of Good Conduct from the Directorate of Criminal Investigations.</li>
+    <li>They read this policy and sign to say they will follow it.</li>
+    <li>They get a short briefing on how to spot signs of harm and how to report them.</li>
+    <li>New volunteers work alongside experienced people until we are sure of their conduct.</li>
+  </ul>
+
+  <h2>6. Photographs, videos and stories</h2>
+  <ul>
+    <li>We ask a parent or guardian for <strong>written permission</strong> before taking or sharing a child's photograph, video or story, and we also ask the child if they are old enough to understand.</li>
+    <li>We show children with dignity, fully dressed, and never in a way that could shame or put them at risk.</li>
+    <li>We do not publish a child's full name, home address, school or any detail that could be used to find them.</li>
+    <li>We never use a child's image for a purpose they were not told about. Anyone can ask us to remove a photograph, and we will do it promptly.</li>
+    <li>Visitors and volunteers may not photograph children for their own use or post pictures of children on social media without our permission.</li>
+  </ul>
+
+  <h2>7. Online safety</h2>
+  <p>We do not collect information from children through this website. Staff and volunteers must not contact children privately online or by phone, and must not ask children to join private chats or groups.</p>
+
+  <h2>8. How to raise a concern</h2>
+  <p>If you see or hear something that worries you, or a child tells you they have been harmed, <strong>act straight away</strong>. You do not need proof, and you will not be punished for raising a concern in good faith.</p>
+  <ul>
+    <li><strong>Our child protection lead:</strong> {founder.name}, {founder.role}. Call or WhatsApp <a href={`tel:${site.phoneTel}`}>{site.phone}</a> or email <a href={`mailto:${site.email}`}>{site.email}</a>.</li>
+    <li><strong>If a child is in immediate danger:</strong> call the police on <strong>999</strong> or <strong>112</strong>.</li>
+    <li><strong>Childline Kenya:</strong> call <strong>116</strong>, free, any time. Children, families and community members can all use it.</li>
+  </ul>
+  <p>Or contact your nearest Children's Officer or police station.</p>
+
+  <h2>9. What happens after a report</h2>
+  <ul>
+    <li>We write down what was said, as it was said, and keep it private. Only the people who need to know are told.</li>
+    <li>We make sure the child is safe first. We do not question the child ourselves or confront the person accused.</li>
+    <li>Serious concerns are passed to the police and the Department of Children's Services, as the law requires.</li>
+    <li>Anyone accused is removed from contact with children while the matter is looked into.</li>
+    <li>Nobody who reports in good faith will be treated badly for it.</li>
+  </ul>
+
+  <h2>10. Looking after this policy</h2>
+  <p>We review this policy once a year and after any serious incident, and we tell everyone who works with us when it changes. Our child protection lead: <Fill>Confirm name and add a second contact if possible</Fill>.</p>
+
+  <h2>11. Contact us</h2>
+  <p>Questions about this policy? Email <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.phoneTel}`}>{site.phone}</a>.</p>
+</Legal>

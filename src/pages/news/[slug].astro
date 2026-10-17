@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { news, type Post } from '../../data/org';
+import { formatDate } from '../../lib/format';
+
+export function getStaticPaths() {
+  return news.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props as { post: Post };
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: post.title,
+  datePublished: post.date,
+  description: post.summary,
+  author: { '@type': 'Organization', name: "Eagle's Wings Community Group" },
+};
+---
+<Base title={post.title} description={post.summary}>
+  <PageHero title={post.title} subtitle={formatDate(post.date)} image="page-news" />
+  <article class="legal-page post">
+    <p class="updated"><a href="/news/">All news</a></p>
+    {post.body.map((para) => <p>{para}</p>)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </article>
+</Base>

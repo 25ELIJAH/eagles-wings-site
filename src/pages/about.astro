@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
+import Founder from '../components/sections/Founder.astro';
+import Timeline from '../components/sections/Timeline.astro';
+import Partners from '../components/sections/Partners.astro';
+import Values from '../components/sections/Values.astro';
+---
+<Base title="About us" description="Who Eagle's Wings Community Group is, what we believe and who leads it.">
+  <PageHero title="About us" subtitle="A community group in Kenya, doing ordinary and necessary things well." image="page-about" />
+  <AboutSection />
+  <Founder />
+  <Values />
+  <Timeline />
+  <section class="cta-strip"><div class="wrap center"><h2>Meet the people behind the work</h2><a class="btn dark" href="/team/">Our team</a></div></section>
+  <Partners />
+</Base>

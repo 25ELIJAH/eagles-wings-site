@@ -1,0 +1,13 @@
+---
+// Hidden until PUBLIC_NEWSLETTER_ENDPOINT is set (an https:// sign-up address from your email-list service).
+import ContactForm from './ContactForm.astro';
+import { site } from '../data/site';
+const on = /^https:\/\//.test(site.newsletterEndpoint);
+---
+{on && (
+  <div class="newsletter">
+    <h2 class="f-title">Stay in touch</h2>
+    <p>News from our feeding days and medical camps, a few times a year. You can unsubscribe at any time.</p>
+    <ContactForm kind="newsletter" button="Sign up" />
+  </div>
+)}

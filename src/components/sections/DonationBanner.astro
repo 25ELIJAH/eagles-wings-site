@@ -1,0 +1,16 @@
+---
+import Photo from '../Photo.astro';
+import { banner } from '../../data/site';
+---
+<!-- DONATION BANNER: split photos -->
+<section class="banner" aria-label="Donate">
+  <div class="banner-photos" aria-hidden="true">
+    <div class="bp bp1"><Photo name="cta-1" label="" /></div>
+    <div class="bp bp2"><Photo name="cta-2" label="" /></div>
+  </div>
+  <div class="banner-text reveal">
+    <h2>{banner.title}</h2>
+    <p>{banner.text}</p>
+    <a class="btn dark" href="/give/">{banner.button}</a>
+  </div>
+</section>

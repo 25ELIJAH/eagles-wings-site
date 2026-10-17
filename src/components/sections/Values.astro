@@ -1,0 +1,19 @@
+---
+import { values } from '../../data/site';
+import { valueIcons } from '../../lib/icons';
+---
+<!-- VALUES: four short icons -->
+<section class="values" aria-label="What we stand for">
+  <div class="wrap">
+    <h2 class="center reveal">What we stand for</h2>
+    <div class="vgrid">
+      {values.map((v, i) => (
+        <div class="vitem reveal" style={`--d:${i * 0.08}s`}>
+          <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={valueIcons[v.icon]} /></span>
+          <h3>{v.title}</h3>
+          <p>{v.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

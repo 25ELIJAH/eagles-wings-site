@@ -1,0 +1,21 @@
+---
+import Fill from '../Fill.astro';
+import { giftUse } from '../../data/org';
+---
+<section class="giftuse" id="where-gifts-go" aria-labelledby="gu-title">
+  <div class="wrap">
+    <header class="head center reveal">
+      <h2 id="gu-title">Where your gift goes</h2>
+      <p class="sub">We believe every donor should know how their gift is used. This is how we plan and spend what we receive.</p>
+    </header>
+    <ul class="gu-list" role="list">
+      {giftUse.map((g, i) => (
+        <li class="reveal" style={`--d:${i * 0.07}s`}>
+          <b class="gu-share">{g.share || <Fill>Add %</Fill>}</b>
+          <div><h3>{g.label}</h3><p>{g.text}</p></div>
+        </li>
+      ))}
+    </ul>
+    <p class="gu-note">Questions about how gifts are used? <a href="/contact/">Ask us</a>. We will answer plainly.</p>
+  </div>
+</section>

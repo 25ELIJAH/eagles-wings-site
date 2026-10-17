@@ -1,0 +1,20 @@
+---
+// Hidden until there is at least one real partner (with their permission). See src/data/org.ts.
+import { partners } from '../../data/org';
+---
+{partners.length > 0 && (
+  <section class="partners" aria-labelledby="pt-title">
+    <div class="wrap">
+      <h2 id="pt-title" class="center reveal">Partners and supporters</h2>
+      <ul class="pt-list" role="list">
+        {partners.map((p) => (
+          <li>
+            {p.url
+              ? <a href={p.url} target="_blank" rel="noopener noreferrer">{p.logo ? <img src={p.logo} alt={p.name} loading="lazy" height="56" /> : <span>{p.name}</span>}<span class="sr"> (opens in a new tab)</span></a>
+              : (p.logo ? <img src={p.logo} alt={p.name} loading="lazy" height="56" /> : <span>{p.name}</span>)}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}

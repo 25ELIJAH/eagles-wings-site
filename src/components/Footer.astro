@@ -1,0 +1,57 @@
+---
+import Fill from './Fill.astro';
+import Newsletter from './Newsletter.astro';
+import { site, footer } from '../data/site';
+import { social } from '../data/org';
+
+const socialPath: Record<string, string> = {
+  Facebook: 'M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z',
+  Instagram: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm5.5-1.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z',
+  YouTube: 'M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5 3-5 3z',
+  X: 'M17.5 3h3l-6.6 7.5L21.7 21h-6l-4.7-6.2L5.6 21h-3l7.1-8.1L2.3 3h6.1l4.3 5.7L17.5 3zm-1 16.2h1.7L7.6 4.7H5.8l10.7 14.5z',
+  TikTok: 'M16 3c.3 2.4 1.7 3.9 4 4.1V10c-1.5 0-2.8-.5-4-1.3V15a6 6 0 1 1-6-6v3.1A2.9 2.9 0 1 0 13 15V3h3z',
+};
+---
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand light" href="/">
+          <img src="/img/logo-96.webp" srcset="/img/logo-96.webp 1x, /img/logo-192.webp 2x" alt="" width="46" height="46" loading="lazy" />
+          <span>Eagle's Wings<br />Community Group</span>
+        </a>
+        <p style="margin-top:16px">{footer.blurb}</p>
+        <ul class="f-contact">
+          <li><a href={`tel:${site.phoneTel}`}>{site.phone}</a></li>
+          <li><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp us<span class="sr"> (opens in a new tab)</span></a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+        {social.length > 0 && (
+          <ul class="f-social" role="list" aria-label="Follow us">
+            {social.map((s) => (
+              <li><a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`${s.name} (opens in a new tab)`}><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={socialPath[s.name]} /></svg></a></li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <nav aria-label="Explore">
+        <h2 class="f-title">Explore</h2>
+        <ul>{footer.quick.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </nav>
+      <nav aria-label="More">
+        <h2 class="f-title">More</h2>
+        <ul>{footer.more.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </nav>
+      <nav aria-label="Policies">
+        <h2 class="f-title">Policies</h2>
+        <ul>{footer.policies.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </nav>
+    </div>
+    <Newsletter />
+    <div class="legal">
+      <p class="f-reg">Registration: {site.registration || <Fill>Registration status and number</Fill>} &middot; {site.location}</p>
+      <p>{footer.copyright}</p>
+      <p>{footer.tagline} &middot; <a href={site.builtBy.href} target="_blank" rel="noopener">Built by {site.builtBy.name}<span class="sr"> (opens in a new tab)</span></a></p>
+    </div>
+  </div>
+</footer>

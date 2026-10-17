@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { nav } from '../data/site';
+---
+<Base title="Page not found" description="The page you are looking for does not exist or has moved. Use the links on this page to find your way back." noindex>
+  <section>
+    <div class="wrap narrow">
+      <h1>Page not found</h1>
+      <p>That page does not exist or has moved. Here is where you can go instead:</p>
+      <ul class="notfound-links">
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href="/give/">How to give</a></li>
+      </ul>
+      <a class="btn" href="/">Back to the home page</a>
+    </div>
+  </section>
+</Base>

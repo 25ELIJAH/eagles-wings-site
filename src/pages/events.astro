@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { events } from '../data/org';
+import { formatDate, isUpcoming } from '../lib/format';
+
+const upcoming = events.filter((e) => isUpcoming(e.date)).sort((a, b) => a.date.localeCompare(b.date));
+const jsonLd = upcoming.map((e) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: e.title,
+  startDate: e.date,
+  description: e.description,
+  location: { '@type': 'Place', name: e.place },
+  organizer: { '@type': 'Organization', name: "Eagle's Wings Community Group" },
+}));
+---
+<Base title="Events" description="Upcoming feeding days, medical camps and volunteer events from Eagle's Wings Community Group.">
+  <PageHero title="Events" subtitle="Upcoming feeding days, medical camps and ways to join in." image="page-events" />
+  <section class="events">
+    <div class="wrap narrow-wrap">
+      {upcoming.length ? (
+        <ul class="event-list" role="list">
+          {upcoming.map((e, i) => (
+            <li class="event reveal" style={`--d:${(i % 4) * 0.06}s`}>
+              <time class="event-date" datetime={e.date}>{formatDate(e.date)}</time>
+              <div>
+                <h2>{e.title}</h2>
+                <p class="event-meta">{e.time ? `${e.time} · ` : ''}{e.place}</p>
+                <p>{e.description}</p>
+                <a class="link" href="/contact/">Ask to join or volunteer</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="empty reveal">
+          <h2>No events are scheduled right now</h2>
+          <p>When we plan a feeding day or medical camp, it will appear here. Want to help at the next one? Tell us and we will get in touch.</p>
+          <a class="btn" href="/contact/">Offer to volunteer</a>
+        </div>
+      )}
+      {jsonLd.map((j) => <script type="application/ld+json" set:html={JSON.stringify(j)} />)}
+    </div>
+  </section>
+</Base>

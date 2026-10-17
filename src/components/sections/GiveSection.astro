@@ -1,0 +1,26 @@
+---
+import ContactForm from '../ContactForm.astro';
+import { site } from '../../data/site';
+---
+<!-- GIVE AND GET INVOLVED -->
+<section class="give" id="donate">
+  <div class="wrap">
+    <div class="head center reveal">
+      <h2>How to give</h2>
+      <p class="sub">Message or call us and we will share the details and send you a receipt. Every gift goes into feeding families, mentoring young people and running medical camps.</p>
+      <div class="actions give-actions">
+        <a class="btn yellow" href={site.whatsapp}>WhatsApp us</a>
+        <a class="btn ghost" href={`tel:${site.phoneTel}`}>Call {site.phone}</a>
+        <a class="link plain" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+
+    <div id="join">
+      <div class="quick reveal" id="contact">
+        <h3>Want to give or help?</h3>
+        <p class="small">Leave your details and we will get back to you.</p>
+        <ContactForm kind="quick" button="Send" />
+      </div>
+    </div>
+  </div>
+</section>

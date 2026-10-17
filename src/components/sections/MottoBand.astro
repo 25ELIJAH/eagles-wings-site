@@ -1,0 +1,8 @@
+---
+import { motto } from '../../data/org';
+---
+<section class="motto" aria-label="Our motto">
+  <ul class="wrap" role="list">
+    {motto.map((m) => <li>{m}</li>)}
+  </ul>
+</section>

@@ -1,0 +1,53 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+---
+<Legal
+  title="Cookie Policy"
+  description="What cookies are, and how Eagle's Wings Community Group uses them (we do not use tracking or advertising cookies)."
+  intro="Cookies sound technical, but the idea is simple. Here is what they are and what this website does."
+>
+  {/* Basic template written for Kenya (Data Protection Act, 2019). Update it if you add analytics, advertising or embedded videos or maps. */}
+
+  <div class="summary">
+    <h2>In short</h2>
+    <ul>
+      <li>This website does <strong>not</strong> use tracking, advertising or analytics cookies.</li>
+      <li>It only keeps one small note in your browser, to remember that you have seen the cookie notice.</li>
+      <li>If we ever add tools that track visitors, we will ask your permission first.</li>
+    </ul>
+  </div>
+
+  <h2>1. What is a cookie?</h2>
+  <p>A cookie is a very small text file that a website saves in your web browser (on your phone or computer). It lets the website remember something about you, like a name tag. For example, a shop can use cookies to remember what is in your basket.</p>
+  <p>There are a few kinds:</p>
+  <ul>
+    <li><strong>Essential cookies</strong> make a website work, for example keeping you signed in or remembering a choice you made.</li>
+    <li><strong>Analytics cookies</strong> count visitors and show which pages they use, so the owner can improve the site.</li>
+    <li><strong>Advertising cookies</strong> follow you across websites to show you adverts.</li>
+  </ul>
+
+  <h2>2. What this website uses</h2>
+  <ul>
+    <li><strong>No tracking, analytics or advertising cookies.</strong> We do not follow you around the internet.</li>
+    <li><strong>One small note in your browser.</strong> When you press "Got it" on our cookie notice, we save a small note (called <code>ew-cookie-ok</code>) so that we do not show you the notice again. It holds no personal information and is not shared with anyone. You can delete it at any time in your browser settings.</li>
+  </ul>
+
+  <h2>3. Other companies whose services load on this website</h2>
+  <p>Some parts of a page come from other companies. When your browser loads them, those companies can see your IP address and what browser you use. We do not control what they do with it, so please read their policies.</p>
+  <ul>
+    <li><strong>Google Fonts</strong> supplies our fonts.</li>
+    <li><strong>OpenStreetMap</strong> supplies the map on our Contact page.</li>
+    <li><strong>Unsplash</strong> supplies stand-in photographs until we replace them with our own.</li>
+  </ul>
+  <p>Links that take you to WhatsApp, a phone call or your email open other services, which have their own rules.</p>
+
+  <h2>4. If we add more in future</h2>
+  <p>If we start using visitor-counting or other tools that use cookies, we will update this page and ask for your permission before they run, as the Data Protection Act, 2019 expects. You will be able to say no.</p>
+
+  <h2>5. How to control cookies</h2>
+  <p>Your browser lets you see, block and delete cookies. Look for "Privacy" or "Cookies" in the settings of Chrome, Safari, Firefox or Edge. Blocking all cookies will not stop this website from working.</p>
+
+  <h2>6. More information</h2>
+  <p>Read how we handle your personal information in our <a href="/privacy/">Privacy Policy</a>. Questions? Email <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.phoneTel}`}>{site.phone}</a>.</p>
+</Legal>

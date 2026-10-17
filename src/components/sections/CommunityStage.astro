@@ -1,0 +1,27 @@
+---
+import { community } from '../../data/site';
+import { bgSlides } from '../../lib/photos';
+
+const slides = bgSlides();
+---
+<!-- COMMUNITY: photos playing in the background -->
+<section class="stage" id="community" aria-label="Our community">
+  <div class="stage-bg" aria-hidden="true" data-slides>
+    {slides.map((src, i) => (
+      <div class={`sl${i === 0 ? ' on' : ''}`} style={i === 0 ? `background-image:url('${src}')` : undefined} data-bg={i === 0 ? undefined : src}></div>
+    ))}
+  </div>
+  <div class="stage-shade" aria-hidden="true"></div>
+  <div class="wrap stage-in reveal">
+    <h2>{community.title}</h2>
+    <p class="stage-text">{community.text}</p>
+    <p class="stage-line">{community.line.join('  ·  ')}</p>
+    <div class="actions">
+      <a class="btn yellow" href="/give/">Give</a>
+      <a class="btn outline" href="/programs/">See our programs</a>
+    </div>
+  </div>
+  <button class="slides-toggle" type="button" data-slides-toggle aria-pressed="false" aria-label="Pause background photo slideshow">
+    <span class="ico-pause" aria-hidden="true"></span>
+  </button>
+</section>

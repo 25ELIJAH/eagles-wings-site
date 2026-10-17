@@ -1,0 +1,30 @@
+{
+  "name": "eagles-wings-community",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "images": "node scripts/optimize-images.mjs",
+    "predev": "npm run images",
+    "dev": "astro dev",
+    "prebuild": "npm run images",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node --experimental-strip-types --no-warnings --test \"tests/**/*.test.*\"",
+    "launch-check": "node scripts/launch-check.mjs",
+    "verify": "npm run check && npm run build && npm test && npm audit --omit=dev --audit-level=high"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "axe-core": "^4.14.0",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

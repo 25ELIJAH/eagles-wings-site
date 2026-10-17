@@ -1,0 +1,101 @@
+---
+import Legal from '../layouts/Legal.astro';
+import Fill from '../components/Fill.astro';
+import { site } from '../data/site';
+---
+<Legal
+  title="Privacy Policy"
+  description="How Eagle's Wings Community Group collects, uses and protects your personal information, under Kenya's Data Protection Act, 2019."
+  intro="We respect your privacy. This page explains, in plain words, what information we collect and what we do with it."
+>
+  {/* Basic template written for Kenya (Data Protection Act, 2019). Have a Kenyan advocate review it, and fill in the yellow placeholders, before relying on it. */}
+
+  <div class="summary">
+    <h2>In short</h2>
+    <ul>
+      <li>We only collect what you choose to send us, such as your name and a phone number or email.</li>
+      <li>We use it to reply to you, thank and receipt your gift, and organise volunteers.</li>
+      <li>We never sell your information.</li>
+      <li>You can ask us to show, correct or delete your information at any time.</li>
+    </ul>
+  </div>
+
+  <h2>1. Who we are</h2>
+  <p>This website is run by <strong>{site.name}</strong>, a community organisation working in Kenya. When this policy says "we", "us" or "our", it means {site.name}. We are the "data controller" for the information described here.</p>
+  <ul>
+    <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
+    <li>Phone / WhatsApp: <a href={`tel:${site.phoneTel}`}>{site.phone}</a></li>
+    <li>Location: {site.location}</li>
+    <li>Registration: {site.registration || <Fill>Registration status and number, for example Registered CBO No. ____</Fill>}</li>
+    <li>Data protection registration (ODPC): <Fill>Registration number, or "not required" if you are exempt</Fill></li>
+  </ul>
+
+  <h2>2. The law that applies</h2>
+  <p>We follow Kenya's <strong>Data Protection Act, 2019</strong> and its regulations, and respect the right to privacy in Article 31 of the Constitution of Kenya. The Act is overseen by the Office of the Data Protection Commissioner (ODPC).</p>
+
+  <h2>3. What information we collect</h2>
+  <ul>
+    <li><strong>What you send us:</strong> your name, your phone number or email, and any message you write when you use our contact box, send us an email or message us on WhatsApp.</li>
+    <li><strong>If you give:</strong> the details we need to thank you and issue a receipt, such as your name, how you gave, the amount and a payment reference. We do not see or store your M-Pesa PIN or card details.</li>
+    <li><strong>If you volunteer:</strong> your name, contact details, skills and when you are available.</li>
+    <li><strong>Technical information:</strong> like most websites, our hosting service may record your IP address, browser type and the pages you open, for security and to keep the site running.</li>
+  </ul>
+  <p>We do not use this website to collect sensitive information such as health, religion or identity numbers. Please do not send these to us through the website.</p>
+
+  <h2>4. How we use your information</h2>
+  <ul>
+    <li>To reply to your questions and requests.</li>
+    <li>To thank you for your gift, issue receipts and keep proper financial records.</li>
+    <li>To organise volunteers and keep them safe, including the checks in our <a href="/child-protection/">Child Protection Policy</a>.</li>
+    <li>To report honestly on our work, without identifying individuals unless they have agreed.</li>
+    <li>To keep the website secure and working.</li>
+  </ul>
+
+  <h2>5. Why we are allowed to use it</h2>
+  <p>We use your information because you have given us your consent (for example by sending us a message), because we need it to do something you asked for (such as receipting a gift), because the law requires it (such as financial records), or because it is in our genuine interest to run a safe and honest organisation. You can withdraw your consent at any time.</p>
+
+  <h2>6. Who we share it with</h2>
+  <p>We do not sell or rent your information. We share it only when needed, and only with:</p>
+  <ul>
+    <li>service providers who help us run things, such as website hosting, email, and the bank or mobile-money provider that carries your gift;</li>
+    <li>government bodies or the courts, when the law requires it;</li>
+    <li>other people only with your clear permission.</li>
+  </ul>
+
+  <h2>7. Other services this website uses</h2>
+  <ul>
+    <li><strong>Google Fonts</strong> supplies our text fonts. When a page loads, your browser asks Google's servers for the font files, so Google can see your IP address.</li>
+    <li><strong>OpenStreetMap</strong> shows the map on our Contact page. Loading it lets OpenStreetMap see your IP address.</li>
+    <li><strong>Stand-in photographs</strong> may load from Unsplash until we replace them with our own.</li>
+    <li><strong>WhatsApp, telephone and email links</strong> take you out of this website. Their own privacy policies apply from there.</li>
+  </ul>
+  <p>For cookies and similar tools, see our <a href="/cookies/">Cookie Policy</a>.</p>
+
+  <h2>8. How long we keep it</h2>
+  <p>We keep information only as long as we need it for the reasons above. Messages and volunteer details are deleted when they are no longer needed. Records of gifts are kept for as long as the law requires financial records to be kept.</p>
+
+  <h2>9. Keeping it safe</h2>
+  <p>We take sensible steps to protect your information: limited access, strong passwords, and secure (HTTPS) connections. No system is perfectly secure, so please do not send us passwords, PINs or card numbers.</p>
+
+  <h2>10. Your rights</h2>
+  <p>Under the Data Protection Act, 2019 you have the right to:</p>
+  <ul>
+    <li>know what information we hold about you and why;</li>
+    <li>see a copy of it;</li>
+    <li>ask us to correct it if it is wrong;</li>
+    <li>ask us to delete it, or stop using it, when we no longer need it;</li>
+    <li>object to us using it, and withdraw your consent at any time;</li>
+    <li>ask for it in a form you can take elsewhere (data portability).</li>
+  </ul>
+  <p>To use any of these rights, email us at <a href={`mailto:${site.email}`}>{site.email}</a>. We may ask you to confirm who you are first, and we will answer as quickly as we can and within the time the law allows. It is free to make a request.</p>
+  <p>If you are not happy with how we handle your information, you can complain to the <strong>Office of the Data Protection Commissioner</strong> at <a href="https://www.odpc.go.ke" target="_blank" rel="noopener">www.odpc.go.ke</a>.</p>
+
+  <h2>11. Children</h2>
+  <p>This website is meant for adults. We do not knowingly collect information about children through it. Photographs, names or stories of children are only used with the written consent of a parent or guardian, as set out in our <a href="/child-protection/">Child Protection Policy</a>.</p>
+
+  <h2>12. Changes to this policy</h2>
+  <p>We may update this policy from time to time. The date at the top shows when it last changed. If we make an important change, we will tell you on this website.</p>
+
+  <h2>13. Contact us</h2>
+  <p>Questions about privacy? Write to <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.phoneTel}`}>{site.phone}</a>.</p>
+</Legal>

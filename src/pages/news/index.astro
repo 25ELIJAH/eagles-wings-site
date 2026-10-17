@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { news } from '../../data/org';
+import { formatDate } from '../../lib/format';
+---
+<Base title="News and updates" description="News and updates from Eagle's Wings Community Group: feeding days, medical camps, mentoring and the people we serve.">
+  <PageHero title="News and updates" subtitle="What has been happening at Eagle's Wings." image="page-news" />
+  <section class="news">
+    <div class="wrap narrow-wrap">
+      {news.length ? (
+        <ul class="news-cards stacked" role="list">
+          {news.map((p, i) => (
+            <li class="news-card reveal" style={`--d:${(i % 4) * 0.06}s`}>
+              <time datetime={p.date}>{formatDate(p.date)}</time>
+              <h2><a href={`/news/${p.slug}/`}>{p.title}</a></h2>
+              <p>{p.summary}</p>
+              <a class="link" href={`/news/${p.slug}/`} aria-label={`Read more: ${p.title}`}>Read more</a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="empty reveal">
+          <h2>Updates are coming soon</h2>
+          <p>We will share news here after our feeding days, medical camps and mentoring sessions. Check back soon, or reach us directly in the meantime.</p>
+          <a class="btn" href="/contact/">Contact us</a>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

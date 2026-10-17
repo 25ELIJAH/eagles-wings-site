@@ -1,0 +1,27 @@
+---
+import Photo from '../Photo.astro';
+import { testimonials } from '../../data/site';
+---
+<!-- STORIES: quote card over a photo -->
+<section id="stories" class="stories">
+  <div class="wrap stories-grid">
+    <div class="reveal">
+      <h2>{testimonials.title}</h2>
+      <div class="tq-nav">
+        <button class="tq-btn" id="tq-prev" aria-label="Previous story">&#8592;</button>
+        <button class="tq-btn" id="tq-next" aria-label="Next story">&#8594;</button>
+      </div>
+    </div>
+    <div class="tq-stage reveal" style="--d:.1s">
+      <div class="tq-photo"><Photo name="story" label="Community members" /></div>
+      <div class="tq-cards" id="tq">
+        {testimonials.items.map((t, i) => (
+          <figure class={`tq${i === 0 ? ' on' : ''}`}>
+            <blockquote>{t.quote}</blockquote>
+            <figcaption><b>{t.name}</b>{t.role}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

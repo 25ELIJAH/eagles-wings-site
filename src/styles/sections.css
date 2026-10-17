@@ -1,0 +1,43 @@
+/* Community slideshow, photo strip, photo viewer, donation method cards. */
+
+/* ---------- community: photos play behind a short message ---------- */
+.stage { position: relative; min-height: 540px; display: flex; align-items: center; color: #fff; overflow: hidden; padding: 110px 0; background: var(--navy); }
+.stage-bg { position: absolute; inset: 0; }
+.sl { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.02); transition: opacity 1.8s ease; }
+.sl.on { opacity: 1; animation: kenburns 10s ease-out forwards; }
+@keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.12); } }
+.stage-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,36,71,.9), rgba(15,36,71,.62) 55%, rgba(15,36,71,.3)); }
+.stage-in { position: relative; z-index: 2; width: 100%; }
+.stage-in > * { max-width: 620px; }
+.stage h2 { color: #fff; }
+.stage-text { font-size: 20px; color: #e3ecff; }
+.stage-line { color: #bcd0f7; margin: 0 0 26px; }
+
+/* ---------- photo strip: edge to edge, photos only ---------- */
+.strip-sec { padding: 0; }
+.strip { display: grid; grid-template-columns: repeat(4, 1fr); }
+.shot { overflow: hidden; }
+.shot .photo { border-radius: 0; height: 100%; width: 100%; transition: transform 1.2s cubic-bezier(.2,.6,.2,1); }
+.shot:hover .photo, .shot:focus-visible .photo { transform: scale(1.06); }
+
+.lightbox { position: fixed; inset: 0; z-index: 80; background: rgba(8,18,40,.95); display: grid; place-items: center; padding: 30px 70px; }
+.lightbox[hidden] { display: none; }
+.lightbox figure { margin: 0; max-width: 100%; }
+.lightbox img { max-width: 100%; max-height: 82vh; border-radius: 6px; margin: 0 auto; animation: pop .35s var(--ease); }
+@keyframes pop { from { opacity: 0; transform: scale(.96); } }
+.lb-x { position: absolute; top: 14px; right: 22px; background: none; border: 0; color: #fff; font-size: 44px; cursor: pointer; line-height: 1; }
+.lb-n { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.5); background: transparent; color: #fff; font-size: 22px; cursor: pointer; transition: background .25s; }
+.lb-n:hover { background: rgba(255,255,255,.16); }
+.lb-p { left: 14px; }
+.lb-nx { right: 14px; }
+
+/* ---------- give: method cards ---------- */
+.give { background: #fff; }
+
+@media (max-width: 980px) {
+  .strip { grid-template-columns: 1fr 1fr; }
+  .stage { padding: 80px 0; min-height: 480px; }
+  .stage-shade { background: linear-gradient(180deg, rgba(15,36,71,.84), rgba(15,36,71,.72)); }
+  .lightbox { padding: 60px 14px; }
+}
+@media (max-width: 640px) { .methods { grid-template-columns: 1fr; } }

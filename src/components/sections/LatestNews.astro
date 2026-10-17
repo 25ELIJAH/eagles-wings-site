@@ -1,0 +1,26 @@
+---
+// Home-page teaser: hidden until there is at least one real post. See src/data/org.ts.
+import { news } from '../../data/org';
+import { formatDate } from '../../lib/format';
+
+const latest = news.slice(0, 3);
+---
+{latest.length > 0 && (
+  <section class="latest" aria-labelledby="ln-title">
+    <div class="wrap">
+      <header class="head center reveal">
+        <h2 id="ln-title">Latest news</h2>
+      </header>
+      <ul class="news-cards" role="list">
+        {latest.map((p, i) => (
+          <li class="news-card reveal" style={`--d:${i * 0.08}s`}>
+            <time datetime={p.date}>{formatDate(p.date)}</time>
+            <h3><a href={`/news/${p.slug}/`}>{p.title}</a></h3>
+            <p>{p.summary}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="center"><a class="link" href="/news/">All news</a></p>
+    </div>
+  </section>
+)}

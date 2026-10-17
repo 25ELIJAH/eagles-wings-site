@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/sections/Hero.astro';
+import Values from '../components/sections/Values.astro';
+import ProgramsSection from '../components/sections/ProgramsSection.astro';
+import CommunityStage from '../components/sections/CommunityStage.astro';
+import DonationBanner from '../components/sections/DonationBanner.astro';
+import MottoBand from '../components/sections/MottoBand.astro';
+import LatestNews from '../components/sections/LatestNews.astro';
+import Partners from '../components/sections/Partners.astro';
+import { bgSlides } from '../lib/photos';
+---
+<Base preload={bgSlides()[0]} title="Caring for families in Kenya" description="Eagle's Wings Community Group is a Kenyan non-profit that feeds vulnerable families, mentors young people and runs free medical camps in underserved communities.">
+  <Hero />
+  <Values />
+  <ProgramsSection />
+  <MottoBand />
+  <CommunityStage />
+  <LatestNews />
+  <Partners />
+  <DonationBanner />
+</Base>

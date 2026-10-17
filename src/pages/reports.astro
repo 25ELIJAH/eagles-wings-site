@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { reports } from '../data/org';
+---
+<Base title="Reports and documents" description="Annual reports and documents from Eagle's Wings Community Group, so you can see how we work and how gifts are used.">
+  <PageHero title="Reports and documents" subtitle="How we work, and how gifts are used." image="page-about" />
+  <section class="reports">
+    <div class="wrap narrow-wrap">
+      {reports.length ? (
+        <ul class="doc-list" role="list">
+          {reports.map((r) => (
+            <li class="reveal">
+              <div>
+                <h2>{r.title} <span class="doc-year">{r.year}</span></h2>
+                {r.summary && <p>{r.summary}</p>}
+              </div>
+              <a class="btn dark sm3" href={r.file} download>Download (PDF)</a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="empty reveal">
+          <h2>Our first report is on the way</h2>
+          <p>Eagle's Wings Community Group was founded in 2026. We will publish our reports here as they are ready, so you can see what we have done and how gifts have been used.</p>
+          <p>In the meantime, you are welcome to ask us anything about our work.</p>
+          <a class="btn" href="/contact/">Contact us</a>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

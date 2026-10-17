@@ -1,0 +1,15 @@
+---
+import { photoUrl } from '../lib/photos';
+
+interface Props { title: string; subtitle?: string; image: string; }
+const { title, subtitle, image } = Astro.props;
+const src = photoUrl(image, 1600);
+---
+<section class="phero">
+  <div class="phero-bg" aria-hidden="true" style={src ? `background-image:url('${src}')` : undefined}></div>
+  <div class="phero-shade" aria-hidden="true"></div>
+  <div class="wrap phero-in">
+    <h1>{title}</h1>
+    {subtitle && <p>{subtitle}</p>}
+  </div>
+</section>

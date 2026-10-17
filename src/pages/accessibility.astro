@@ -1,0 +1,44 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+---
+<Legal
+  title="Accessibility Statement"
+  description="Our commitment to making the Eagle's Wings Community Group website usable by everyone, what we have tested, and how to tell us about a problem."
+  intro="We want everyone to be able to use this website, including people who use screen readers, keyboards, magnifiers or older phones."
+>
+  <div class="summary">
+    <h2>In short</h2>
+    <ul>
+      <li>We aim to meet WCAG 2.2 level AA, the international standard for accessible websites.</li>
+      <li>We have run automated checks. We have not yet had the site tested by disabled users.</li>
+      <li>If something is hard to use, tell us and we will fix it.</li>
+    </ul>
+  </div>
+
+  <h2>1. What we do</h2>
+  <ul>
+    <li>You can use the whole site with a keyboard. A visible focus outline shows where you are, and there is a "Skip to content" link.</li>
+    <li>Pages use proper headings, labelled form fields, and clear error messages that do not rely on colour alone.</li>
+    <li>Text and controls meet colour-contrast requirements, and the layout adapts to small phone screens with no sideways scrolling.</li>
+    <li>Photos are described when they show something specific. Decorative photos are hidden from screen readers.</li>
+    <li>Background photo slideshows have a pause button and do not start by themselves if your device is set to reduce motion.</li>
+  </ul>
+
+  <h2>2. How we have checked</h2>
+  <p>We test with automated tools (axe-core and Google Lighthouse) on every page, and we check the layout on phone, tablet and computer widths. Automated tools find many problems but not all. We have <strong>not yet</strong> tested with people who use screen readers or other assistive technology, and we plan to.</p>
+
+  <h2>3. Known limits</h2>
+  <ul>
+    <li>The map on the Contact page comes from OpenStreetMap, whose own accessibility we do not control. All contact details are also written as text.</li>
+    <li>Some documents we publish later (such as PDF reports) may be less accessible than the web pages. Ask us for another format.</li>
+  </ul>
+
+  <h2>4. Tell us about a problem</h2>
+  <p>If you find a page or feature hard to use, or you need information in another format, please tell us what the problem is and what device or assistive technology you use:</p>
+  <ul>
+    <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
+    <li>Phone or WhatsApp: <a href={`tel:${site.phoneTel}`}>{site.phone}</a></li>
+  </ul>
+  <p>We aim to reply within a few working days and to fix real barriers as quickly as we can.</p>
+</Legal>

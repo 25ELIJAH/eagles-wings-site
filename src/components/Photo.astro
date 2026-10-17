@@ -1,0 +1,35 @@
+---
+// Responsive photo: WebP at several widths. Add your own with the same name in assets/photos/ (e.g. hero.jpg).
+import { resolvePhoto, srcset, imageUrl, pickWidth } from '../lib/photos';
+
+interface Props {
+  name: string;
+  label: string;
+  alt?: string;
+  class?: string;
+  sizes?: string;
+  eager?: boolean;
+}
+const { name, label, alt, class: cls = '', sizes = '(max-width: 900px) 100vw, 50vw', eager = false } = Astro.props;
+const photo = resolvePhoto(name);
+// Stand-in photos do not show what the caption says, so they are decorative (empty alt).
+// Your own photos use the alt text you supply, or the label.
+const altText = photo?.own ? (alt ?? label) : '';
+---
+{photo ? (
+  <img
+    class={`photo ${cls}`}
+    src={imageUrl(photo, pickWidth(photo, 800))}
+    srcset={srcset(photo)}
+    sizes={sizes}
+    width={photo.w}
+    height={photo.h}
+    alt=""
+    {...(altText ? { alt: altText } : {})}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+    fetchpriority={eager ? 'high' : undefined}
+  />
+) : (
+  <div class={`photo empty ${cls}`} role="img" aria-label={label}></div>
+)}
