@@ -102,8 +102,18 @@ function setup(form: HTMLFormElement) {
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
     try {
-      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: controller.signal });
+      const data = new FormData(form);
+      if (data.has('access_key')) {
+        // Web3Forms: a readable subject, and the visitor's address as the reply-to
+        const replyTo = values.Email || (values.Contact && values.Contact.includes('@') ? values.Contact : '');
+        if (replyTo) data.set('email', replyTo);
+        const topic = kind === 'involve' ? 'Volunteer or partner' : kind === 'quick' ? 'Give or help' : kind === 'newsletter' ? 'Newsletter sign-up' : 'Contact';
+        data.set('subject', `Website: ${topic}${values.Name ? ` from ${values.Name}` : ''}`);
+      }
+      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' }, signal: controller.signal });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const reply = await res.json().catch(() => null);
+      if (reply && reply.success === false) throw new Error(String(reply.message ?? 'rejected'));
       form.reset();
       startedAt = Date.now();
       setStatus('ok', kind === 'newsletter' ? 'Thank you. Please check your email to confirm your sign-up.' : 'Thank you. We have received your message and will reply soon.');

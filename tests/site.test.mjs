@@ -329,3 +329,13 @@ test('the Kiswahili pages exist, are linked from their English twins, and declar
   }
   assert.doesNotMatch(pages['/sw/'], /Caring for|Volunteer or partner|Skip to content/, 'English left on the Swahili home page');
 });
+
+test('forms deliver through Web3Forms with the access key, and the policy allows exactly that host', () => {
+  const html = pages['/contact/'];
+  assert.match(html, /data-endpoint="https:\/\/api\.web3forms\.com\/submit"/);
+  assert.match(html, /<input type="hidden" name="access_key" value="[0-9a-f-]{36}"/);
+  assert.match(html, /connect-src 'self' https:\/\/api\.web3forms\.com/);
+  assert.match(html, /form-action 'self' https:\/\/api\.web3forms\.com/);
+  assert.match(pages['/privacy/'], /Web3Forms/, 'the privacy policy names the form service');
+  assert.match(pages['/sw/wasiliana/'], /name="access_key"/, 'Swahili forms are wired too');
+});

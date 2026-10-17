@@ -23,7 +23,17 @@ export const site = {
   newsletterEndpoint: (import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT as string | undefined)?.trim() ?? '',
   /** Optional GoatCounter site code (cookie-free, anonymous visit counting). Leave unset to count nothing. */
   analyticsCode: (() => { const c = ((import.meta.env.PUBLIC_GOATCOUNTER as string | undefined) ?? '').trim().toLowerCase(); return /^[a-z0-9-]{2,40}$/.test(c) ? c : ''; })(),
-  formEndpoint: (import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined)?.trim() ?? '',
+  /**
+   * Web3Forms access key. It is public by design (it only lets visitors send mail to the address you registered it for).
+   * This is the key the old website already used. Override with PUBLIC_WEB3FORMS_KEY, or set it to 'off' to disable.
+   */
+  web3formsKey: (() => { const k = ((import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined) ?? '25076489-e751-4a2f-b3d5-a16d4f02dacb').trim(); return /^[0-9a-f-]{36}$/i.test(k) ? k : ''; })(),
+  formEndpoint: (() => {
+    const own = ((import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined) ?? '').trim();
+    if (own) return own;
+    const k = ((import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined) ?? '25076489-e751-4a2f-b3d5-a16d4f02dacb').trim();
+    return /^[0-9a-f-]{36}$/i.test(k) ? 'https://api.web3forms.com/submit' : '';
+  })(),
 };
 
 export const nav = [

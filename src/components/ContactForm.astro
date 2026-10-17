@@ -15,6 +15,7 @@ const T = lang === 'sw'
 const id = (n: string) => `${kind}-${n}`;
 const source = kind === 'newsletter' ? site.newsletterEndpoint : site.formEndpoint;
 const endpoint = /^https:\/\//.test(source) ? source : '';
+const isWeb3 = endpoint.startsWith('https://api.web3forms.com/') && Boolean(site.web3formsKey);
 ---
 <form class="js-form" data-kind={kind} data-lang={lang} data-endpoint={endpoint} data-email={site.email} novalidate>
   {kind === 'newsletter' ? (
@@ -76,6 +77,13 @@ const endpoint = /^https:\/\//.test(source) ? source : '';
         <textarea id={id('message')} name="Message" maxlength={LIMITS.message} required aria-describedby={id('message-err')}></textarea>
         <p class="field-error" id={id('message-err')} hidden></p>
       </div>
+    </>
+  )}
+
+  {isWeb3 && (
+    <>
+      <input type="hidden" name="access_key" value={site.web3formsKey} />
+      <input type="hidden" name="from_name" value={`${site.short} website`} />
     </>
   )}
 
