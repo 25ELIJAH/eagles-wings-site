@@ -64,7 +64,8 @@ const jsonLd = {
   telephone: site.phoneTel,
   foundingDate: String(site.founded),
   areaServed: { '@type': 'Country', name: 'Kenya' },
-  address: { '@type': 'PostalAddress', addressCountry: 'KE' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Mwihoko', addressCountry: 'KE' },
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', telephone: site.phoneTel, email: site.email, availableLanguage: ['English', 'Swahili'] },
 };
 ---
 <!doctype html>
@@ -97,7 +98,7 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${site.name} logo`} />
+    <meta property="og:image:alt" content={`${site.name}: children and carers at the home in Mwihoko, Kenya`} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preload" as="image" href="/img/logo-380.webp" imagesrcset="/img/logo-190.webp 190w, /img/logo-380.webp 380w" imagesizes="190px" fetchpriority="high" />
     <link rel="preload" href="/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />

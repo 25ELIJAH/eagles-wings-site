@@ -62,9 +62,18 @@ if (fs.existsSync(logo)) {
   if (need('favicon-32.png')) await sharp(logo).resize(32, 32, { fit: 'contain', background: '#fff' }).png().toFile(pub('favicon-32.png'));
   if (need('apple-touch-icon.png')) await sharp(logo).resize(180, 180, { fit: 'contain', background: '#fff' }).png().toFile(pub('apple-touch-icon.png'));
   if (need('og-default.jpg')) {
-    const mark = await sharp(logo).resize({ height: 560, fit: 'contain', background: '#fff' }).toBuffer();
-    await sharp({ create: { width: 1200, height: 630, channels: 3, background: '#ffffff' } })
-      .composite([{ input: mark, gravity: 'center' }]).jpeg({ quality: 88 }).toFile(pub('og-default.jpg'));
+    // Social share card: a community photo with the logo on a white panel. Falls back to the plain logo card.
+    const photo = ['page-community', 'gallery-1', 'bg-1'].map((n) => path.join(dirs.own, `${n}.jpg`)).find((f) => fs.existsSync(f));
+    const mark = await sharp(logo).resize({ height: 200, fit: 'contain', background: '#fff' }).toBuffer();
+    if (photo) {
+      const base = await sharp(photo).rotate().resize(1200, 630, { fit: 'cover', position: 'attention' }).toBuffer();
+      const panel = await sharp({ create: { width: 520, height: 230, channels: 3, background: '#ffffff' } }).composite([{ input: mark, gravity: 'center' }]).png().toBuffer();
+      await sharp(base).composite([{ input: panel, left: 40, top: 40 }]).jpeg({ quality: 86 }).toFile(pub('og-default.jpg'));
+    } else {
+      const big = await sharp(logo).resize({ height: 560, fit: 'contain', background: '#fff' }).toBuffer();
+      await sharp({ create: { width: 1200, height: 630, channels: 3, background: '#ffffff' } })
+        .composite([{ input: big, gravity: 'center' }]).jpeg({ quality: 88 }).toFile(pub('og-default.jpg'));
+    }
   }
 }
 console.log(`images: ${Object.keys(manifest).length} sources, ${made} files written`);
