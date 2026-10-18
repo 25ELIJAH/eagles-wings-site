@@ -103,7 +103,7 @@ section[id] { scroll-margin-top: 10px; }
 .photo.empty { background: linear-gradient(145deg, #e6eefc, #cfdcf5); }
 
 /* ---------- hero: sage green, Kenya-shaped portrait, torn paper ---------- */
-.hero { background: var(--sage); padding: 60px 0 170px; overflow: hidden; margin-top: 0; }
+.hero { background: var(--sage); padding: 40px 0 130px; overflow: hidden; margin-top: 0; }
 .hero-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 30px; align-items: center; position: relative; z-index: 2; }
 .hero h1 { color: var(--forest); margin-bottom: .45em; }
 .hero .hl { background: var(--brush) no-repeat; background-size: 100% 52%; background-position: 0 92%; padding: 0 .12em; margin: 0 -.12em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
@@ -116,7 +116,7 @@ section[id] { scroll-margin-top: 10px; }
 .hero .btn.dark { background: var(--forest); border-color: var(--forest); }
 .hero .btn.dark:hover { background: #1b3f7a; border-color: #1b3f7a; }
 .hero .link.plain { color: var(--forest); border-bottom-color: var(--forest); }
-.hero-art { position: relative; justify-self: end; width: min(600px, 100%); opacity: 0; animation: rise 1s var(--ease) .25s forwards; }
+.hero-art { position: relative; justify-self: end; width: min(560px, 100%, max(320px, calc((100svh - 200px) * .79))); opacity: 0; animation: rise 1s var(--ease) .25s forwards; }
 .kenya { display: block; width: 100%; height: auto; overflow: visible; }
 .kenya-line { transition: stroke-width .4s ease; }
 .hero-art:hover .kenya-line { stroke-width: 7; }
@@ -298,8 +298,8 @@ html.js .reveal.gone-up { opacity: 0; transform: translateY(-20px); transition-d
 /* hero: photos playing faded behind the Kenya map */
 .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-bg .sl { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.1s ease; }
-.hero-bg .sl.on { opacity: 1; animation: kenburns 12s ease-out forwards; }
-.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.8) 36%, rgba(255,255,255,0) 66%); }
+.hero-bg .sl.on { opacity: .45; animation: kenburns 12s ease-out forwards; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.72) 40%, rgba(255,255,255,.35) 100%); }
 
 /* small donation / contact box */
 .quick { max-width: 400px; margin: 30px auto 0; padding: 22px 24px 24px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 10px 28px rgba(15,36,71,.08); }

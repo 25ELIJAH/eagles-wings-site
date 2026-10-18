@@ -95,7 +95,7 @@ export const sw = {
     ],
     pageTitle: 'Kuhusu sisi',
     pageSubtitle: 'Tunaleta mabadiliko ya kudumu kwa jamii zisizo na huduma za kutosha.',
-    timeline: "2026: Eagle's Wings Community Group inaanzishwa nchini Kenya na Rev. Benard Kariuki Karanja.",
+    timeline: "2016: Eagle's Wings Community Group inaanzishwa nchini Kenya na Rev. Benard Kariuki Karanja. 2026: miaka kumi ya kulisha watoto, kuwashauri vijana na kuendesha kambi za matibabu.",
   },
   programs: {
     label: 'Programu',

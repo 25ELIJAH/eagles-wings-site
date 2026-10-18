@@ -14,7 +14,8 @@ export const team: Person[] = [
 
 /** Milestones. Add real, dated events as the organisation grows. */
 export const timeline: { when: string; text: string }[] = [
-  { when: '2026', text: "Eagle's Wings Community Group is founded in Kenya by Rev. Benard Kariuki Karanja." },
+  { when: '2016', text: "Eagle's Wings Community Group is founded in Kenya by Rev. Benard Kariuki Karanja." },
+  { when: '2026', text: 'Ten years of feeding children, mentoring young people and running medical camps.' },
 ];
 
 /** Where gifts go. Fill in the real shares (for example "60%") once you have them.*/
@@ -57,7 +58,7 @@ export const social: { name: 'Facebook' | 'Instagram' | 'YouTube' | 'X' | 'TikTo
 
 /** Frequently asked questions. Every answer uses only facts already stated elsewhere on this site. */
 export const faq: { q: string; a: string; html?: boolean }[] = [
-  { q: "What is Eagle's Wings Community Group?", a: "We are a Kenyan non-profit founded in 2026 by Rev. Benard Kariuki Karanja. We feed vulnerable children and families, mentor young people, and run free medical camps in underserved communities." },
+  { q: "What is Eagle's Wings Community Group?", a: "We are a Kenyan non-profit founded in 2016 by Rev. Benard Kariuki Karanja. We feed vulnerable children and families, mentor young people, and run free medical camps in underserved communities." },
   { q: 'Where do you work?', a: 'We serve underserved communities in Kenya, East Africa.' },
   { q: 'How can I give?', a: 'Message or call us and we will share the details and send you a receipt. The steps are on the <a href="/give/">How to give</a> page.', html: true },
   { q: 'How is my gift used?', a: 'Gifts support our programs (feeding, youth mentorship and medical outreach) and the running of the organisation. If you want a gift used for a particular program, tell us when you give. Our <a href="/give/">How to give</a> page shows where gifts go.', html: true },

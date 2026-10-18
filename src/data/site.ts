@@ -6,7 +6,7 @@
 export const site = {
   name: "Eagle's Wings Community Group",
   short: "Eagle's Wings",
-  founded: 2026,
+  founded: 2016,
   location: 'Mwihoko, Kenya',
   /** Your registration line, shown in the footer, Terms, Privacy and FAQ. e.g. 'Registered Community Based Organisation No. CBO/1234/2026'. Leave '' to show a placeholder. */
   registration: '',
@@ -46,7 +46,7 @@ export const nav = [
 ];
 
 export const hero = {
-  badge: 'Kenya · Since 2026',
+  badge: 'Kenya · Since 2016',
   plain: 'Caring for',
   italic: 'families across Kenya.',
   /** The headline word rotates through these (all covered by our programs). The first is shown without JavaScript. */
@@ -175,7 +175,7 @@ export const footer = {
 export const community = {
   kicker: 'Our community',
   title: 'Families, young people and volunteers, together.',
-  text: "Eagle's Wings Community Group brings meals, mentoring and medical care to families across Kenya. Founded in 2026 by Rev. Benard Kariuki Karanja, we are growing through the work of volunteers and the people we serve.",
+  text: "Eagle's Wings Community Group brings meals, mentoring and medical care to families across Kenya. Founded in 2016 by Rev. Benard Kariuki Karanja, we have served families across Kenya for ten years and keep growing through the work of volunteers and the people we serve.",
   line: ['500+ families', '100+ young people', '20+ medical camps'],
 };
 
