@@ -116,7 +116,6 @@ section[id] { scroll-margin-top: 10px; }
 .kenya { display: block; width: 100%; height: auto; overflow: visible; }
 .kenya-line { transition: stroke-width .4s ease; }
 .hero-art:hover .kenya-line { stroke-width: 7; }
-.hero-pair { position: absolute; left: max(3%, calc(50% - 570px)); bottom: 26px; z-index: 4; width: 176px; height: 124px; border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%; overflow: hidden; border: 5px solid #fff; transform: rotate(-5deg); box-shadow: 0 14px 30px rgba(15,36,71,.22); }
 .torn { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(70px, 9vw, 130px); z-index: 3; }
 .torn-back { fill: var(--sage-light); }
 .torn-front { fill: #fff; }
@@ -257,8 +256,7 @@ html.js .reveal.gone-up { opacity: 0; transform: translateY(-20px); transition-d
 @media (max-width: 980px) {
   .hero-grid, .about-grid, .founder-grid, .stories-grid, .pane.on { grid-template-columns: 1fr; gap: 36px; }
   .hero-art { justify-self: center; }
-  .hero-pair { width: 120px; height: 86px; left: 14px; bottom: 20px; }
-  .stroke.s3 { display: none; }
+    .stroke.s3 { display: none; }
   .vgrid { grid-template-columns: 1fr 1fr; }
   .pcards { grid-template-columns: 1fr; }
   .numbers { grid-template-columns: 1fr 1fr; }
@@ -286,7 +284,6 @@ html.js .reveal.gone-up { opacity: 0; transform: translateY(-20px); transition-d
   .creed > div { grid-template-columns: 1fr; gap: 2px; }
 }
 @media (max-width: 560px) { .vgrid { grid-template-columns: 1fr; } }
-.hero-pair .photo { object-position: 50% 58%; }
 
 .give-actions { justify-content: center; margin-top: 22px; }
 .give .join-card { margin-top: 36px; max-width: 980px; margin-left: auto; margin-right: auto; }
@@ -607,7 +604,6 @@ body { overflow-wrap: break-word; }
 .stroke.s1 { translate: 0 calc(var(--sy, 0) * -0.12px); }
 .stroke.s2 { translate: 0 calc(var(--sy, 0) * 0.1px); }
 .stroke.s3 { translate: 0 calc(var(--sy, 0) * -0.1px); }
-.hero-pair { translate: 0 calc(var(--sy, 0) * -0.16px); }
 .hero-art { translate: 0 calc(var(--sy, 0) * 0.06px); }
 
 /* "Explore" cue invites people down the page */
@@ -703,3 +699,54 @@ html.no-loader #loader { display: none; }
 @keyframes scDraw { to { stroke-dashoffset: 0; } }
 @keyframes scFill { from { transform: scale(.92); } to { transform: scale(1); } }
 @keyframes dotOut { 0% { opacity: 1; transform: translate(0, 0) scale(.4); } 100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(1); } }
+
+/* ================= smooth, consistent motion: menu and hovers ================= */
+/* desktop menu: one underline glides between links */
+.top nav ul { position: relative; }
+.top nav a:not(.btn) { transition: color .25s ease; }
+.nav-ind { position: absolute; left: 0; bottom: 2px; height: 3px; width: 0; border-radius: 3px; background: var(--yellow); opacity: 0; pointer-events: none; will-change: transform, width; }
+.nav-ind.ready { transition: transform .45s var(--ease), width .45s var(--ease), opacity .3s ease; }
+.nav-ind.on { opacity: 1; }
+.top nav.has-ind a:not(.btn)::after { display: none; }
+.lang-switch { transition: background .25s ease, color .25s ease, border-color .25s ease; }
+.lang-switch:hover { background: var(--navy); color: #fff !important; border-color: var(--navy); }
+
+/* mobile menu: the panel fades and glides down, the links follow one after another */
+@media (max-width: 860px) {
+  .top nav { display: block; visibility: hidden; opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity .3s var(--ease), transform .35s var(--ease), visibility 0s linear .35s; }
+  .top nav.open { visibility: visible; opacity: 1; transform: none; pointer-events: auto; transition: opacity .3s var(--ease), transform .35s var(--ease), visibility 0s; }
+  .top nav li { opacity: 0; transform: translateX(-10px); transition: opacity .3s var(--ease), transform .35s var(--ease); }
+  .top nav.open li { opacity: 1; transform: none; transition-delay: calc(var(--n, 0) * 40ms + 60ms); }
+}
+
+/* buttons: lift, glow, press */
+.btn { transition: transform .25s var(--ease), box-shadow .25s ease, background .25s ease, border-color .25s ease, color .25s ease; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(18,48,91,.22); }
+.btn:active { transform: translateY(0) scale(.97); box-shadow: none; }
+
+/* text links: the underline colour eases, footer links slide a little */
+.link { transition: color .25s ease, border-color .25s ease; }
+.link:hover { border-bottom-color: currentColor; }
+body > footer li a { transition: opacity .25s ease, transform .3s var(--ease); }
+body > footer li a:hover { transform: translateX(4px); }
+
+/* cards lift (uses the separate "translate" property so it never fights the scroll-reveal) */
+.ways-grid li, .way, .news-card { transition: translate .3s var(--ease), box-shadow .3s ease, border-color .3s ease; }
+html.js .ways-grid li.reveal, html.js .way.reveal, html.js .news-card.reveal {
+  transition: opacity .85s var(--ease), transform .85s var(--ease), translate .3s var(--ease), box-shadow .3s ease, border-color .3s ease;
+  transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s, 0s;
+}
+.ways-grid li:hover, .way:hover, .news-card:hover { translate: 0 -5px; box-shadow: 0 18px 38px rgba(15,36,71,.13); }
+.faq-list details { transition: border-color .3s ease, box-shadow .3s ease; }
+.faq-list details:hover { border-color: #a9c1ea; }
+input, textarea, select { transition: border-color .2s ease, box-shadow .2s ease; }
+
+/* wider hero: text on the left, the map centred in the right half (no empty band on wide screens) */
+.hero .hero-grid { max-width: 1500px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+.hero-art { justify-self: center; width: min(640px, 100%, max(320px, calc((100svh - 200px) * .79))); }
+@media (max-width: 980px) { .hero .hero-grid { grid-template-columns: 1fr; } }
+/* reduce-motion visitors: the old word fades out, then the new one fades in (no overlapping) */
+@media (prefers-reduced-motion: reduce) {
+  .rot-word { transition: opacity .5s ease .3s !important; }
+  .rot-word.leave { transition: opacity .25s ease 0s !important; }
+}

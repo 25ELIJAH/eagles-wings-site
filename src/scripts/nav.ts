@@ -22,5 +22,44 @@ export function initNav() {
   document.addEventListener('click', (e) => {
     if (nav.classList.contains('open') && !header.contains(e.target as Node)) setOpen(false);
   });
+
+  // ---- desktop: one yellow underline glides to the link you point at, and rests under the current page ----
+  const list = $('ul', nav);
+  if (!list) return;
+  const links = $$<HTMLAnchorElement>('a:not(.btn):not(.lang-switch)', nav);
+  const ind = document.createElement('span');
+  ind.className = 'nav-ind';
+  ind.setAttribute('aria-hidden', 'true');
+  list.append(ind);
+  const mobile = window.matchMedia('(max-width: 860px)');
+  const current = () => links.find((a) => a.hasAttribute('aria-current')) ?? null;
+  let ready = false;
+  const moveTo = (a: HTMLElement | null) => {
+    if (mobile.matches || !a) { ind.classList.remove('on'); return; }
+    const r = a.getBoundingClientRect();
+    const p = list.getBoundingClientRect();
+    ind.style.width = `${Math.max(0, r.width - 24)}px`;
+    ind.style.transform = `translateX(${r.left - p.left + 12}px)`;
+    ind.classList.add('on');
+  };
+  const rest = () => moveTo(current());
+  const apply = () => {
+    nav.classList.toggle('has-ind', !mobile.matches);
+    ind.classList.remove('ready');
+    rest();
+    // switch the glide on only after the first position is set, so it does not fly in from the left on load
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (!ready || true) ind.classList.add('ready'); ready = true; }));
+  };
+  links.forEach((a) => {
+    a.addEventListener('mouseenter', () => moveTo(a));
+    a.addEventListener('focus', () => moveTo(a));
+  });
+  list.addEventListener('mouseleave', rest);
+  nav.addEventListener('focusout', (e) => { if (!nav.contains((e as FocusEvent).relatedTarget as Node)) rest(); });
+  window.addEventListener('resize', apply);
+  mobile.addEventListener('change', apply);
+  window.addEventListener('load', apply);
+  document.fonts?.ready.then(apply);
+  apply();
   void reducedMotion;
 }
