@@ -10,7 +10,6 @@ const home = lang === 'sw' ? '/sw/' : '/';
 const isCurrent = (href: string) => (href === '/' || href === '/sw/' ? path === href : path.startsWith(href));
 const alt = altFor(path, lang);
 ---
-<div class="top-zone" id="top-zone" aria-hidden="true"></div>
 <header class="top" id="top">
   <div class="wrap">
     <a class="brand" href={home}>

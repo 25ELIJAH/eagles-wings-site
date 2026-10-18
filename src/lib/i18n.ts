@@ -196,11 +196,18 @@ export const swMessages: Record<string, string> = {
   'Thank you. We have received your message and will reply soon.': 'Asante. Tumepokea ujumbe wako na tutakujibu hivi karibuni.',
   'Try again': 'Jaribu tena',
   'Sending…': 'Inatuma…',
+  'Message sent': 'Ujumbe umetumwa',
+  'Thank you. Your message has reached our team and we will reply soon.': 'Asante. Ujumbe wako umefika kwa timu yetu na tutakujibu hivi karibuni.',
+  'Sign-up received': 'Umejisajili',
+  'Thank you. Please check your email to confirm your sign-up.': 'Asante. Tafadhali angalia barua pepe yako kuthibitisha usajili wako.',
+  'Send another message': 'Tuma ujumbe mwingine',
 };
 export function translateMessage(msg: string): string {
   if (swMessages[msg]) return swMessages[msg];
   let m = msg.match(/^Please fix the (\d+) fields marked below\.$/);
   if (m) return `Tafadhali sahihisha sehemu ${m[1]} zilizotiwa alama hapa chini.`;
+  m = msg.match(/^We will reply to (.+)\.$/);
+  if (m) return `Tutakujibu kupitia ${m[1]}.`;
   m = msg.match(/^Please keep your (name|message|subject) under (\d+) characters\.$/);
   if (m) return `Tafadhali usizidishe herufi ${m[2]}.`;
   m = msg.match(/^Your email app should open with your message ready to send\. If nothing opens, please email us at (.+)\.$/);

@@ -40,12 +40,8 @@ a { color: var(--blue); }
 .fill { background: #fff0a8; color: #3a3000; padding: 0 5px; border-radius: 3px; font-size: .92em; }
 
 /* ---------- header: slides away on scroll, returns on scroll-up or hover at the top ---------- */
-.top { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line); transition: transform .65s cubic-bezier(.16,1,.3,1), opacity .45s ease; }
-.top.hide { transform: translateY(-110%); opacity: 0; pointer-events: none; }
-.top-zone { position: fixed; top: 0; left: 0; right: 0; height: 22px; z-index: 49; }
+.top { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 16px; }
-.top:not(.hide) nav li, .top:not(.hide) .brand { animation: navIn .6s cubic-bezier(.16,1,.3,1) both; }
-.top:not(.hide) nav li { animation-delay: calc(var(--n, 0) * .06s + .1s); }
 @keyframes navIn { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--navy); font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1.15; }
 .brand img { width: 44px; height: 44px; object-fit: contain; }
@@ -53,7 +49,7 @@ a { color: var(--blue); }
 .brand.light img { background: #fff; border-radius: 50%; }
 .top nav ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; align-items: center; }
 .top nav a:not(.btn) { text-decoration: none; color: var(--ink); font-size: 16px; font-weight: 600; padding: 8px 12px; position: relative; }
-.top nav a:not(.btn)::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 3px; border-radius: 3px; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+.top nav a:not(.btn)::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 3px; border-radius: 3px; background: var(--yellow); transform: scaleX(0); transform-origin: left;  }
 .top nav a:not(.btn):hover { color: var(--blue); }
 .top nav a:not(.btn):hover::after { transform: scaleX(1); }
 .menu-btn { display: none; width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; position: relative; }
@@ -674,3 +670,36 @@ html.no-loader #loader { display: none; }
 .sw-founder { padding: 70px 0; }
 .sw-founder blockquote { margin: 0 0 18px; font-family: var(--head); font-style: italic; font-size: clamp(20px, 2.4vw, 27px); line-height: 1.5; color: var(--navy); border-left: 4px solid var(--yellow); padding-left: 22px; }
 .sw-sign { margin: 0 0 6px; }
+
+/* Kenya section: larger type */
+.hero h1 { font-size: clamp(42px, 5.4vw, 72px); line-height: 1.12; }
+.hero .lede { font-size: clamp(20px, 1.7vw, 24px); line-height: 1.6; max-width: 600px; }
+.hero .btn { font-size: 19px; padding: 16px 38px; }
+.hero .link.plain { font-size: 20px; }
+.scroll-cue { font-size: 15px; }
+@media (max-width: 560px) { .hero h1 { font-size: clamp(36px, 10vw, 46px); } .hero .btn { font-size: 18px; padding: 14px 32px; } }
+
+/* "message sent" card */
+.js-form.is-sent > :not(.sent) { display: none !important; }
+.sent { position: relative; text-align: center; padding: 26px 16px 10px; animation: sentIn .5s var(--ease) both; }
+.sent-check { width: 92px; height: 92px; display: block; margin: 0 auto 14px; overflow: visible; }
+.sc-ring { fill: #e6f4ea; stroke: #1f7a3e; stroke-width: 3; stroke-dasharray: 182; stroke-dashoffset: 182; animation: scDraw .7s ease-out .05s forwards, scFill .4s ease .6s both; transform-origin: center; }
+.sc-tick { fill: none; stroke: #1f7a3e; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 48; stroke-dashoffset: 48; animation: scDraw .45s ease-out .6s forwards; }
+.sent-title { margin: 0 0 6px; font-size: 28px; color: var(--navy); }
+.sent-text { margin: 0 auto 6px; max-width: 420px; color: var(--ink); }
+.sent-reach { margin: 0 0 12px; font-weight: 700; color: #1f7a3e; overflow-wrap: anywhere; }
+.sent .link-btn { margin-top: 6px; font-size: 16px; }
+.sent-dots { position: absolute; left: 50%; top: 72px; width: 0; height: 0; pointer-events: none; }
+.sent-dots i { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); opacity: 0; animation: dotOut .9s ease-out .7s forwards; }
+.sent-dots i:nth-child(1) { --x: 0px;   --y: -70px; }
+.sent-dots i:nth-child(2) { --x: 50px;  --y: -50px; background: #1f7a3e; }
+.sent-dots i:nth-child(3) { --x: 70px;  --y: 0px; }
+.sent-dots i:nth-child(4) { --x: 50px;  --y: 50px; background: var(--navy); }
+.sent-dots i:nth-child(5) { --x: 0px;   --y: 70px; }
+.sent-dots i:nth-child(6) { --x: -50px; --y: 50px; background: #1f7a3e; }
+.sent-dots i:nth-child(7) { --x: -70px; --y: 0px; }
+.sent-dots i:nth-child(8) { --x: -50px; --y: -50px; background: var(--navy); }
+@keyframes sentIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes scDraw { to { stroke-dashoffset: 0; } }
+@keyframes scFill { from { transform: scale(.92); } to { transform: scale(1); } }
+@keyframes dotOut { 0% { opacity: 1; transform: translate(0, 0) scale(.4); } 100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(1); } }

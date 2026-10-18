@@ -1,7 +1,7 @@
 // Contact forms: validation, spam trap, loading / success / error states, recoverable errors.
 // With a form service configured (formEndpoint in src/data/site.ts) the message is sent in the background.
 // Without one, the visitor's email app opens with the message ready to send, and the form says so honestly.
-import { $, $$ } from './dom';
+import { $, $$, reducedMotion } from './dom';
 import { translateMessage } from '../lib/i18n';
 import { validate, looksLikeBot, buildMailto, MIN_FILL_MS, type FormKind, type Values } from '../lib/forms';
 
@@ -34,6 +34,34 @@ function setup(form: HTMLFormElement) {
       again.addEventListener('click', () => form.requestSubmit());
       status.append(' ', again);
     }
+  };
+  // A clear confirmation: the form is replaced by an animated "sent" card with a way to send another message.
+  const showSent = (values: Values) => {
+    const news = kind === 'newsletter';
+    const reach = (values.Email || values.Contact || '').trim();
+    const panel = document.createElement('div');
+    panel.className = 'sent';
+    panel.setAttribute('role', 'status');
+    panel.innerHTML = `
+      <svg class="sent-check" viewBox="0 0 64 64" aria-hidden="true"><circle class="sc-ring" cx="32" cy="32" r="29" /><path class="sc-tick" d="M19 33l9 9 17-20" /></svg>
+      <span class="sent-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <h3 class="sent-title"></h3>
+      <p class="sent-text"></p>
+      <p class="sent-reach"></p>`;
+    $('.sent-title', panel)!.textContent = tr(news ? 'Sign-up received' : 'Message sent');
+    $('.sent-text', panel)!.textContent = tr(news ? 'Thank you. Please check your email to confirm your sign-up.' : 'Thank you. Your message has reached our team and we will reply soon.');
+    const reachEl = $('.sent-reach', panel)!;
+    if (reach && !news) reachEl.textContent = tr(`We will reply to ${reach}.`); else reachEl.remove();
+    const again = document.createElement('button');
+    again.type = 'button';
+    again.className = 'link-btn';
+    again.textContent = tr('Send another message');
+    again.addEventListener('click', () => { panel.remove(); form.classList.remove('is-sent'); $('input:not([type=hidden]), textarea, select', form)?.focus(); });
+    panel.append(again);
+    form.append(panel);
+    form.classList.add('is-sent');
+    status.hidden = true;
+    panel.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' });
   };
   const setLoading = (on: boolean) => {
     form.toggleAttribute('aria-busy', on);
@@ -79,7 +107,7 @@ function setup(form: HTMLFormElement) {
     const values = Object.fromEntries([...new FormData(form).entries()].map(([k, v]) => [k, String(v)])) as Values;
 
     // Spam trap filled in: pretend it worked and send nothing.
-    if (values.website?.trim()) { setStatus('ok', 'Thank you. We will be in touch soon.'); return; }
+    if (values.website?.trim()) { showSent(values); return; }
 
     const result = validate(kind, values);
     if (!result.ok) { showErrors(result.errors); return; }
@@ -114,9 +142,9 @@ function setup(form: HTMLFormElement) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const reply = await res.json().catch(() => null);
       if (reply && reply.success === false) throw new Error(String(reply.message ?? 'rejected'));
+      showSent(values);
       form.reset();
       startedAt = Date.now();
-      setStatus('ok', kind === 'newsletter' ? 'Thank you. Please check your email to confirm your sign-up.' : 'Thank you. We have received your message and will reply soon.');
     } catch {
       setStatus('err', `We could not send your message just now. Please try again, or email us at ${email}.`, true);
     } finally {
