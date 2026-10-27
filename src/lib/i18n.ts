@@ -76,7 +76,6 @@ export const sw = {
     secondary: { label: 'Jitolee au shirikiana nasi', href: '/sw/shirikiana/' },
     explore: 'Gundua',
     mapLabel: 'Ramani ya Kenya iliyojaa picha za watoto na walezi',
-    flagLabel: 'Bendera ya Kenya',
   },
   values: [
     { title: 'Huruma', text: 'Tunamtendea kila mtu kwa heshima, bila kujali hali yake.' },

@@ -627,10 +627,6 @@ body { overflow-wrap: break-word; }
 /* moving between pages: no logo screen (only on arrival or refresh) */
 html.no-loader #loader { display: none; }
 
-/* Kenyan flag planted at the foot of the map */
-.flag { position: absolute; left: 1%; bottom: 2%; width: clamp(110px, 17%, 170px); height: auto; z-index: 3; overflow: visible; filter: drop-shadow(0 8px 10px rgba(18,48,91,.3)); pointer-events: none; }
-.flag-shine { animation: flagwave 3.2s ease-in-out infinite; }
-@keyframes flagwave { 0%, 100% { transform: translateX(-26px); } 50% { transform: translateX(26px); } }
 
 /* ways to give, get involved */
 .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; list-style: none; padding: 0; margin: 28px auto 8px; max-width: 860px; text-align: left; }

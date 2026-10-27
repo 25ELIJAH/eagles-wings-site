@@ -9,21 +9,12 @@ import { sw, type Lang } from '../../lib/i18n';
 interface Props { lang?: Lang }
 const { lang = 'en' } = Astro.props;
 const copy = lang === 'sw'
-  ? { plain: sw.hero.plain, words: sw.hero.words, tail: sw.hero.tail, text: sw.hero.text, primary: sw.hero.primary, secondary: sw.hero.secondary, explore: sw.hero.explore, mapLabel: sw.hero.mapLabel, flagLabel: sw.hero.flagLabel }
-  : { plain: hero.plain, words: hero.words, tail: hero.tail, text: hero.text, primary: hero.primary, secondary: hero.secondary, explore: 'Explore', mapLabel: 'Map of Kenya filled with photographs of children and carers', flagLabel: 'The flag of Kenya' };
+  ? { plain: sw.hero.plain, words: sw.hero.words, tail: sw.hero.tail, text: sw.hero.text, primary: sw.hero.primary, secondary: sw.hero.secondary, explore: sw.hero.explore, mapLabel: sw.hero.mapLabel }
+  : { plain: hero.plain, words: hero.words, tail: hero.tail, text: hero.text, primary: hero.primary, secondary: hero.secondary, explore: 'Explore', mapLabel: 'Map of Kenya filled with photographs of children and carers' };
 
 const slides = bgSlides();
 const portraits = kenyaPortraits();
 const tornBack = tornPath(7, 74, 26, 11);
-// Kenyan flag: black, red and green bands separated by white fimbriation, with the Maasai shield, drawn with a gentle wave.
-const FW = 160, FH = 108;
-const wave = (x: number) => Math.sin((x / FW) * Math.PI * 2.4) * 5;
-const band = (y0: number, y1: number) => {
-  const xs = Array.from({ length: 21 }, (_, i) => (i * FW) / 20);
-  const top = xs.map((x) => `${x.toFixed(1)},${(y0 + wave(x)).toFixed(1)}`);
-  const bot = [...xs].reverse().map((x) => `${x.toFixed(1)},${(y1 + wave(x)).toFixed(1)}`);
-  return `M${top.join(' L')} L${bot.join(' L')} Z`;
-};
 const tornFront = tornPath(31, 96, 24, 9);
 ---
 <!-- HERO: sage background, Kenya-shaped portrait, torn-paper edge -->
@@ -56,31 +47,6 @@ const tornFront = tornPath(31, 96, 24, 9);
           <image class={`kimg${i === 0 ? ' on' : ''}`} href={i === 0 ? p.src : undefined} data-href={i === 0 ? undefined : p.src} x={p.img.x} y={p.img.y} width={p.img.w} height={p.img.h} preserveAspectRatio={p.img.par} clip-path="url(#kenya-clip)" />
         ))}
         <path class="kenya-line" d={KENYA_PATH} pathLength="1" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
-      </svg>
-      <svg class="flag" viewBox={`-6 -10 ${FW + 12} ${FH + 74}`} role="img" aria-label={copy.flagLabel}>
-        <defs>
-          <clipPath id="flag-clip"><path d={band(0, FH)} /></clipPath>
-          <linearGradient id="flag-shade" x1="0" x2="1">
-            <stop offset="0" stop-color="#000" stop-opacity=".22" /><stop offset=".25" stop-color="#fff" stop-opacity=".18" />
-            <stop offset=".5" stop-color="#000" stop-opacity=".18" /><stop offset=".75" stop-color="#fff" stop-opacity=".18" />
-            <stop offset="1" stop-color="#000" stop-opacity=".22" />
-          </linearGradient>
-        </defs>
-        <rect x="-5" y="-4" width="4" height={FH + 70} rx="2" fill="#5b7694" />
-        <circle cx="-3" cy="-6" r="4" fill="#c9a14a" />
-        <g clip-path="url(#flag-clip)">
-          <path d={band(0, 32)} fill="#000" /><path d={band(32, 36)} fill="#fff" />
-          <path d={band(36, 72)} fill="#bb0000" /><path d={band(72, 76)} fill="#fff" />
-          <path d={band(76, FH)} fill="#006600" />
-          <g transform={`translate(${FW / 2} ${FH / 2 + wave(FW / 2)})`}>
-            <path d="M-26 -26 L26 26 M26 -26 L-26 26" stroke="#fff" stroke-width="3" />
-            <ellipse rx="16" ry="27" fill="#bb0000" stroke="#000" stroke-width="3" />
-            <path d="M-16 -8 H16 V8 H-16 Z" fill="#fff" />
-            <ellipse rx="16" ry="27" fill="none" stroke="#000" stroke-width="3" />
-            <path d="M0 -27 V27" stroke="#000" stroke-width="2" />
-          </g>
-          <rect class="flag-shine" x={-FW} y="-10" width={FW * 3} height={FH + 20} fill="url(#flag-shade)" />
-        </g>
       </svg>
     </div>
   </div>
