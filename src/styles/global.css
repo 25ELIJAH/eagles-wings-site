@@ -338,12 +338,14 @@ html.js img.photo.is-loaded { animation: none; background: var(--sky); }
 .legal-page h2 { font-size: 24px; margin: 1.9em 0 .5em; }
 .legal-page p, .legal-page li { font-size: 18px; line-height: 1.7; }
 .legal-page ul, .legal-page ol { padding-left: 22px; margin: 0 0 1.1em; display: grid; gap: 6px; }
-.legal-page li::marker { color: var(--yellow-deep); }
+.legal-page li::marker { color: var(--navy); }
 .legal-page code { background: var(--sky); padding: 1px 7px; border-radius: 5px; font-size: .92em; }
 .legal-page a { color: var(--blue); }
-.summary { background: var(--sky); border-left: 4px solid var(--yellow); border-radius: 0 12px 12px 0; padding: 18px 24px 8px; margin: 0 0 8px; }
-.summary h2 { margin: 0 0 8px; font-size: 20px; }
+.summary { border-top: 2px solid var(--navy); border-bottom: 1px solid var(--line); padding: 16px 0 6px; margin: 0 0 12px; }
+.summary h2 { margin: 0 0 10px; font-family: var(--body); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .summary ul { margin-bottom: 12px; }
+.summary li { font-size: 17px; }
+.summary li::marker { color: var(--navy); }
 
 /* ---------- cookie notice ---------- */
 .cookie { position: fixed; left: 18px; bottom: 18px; z-index: 60; max-width: 380px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px 14px; box-shadow: 0 14px 40px rgba(18,48,91,.2); opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s var(--ease); }
