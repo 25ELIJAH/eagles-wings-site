@@ -8,8 +8,12 @@ export const site = {
   short: "Eagle's Wings",
   founded: 2016,
   location: 'Mwihoko, Kenya',
-  /** Your registration line, shown in the footer, Terms, Privacy and FAQ. e.g. 'Registered Community Based Organisation No. CBO/1234/2026'. Leave '' to show a placeholder. */
-  registration: '',
+  /** Legal name exactly as on the Certificate of Registration. */
+  legalName: "Eagle's Wings Community Based Organisation",
+  /** Registration line, shown in the footer, Terms, Privacy and FAQ. From the Certificate of Registration for Community Groups (serial no. CBO 0025934). */
+  registration: 'Registered Community Based Organisation (CBO), No. DSD/22/115/02/185562',
+  registeredOn: '9 June 2026',
+  registeredAt: 'Biashara Ward, Ruiru Sub-County, Kiambu County',
   phone: '+254 721 706 755',
   phoneTel: '+254721706755',
   whatsapp: 'https://wa.me/254721706755',

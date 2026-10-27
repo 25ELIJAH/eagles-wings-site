@@ -25,7 +25,7 @@ const jsonLd = {
         {site.registration && (
           <details class="reveal">
             <summary>Are you a registered organisation?</summary>
-            <p>Registration: {site.registration}</p>
+            <p>Yes. We are registered as <strong>{site.legalName}</strong>, a Community Based Organisation, with the Directorate of Social Development under the Community Groups Registration Act, 2022. Registration number {site.registration.split('No. ')[1]}, registered {site.registeredOn}, {site.registeredAt}.</p>
           </details>
         )}
       </div>

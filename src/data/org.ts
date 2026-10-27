@@ -15,6 +15,7 @@ export const team: Person[] = [
 /** Milestones. Add real, dated events as the organisation grows. */
 export const timeline: { when: string; text: string }[] = [
   { when: '2016', text: "Eagle's Wings Community Group is founded in Kenya by Rev. Benard Kariuki Karanja." },
+  { when: '2026', text: "Registered with the Directorate of Social Development as Eagle's Wings Community Based Organisation under the Community Groups Registration Act, 2022 (9 June 2026)." },
   { when: '2026', text: 'Ten years of feeding children, mentoring young people and running medical camps.' },
 ];
 

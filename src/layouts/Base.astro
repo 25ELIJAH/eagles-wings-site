@@ -57,6 +57,8 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'NGO',
   name: site.name,
+  legalName: site.legalName,
+  identifier: { '@type': 'PropertyValue', name: 'Community Group registration number (Kenya)', value: 'DSD/22/115/02/185562' },
   url: Astro.site,
   logo: new URL('/images/logo.jpg', Astro.site),
   image: ogImage,
@@ -64,7 +66,7 @@ const jsonLd = {
   telephone: site.phoneTel,
   foundingDate: String(site.founded),
   areaServed: { '@type': 'Country', name: 'Kenya' },
-  address: { '@type': 'PostalAddress', addressLocality: 'Mwihoko', addressCountry: 'KE' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Mwihoko', addressRegion: 'Kiambu', addressCountry: 'KE' },
   contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', telephone: site.phoneTel, email: site.email, availableLanguage: ['English', 'Swahili'] },
 };
 ---
